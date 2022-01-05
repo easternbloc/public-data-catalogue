@@ -1,0 +1,487 @@
+# This is an OpenAPI Specification (https://swagger.io/specification/)
+# for the Public Data Catalogue API
+# owned by NHS Digital (https://digital.nhs.uk/)
+openapi: "3.0.0"
+info:
+  version: "{VERSION}"
+  title: Public Data Catalogue API
+  description: |
+    
+    ## Overview
+    Use this API to retrieve metadata from the Public Data Catalogue. 
+
+    Current scope is limited to information about NHSD National datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
+    
+    The API supports SEARCH and READ interactions. You can:
+    * List data sets (data set summaries)
+    * Get data set by ID 
+    * Export all data sets 
+
+    Data sets resources include:
+    * Technical (Physical Data Dictionary) assets such as: Schemas, Tables and Columns
+    * Characteristics such as: Publisher, Keywords, Coverage, Provenance, Access, Format and standards and Data utility  
+
+    You cannot currently use this API to:
+    * Retrieve data set feeds (Atom Feed)
+
+    ## Who can use this API
+    This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
+
+    ## Related APIs
+    N/A
+
+    ## API status and roadmap
+    This API is initially for use by Health Data Research (HDR) UK developers with other use cases to follow later.
+
+    This API is in [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+    - the API is available in our sandbox and integration test environments
+    - the API is not yet available for production use
+    - we might make breaking changes, but only if we cannot avoid it, and we'll give advance notice
+    To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=all&tag=reasonable-adjustment-flag#controls).
+    If you have any other queries, please [contact us](https://digital.nhs.uk/developer/help-and-support).
+
+    ## Technology
+    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). 
+
+    ## Network Access
+    TBC
+
+    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). To use this API with [NHS smartcards](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/nhs-smartcards-for-developers) (see below) you do need an HSCN connection, although internet-facing alternatives are available.
+    For more details see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
+
+    ## Security and authorisation
+    TBC
+
+    This API is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis), meaning we authenticate and authorise the calling application and we do not authenticate or authorise the end user.
+    Although we don't authenticate or authorise the end user, for some APIs we do require the calling application to do it 'locally'. For other APIs we don't require the end user to be authenticated or authorised, or even to be present.
+    Here's an illustration:
+    We support the following security patterns for application-restricted APIs:
+    - [Application-restricted RESTful API - API key authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-api-key-authentication)
+    - [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
+    
+    For more details, see [application-restricted APIs](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis).
+
+    ## Environments and testing
+    | Purpose                                | Base URL                                            |
+    | ---------------------------------------|-----------------------------------------------------|
+    | Sandbox                                | `https://sandbox.api.service.nhs.uk/public-data-catalogue`|
+    | Integration test                       | `https://int.api.service.nhs.uk/public-data-catalogue`    |
+    
+    ### Sandbox testing
+    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
+      - is for early developer testing
+      - only covers a limited set of scenarios
+      - is stateless, so it does not actually persist any updates
+      - is open access, so does not allow you to test authorisation
+      For more details on sandbox testing, or to try out the sandbox using our \"Try this API\" feature, see the documentation for each endpoint.
+    
+    ### Integration testing
+    Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
+    * is for formal integration testing
+    * is stateful, so persists updates
+    * includes authorisation, with [smartcard](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/nhs-smartcards-for-developers) and non-smartcard options
+    For more details see [integration testing with our RESTful APIs](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing-with-our-restful-apis).   
+    ## Onboarding
+    You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+  contact:
+    name: Public Data Catalogue API Support
+    url: 'https://digital.nhs.uk/developer/help-and-support'
+    email: api.management@nhs.net
+servers:
+  - url: 'https://sandbox.api.service.nhs.uk/public-data-catalogue'
+    description: Sandbox environment
+  - url: 'https://int.api.service.nhs.uk/public-data-catalogue'
+    description: Integration test environment.   
+paths:
+  /datasets:    
+    get:
+      summary: List Datasets (Get Data Set metadata)
+      operationId: list-datasets      
+      description: |
+        ## Overview
+        List all Dataset summaries.
+
+        Returns assets matching the given search criteria. Only parameters that are specified in this request and have not <code>null</code> values are used for filtering. All other parameters are ignored.
+
+        Use this endpoint to retrieve UUIDs of Data Set metadata.
+
+        To get the information you must provide the CommunityId.
+
+      parameters:
+       - $ref: '#/components/parameters/BearerAuthorization'
+       - $ref: '#/components/parameters/RequestID'
+       - $ref: '#/components/parameters/CorrelationID' 
+       - in: query
+         name: typeId
+         description: The list of IDs of the asset types. The returned assets are of one of types specified by this parameter.
+         required: true
+         schema:
+           type: array
+           items:
+             type: string
+             format: uuid
+             example: '00000000-0000-0000-0001-000400000001'          
+       - in: query
+         name: communityId
+         description: The ID of the community to find the assets in.
+         required: true
+         schema:
+           type: string
+           format: uuid 
+           example: '3673ded0-330d-4a67-b147-19f55a9e2265'              
+       - in: query
+         name: offset
+         description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
+         schema:
+           type: integer
+           format: int32
+           default: "0"      
+       - in: query
+         name: limit
+         description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
+         schema:
+           type: integer
+           format: int32
+           default: "0"       
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/dataset_list.yaml
+              example:
+                $ref: components/examples/dataset_list.json
+        "400":
+          description: Bad Request
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    details:
+                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        "401":
+          description: Unauthorized
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Invalid access token
+        "404":
+          description: Not Found
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: "Code: 420, Display: Business condition related to access control  which prevents the action being performed by PSIS;Code: 30418, Display: [PSIS-30418] - ACF does not permit access to resource"
+        "500":
+          description: Internal Server Error
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        version: 1
+                        code: UNKNOWN_ERROR
+                        display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        "503":
+          description: Service Unavailable
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        version: 1
+                        code: UNKNOWN_ERROR
+                        display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+  '/datasets/{id}':
+    get:
+      summary: Get Dataset by ID
+      operationId:  get-datasets-id    
+      description: |
+        ## Overview
+        Get Dataset by ID.
+
+        Returns the asset having the given ID.
+
+        Use this endpoint to retrieve Dataset by ID.
+        
+        The UUID is required to retrieve specific Data Set metadata using GET /datasets/{id} endpoint
+      parameters:
+       - $ref: '#/components/parameters/BearerAuthorization'
+       - $ref: '#/components/parameters/RequestID'
+       - $ref: '#/components/parameters/CorrelationID' 
+       - in: path
+         name: id
+         schema:
+           type: string
+           format: uuid 
+           example: 'dd5f0174-575f-4f4c-a4fc-b406aab953d9'   
+         required: true              
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/dataset.yaml
+              example:
+                $ref: components/examples/dataset.json                
+        "400":
+          description: Bad Request
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    details:
+                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        "401":
+          description: Unauthorized
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Invalid access token
+        "404":
+          description: Not Found
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: "Code: 420, Display: Business condition related to access control  which prevents the action being performed by PSIS;Code: 30418, Display: [PSIS-30418] - ACF does not permit access to resource"
+        "500":
+          description: Internal Server Error
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        version: 1
+                        code: UNKNOWN_ERROR
+                        display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        "503":
+          description: Service Unavailable
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        version: 1
+                        code: UNKNOWN_ERROR
+                        display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+ 
+  /datasets/$export:
+    get:
+      summary: Export all Datasets
+      operationId:  export-datasets    
+      description: |
+        ## Overview
+        Export all Datasets (OPTIONAL)  
+        
+        Operation invokes using a 'GET' with simple HTTP URL parameters (TBC)
+
+      parameters:
+        - $ref: '#/components/parameters/BearerAuthorization'
+        - $ref: '#/components/parameters/CorrelationID'
+        - $ref: '#/components/parameters/RequestID'
+        - in: query
+          name: Start Date
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: End Date
+          schema:
+            type: string
+            format: date-time            
+        - in: query
+          name: communityId
+          description: The ID of the community to find the assets in.
+          schema:
+            type: string
+            format: uuid              
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/dataset_export.yaml
+              example:
+                $ref: components/examples/dataset_export.json
+        "400":
+          description: Bad Request
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    details:
+                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        "401":
+          description: Unauthorized
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Invalid access token
+        "404":
+          description: Not Found
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: "Code: 420, Display: Business condition related to access control  which prevents the action being performed by PSIS;Code: 30418, Display: [PSIS-30418] - ACF does not permit access to resource"
+        "500":
+          description: Internal Server Error
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        version: 1
+                        code: UNKNOWN_ERROR
+                        display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        "503":
+          description: Service Unavailable
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        version: 1
+                        code: UNKNOWN_ERROR
+                        display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+components:
+  parameters:                                                 
+    BearerAuthorization:
+      in: header
+      name: Authorization
+      description: |
+        An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+        Required in all environments except sandbox.
+      required: true
+      schema:
+        type: string
+        format: '^Bearer\ [[:ascii:]]+$'
+        example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
+    CorrelationID:
+      in: header
+      name: X-Correlation-ID
+      required: false
+      description: |
+        A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk.
+        Mirrored back in a response header.
+        Avoid `.` characters.
+      schema:
+        type: string
+        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+    RequestID:
+      in: header
+      name: X-Request-ID
+      required: false
+      description: |
+        A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests.
+        Must be a universally unique identifier (UUID) (ideally version 4).
+        If you re-send a failed request, use the same value in this header.
+        Mirrored back in a response header.
+      schema:
+        type: string
+        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
