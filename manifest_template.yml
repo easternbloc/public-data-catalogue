@@ -21,9 +21,9 @@ APIGEE_ENVIRONMENTS:
 meta:
   api:
     name: public-data-catalogue
-    guid: 6b274f99-d238-4a9f-9c7e-0cef225263e6
+    guid: c4e2bffd-8027-453a-b67b-49bf20ce2908
     spec_guids:
-      - 17b347eb-7ec5-42f7-acba-e0ad74dc71f7
+      - 70721ebe-94bd-4e0c-b35b-4c61c0722b6b
   schema_version: 1.3
 apigee:
   environments:
