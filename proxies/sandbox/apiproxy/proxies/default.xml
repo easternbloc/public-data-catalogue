@@ -48,7 +48,7 @@
     </Response>
   </PostClientFlow>
   <HTTPProxyConnection>
-    <BasePath>public-data-catalogue</BasePath>
+    <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
     <VirtualHost>secure</VirtualHost>
   </HTTPProxyConnection>
   <RouteRule name="NoRoutePing">

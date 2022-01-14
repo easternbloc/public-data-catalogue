@@ -93,395 +93,441 @@ servers:
     description: Sandbox environment
   - url: 'https://int.api.service.nhs.uk/public-data-catalogue'
     description: Integration test environment.   
-paths: {}
-#   /datasets:    
-#     get:
-#       summary: List Datasets (Get Data Set metadata)
-#       operationId: list-datasets      
-#       description: |
-#         ## Overview
-#         List all Dataset summaries.
+paths:
+  /datasets:    
+    get:
+      summary: List Datasets (Get Data Set metadata)
+      operationId: list-datasets      
+      description: |
+        ## Overview
+        List all Dataset summaries.
 
-#         Returns assets matching the given search criteria. Only parameters that are specified in this request and have not <code>null</code> values are used for filtering. All other parameters are ignored.
+        Returns assets matching the given search criteria. Only parameters that are specified in this request and have not <code>null</code> values are used for filtering. All other parameters are ignored.
 
-#         Use this endpoint to retrieve UUIDs of Data Set metadata.
+        Use this endpoint to retrieve UUIDs of Data Set metadata.
 
-#         To get the information you must provide the CommunityId.
+        To get the information you must provide the CommunityId.
 
-#       parameters:
-#        - $ref: '#/components/parameters/BearerAuthorization'
-#        - $ref: '#/components/parameters/RequestID'
-#        - $ref: '#/components/parameters/CorrelationID' 
-#        - in: query
-#          name: typeId
-#          description: The list of IDs of the asset types. The returned assets are of one of types specified by this parameter.
-#          required: true
-#          schema:
-#            type: array
-#            items:
-#              type: string
-#              format: uuid
-#              example: '00000000-0000-0000-0001-000400000001'          
-#        - in: query
-#          name: communityId
-#          description: The ID of the community to find the assets in.
-#          required: true
-#          schema:
-#            type: string
-#            format: uuid 
-#            example: '3673ded0-330d-4a67-b147-19f55a9e2265'              
-#        - in: query
-#          name: offset
-#          description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
-#          schema:
-#            type: integer
-#            format: int32
-#            default: "0"      
-#        - in: query
-#          name: limit
-#          description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
-#          schema:
-#            type: integer
-#            format: int32
-#            default: "0"       
-#       responses:
-#         "200":
-#           description: Success response
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: components/schemas/dataset_list.yaml
-#               example:
-#                 $ref: components/examples/dataset_list.json
-#         "400":
-#           description: Bad Request
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     details:
-#                       text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-#         "401":
-#           description: Unauthorized
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: forbidden
-#                     details:
-#                       text: Invalid access token
-#         "404":
-#           description: Not Found
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: forbidden
-#                     details:
-#                       text: "Code: 420, Display: Business condition related to access control  which prevents the action being performed by PSIS;Code: 30418, Display: [PSIS-30418] - ACF does not permit access to resource"
-#         "500":
-#           description: Internal Server Error
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationErrorOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: unknown
-#                     details:
-#                       coding:
-#                         system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-#                         version: 1
-#                         code: UNKNOWN_ERROR
-#                         display: Unknown Error
-#                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-#         "503":
-#           description: Service Unavailable
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationErrorOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: unknown
-#                     details:
-#                       coding:
-#                         system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-#                         version: 1
-#                         code: UNKNOWN_ERROR
-#                         display: Unknown Error
-#                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-#   '/datasets/{id}':
-#     get:
-#       summary: Get Dataset by ID
-#       operationId:  get-datasets-id    
-#       description: |
-#         ## Overview
-#         Get Dataset by ID.
+      parameters:
+       - $ref: '#/components/parameters/BearerAuthorization'
+       - $ref: '#/components/parameters/RequestID'
+       - $ref: '#/components/parameters/CorrelationID' 
+       - in: query
+         name: typeId
+         description: The list of IDs of the asset types. The returned assets are of one of types specified by this parameter.
+         required: true
+         schema:
+           type: array
+           items:
+             type: string
+             format: uuid
+             example: '00000000-0000-0000-0001-000400000001'          
+       - in: query
+         name: communityId
+         description: The ID of the community to find the assets in.
+         required: true
+         schema:
+           type: string
+           format: uuid 
+           example: '3673ded0-330d-4a67-b147-19f55a9e2265'              
+       - in: query
+         name: q
+         description: query
+         schema:
+           type: string  
+       - in: query
+         name: offset
+         description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
+         schema:
+           type: integer
+           format: int32
+#           default: "0"                
+       - in: query
+         name: limit
+         description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
+         schema:
+           type: integer
+           format: int32
+#           default: "0"       
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: object
+                    properties:
+                      q:
+                        type: string
+                      total:
+                        type: string
+                      limit:
+                        type: string
+                      offset:
+                        type: string
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '@schema':
+                          type: string
+                        type:
+                          type: string
+                        identifier:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        version:
+                          type: string
+                        self:
+                          type: string
+                        issued:
+                          type: string
+                        modified:
+                          type: string
+                        source:
+                          type: string                
+        "400":
+          description: Bad Request
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        "401":
+          description: Unauthorized
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Invalid access token
+        "404":
+          description: Not Found
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: "No datasets exist within given community Id"
+        "500":
+          description: Internal Server Error
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                          version: '1'
+                          code: UNKNOWN_ERROR
+                          display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        "503":
+          description: Service Unavailable
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                          version: '1'
+                          code: UNKNOWN_ERROR
+                          display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+  '/datasets/{id}':
+    get:
+      summary: Get Dataset by ID
+      operationId:  get-datasets-id    
+      description: |
+        ## Overview
+        Get Dataset by ID.
 
-#         Returns the asset having the given ID.
+        Returns the asset having the given ID.
 
-#         Use this endpoint to retrieve Dataset by ID.
+        Use this endpoint to retrieve Dataset by ID.
         
-#         The UUID is required to retrieve specific Data Set metadata using GET /datasets/{id} endpoint
-#       parameters:
-#        - $ref: '#/components/parameters/BearerAuthorization'
-#        - $ref: '#/components/parameters/RequestID'
-#        - $ref: '#/components/parameters/CorrelationID' 
-#        - in: path
-#          name: id
-#          schema:
-#            type: string
-#            format: uuid 
-#            example: 'dd5f0174-575f-4f4c-a4fc-b406aab953d9'   
-#          required: true              
-#       responses:
-#         '200':
-#           description: OK
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: components/schemas/dataset.yaml
-#               example:
-#                 $ref: components/examples/dataset.json                
-#         "400":
-#           description: Bad Request
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     details:
-#                       text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-#         "401":
-#           description: Unauthorized
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: forbidden
-#                     details:
-#                       text: Invalid access token
-#         "404":
-#           description: Not Found
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: forbidden
-#                     details:
-#                       text: "Code: 420, Display: Business condition related to access control  which prevents the action being performed by PSIS;Code: 30418, Display: [PSIS-30418] - ACF does not permit access to resource"
-#         "500":
-#           description: Internal Server Error
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationErrorOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: unknown
-#                     details:
-#                       coding:
-#                         system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-#                         version: 1
-#                         code: UNKNOWN_ERROR
-#                         display: Unknown Error
-#                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-#         "503":
-#           description: Service Unavailable
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationErrorOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: unknown
-#                     details:
-#                       coding:
-#                         system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-#                         version: 1
-#                         code: UNKNOWN_ERROR
-#                         display: Unknown Error
-#                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        The UUID is required to retrieve specific Data Set metadata using GET /datasets/{id} endpoint
+      parameters:
+       - $ref: '#/components/parameters/BearerAuthorization'
+       - $ref: '#/components/parameters/RequestID'
+       - $ref: '#/components/parameters/CorrelationID' 
+       - in: path
+         name: id
+         description: ID of the Dataset
+         schema:
+           type: string
+           format: uuid 
+           example: 'dd5f0174-575f-4f4c-a4fc-b406aab953d9'   
+         required: true              
+      responses:
+        '200':
+          description: OK
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: components/schemas/dataset.schema.yaml
+          #     example:
+          #       $ref: components/examples/hdruk.json                
+        "400":
+          description: Bad Request
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        "401":
+          description: Unauthorized
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Invalid access token
+        "404":
+          description: Not Found
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: "No dataset exists for given resource Id"
+        "500":
+          description: Internal Server Error
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                          version: '1'
+                          code: UNKNOWN_ERROR
+                          display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        "503":
+          description: Service Unavailable
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                          version: '1'
+                          code: UNKNOWN_ERROR
+                          display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
  
-#   /datasets/$export:
-#     get:
-#       summary: Export all Datasets
-#       operationId:  export-datasets    
-#       description: |
-#         ## Overview
-#         Export all Datasets (OPTIONAL)  
+  /datasets/$export:
+    get:
+      summary: Export all Datasets
+      operationId:  export-datasets    
+      description: |
+        ## Overview
+        Export all Datasets (OPTIONAL)  
         
-#         Operation invokes using a 'GET' with simple HTTP URL parameters (TBC)
+        Operation invokes using a 'GET' with simple HTTP URL parameters (TBC)
 
-#       parameters:
-#         - $ref: '#/components/parameters/BearerAuthorization'
-#         - $ref: '#/components/parameters/CorrelationID'
-#         - $ref: '#/components/parameters/RequestID'
-#         - in: query
-#           name: Start Date
-#           schema:
-#             type: string
-#             format: date-time
-#         - in: query
-#           name: End Date
-#           schema:
-#             type: string
-#             format: date-time            
-#         - in: query
-#           name: communityId
-#           description: The ID of the community to find the assets in.
-#           schema:
-#             type: string
-#             format: uuid              
-#       responses:
-#         "200":
-#           description: Success response
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: components/schemas/dataset_export.yaml
-#               example:
-#                 $ref: components/examples/dataset_export.json
-#         "400":
-#           description: Bad Request
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     details:
-#                       text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-#         "401":
-#           description: Unauthorized
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: forbidden
-#                     details:
-#                       text: Invalid access token
-#         "404":
-#           description: Not Found
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: forbidden
-#                     details:
-#                       text: "Code: 420, Display: Business condition related to access control  which prevents the action being performed by PSIS;Code: 30418, Display: [PSIS-30418] - ACF does not permit access to resource"
-#         "500":
-#           description: Internal Server Error
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationErrorOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: unknown
-#                     details:
-#                       coding:
-#                         system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-#                         version: 1
-#                         code: UNKNOWN_ERROR
-#                         display: Unknown Error
-#                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-#         "503":
-#           description: Service Unavailable
-#           content:
-#             application/fhir+json:
-#               schema:
-#                 $ref: components/schemas/OperationErrorOutcome.yaml
-#               example:
-#                 resourceType: OperationOutcome
-#                 issue:
-#                   - severity: error
-#                     code: unknown
-#                     details:
-#                       coding:
-#                         system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-#                         version: 1
-#                         code: UNKNOWN_ERROR
-#                         display: Unknown Error
-#                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-# components:
-#   parameters:                                                 
-#     BearerAuthorization:
-#       in: header
-#       name: Authorization
-#       description: |
-#         An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
-#         Required in all environments except sandbox.
-#       required: true
-#       schema:
-#         type: string
-#         format: '^Bearer\ [[:ascii:]]+$'
-#         example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
-#     CorrelationID:
-#       in: header
-#       name: X-Correlation-ID
-#       required: false
-#       description: |
-#         A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk.
-#         Mirrored back in a response header.
-#         Avoid `.` characters.
-#       schema:
-#         type: string
-#         example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
-#     RequestID:
-#       in: header
-#       name: X-Request-ID
-#       required: false
-#       description: |
-#         A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests.
-#         Must be a universally unique identifier (UUID) (ideally version 4).
-#         If you re-send a failed request, use the same value in this header.
-#         Mirrored back in a response header.
-#       schema:
-#         type: string
-#         pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
-#         example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+      parameters:
+        - $ref: '#/components/parameters/BearerAuthorization'
+        - $ref: '#/components/parameters/CorrelationID'
+        - $ref: '#/components/parameters/RequestID'
+        - in: query
+          name: Start Date
+          description: Start Date 
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: End Date
+          description: End Date
+          schema:
+            type: string
+            format: date-time            
+        - in: query
+          name: communityId
+          description: The ID of the community to find the assets in.
+          schema:
+            type: string
+            format: uuid              
+      responses:
+        "200":
+          description: Success response
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: components/schemas/dataset.schema.yaml
+          #     example:
+          #       $ref: components/examples/hdruk.json
+        "400":
+          description: Bad Request
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        "401":
+          description: Unauthorized
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: Invalid access token
+        "404":
+          description: Not Found
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: forbidden
+                    details:
+                      text: "No dataset resources found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                          version: '1'
+                          code: UNKNOWN_ERROR
+                          display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        "503":
+          description: Service Unavailable
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/OperationErrorOutcome.yaml
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: unknown
+                    details:
+                      coding:
+                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                          version: '1'
+                          code: UNKNOWN_ERROR
+                          display: Unknown Error
+                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+components:
+  parameters:                                                 
+    BearerAuthorization:
+      in: header
+      name: Authorization
+      description: |
+        An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+        Required in all environments except sandbox.
+      required: true
+      schema:
+        type: string
+        format: '^Bearer\ [[:ascii:]]+$'
+        example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
+    CorrelationID:
+      in: header
+      name: X-Correlation-ID
+      required: false
+      description: |
+        A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk.
+        Mirrored back in a response header.
+        Avoid `.` characters.
+      schema:
+        type: string
+        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+    RequestID:
+      in: header
+      name: X-Request-ID
+      required: false
+      description: |
+        A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests.
+        Must be a universally unique identifier (UUID) (ideally version 4).
+        If you re-send a failed request, use the same value in this header.
+        Mirrored back in a response header.
+      schema:
+        type: string
+        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
