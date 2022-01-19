@@ -93,6 +93,15 @@ servers:
     description: Sandbox environment
   - url: 'https://int.api.service.nhs.uk/public-data-catalogue'
     description: Integration test environment.   
+x-spec-publication:
+  operation-order:
+  - operations:
+    - method: GET
+      path: /datasets
+    - method: GET
+      path: '/datasets/{id}'
+    - method: GET
+      path: /datasets/$export  
 paths:
   /datasets:    
     get:
@@ -296,12 +305,12 @@ paths:
       responses:
         '200':
           description: OK
-          # content:
-          #   application/json:
-          #     schema:
-          #       $ref: components/schemas/dataset.schema.yaml
-          #     example:
-          #       $ref: components/examples/hdruk.json                
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/dataset.schema.yaml
+              example:
+                $ref: components/examples/hdruk.json                
         "400":
           description: Bad Request
           content:
