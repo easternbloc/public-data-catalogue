@@ -1,0 +1,110 @@
+type: object
+required:
+  - title
+  - abstract
+  - publisher
+  - contactPoint
+  - keywords
+additionalProperties: false
+properties:
+  title:
+    # "$id": "#/summary/title"
+    # "$comment": dct:title. title is reserved word in json schema
+    title: Title
+    description: Title of the dataset limited to 80 characters. It should provide
+          a short description of the dataset and be unique across the gateway. If
+          your title is not unique, please add a prefix with your organisation name
+          or identifier to differentiate it from other datasets within the Gateway.
+          Please avoid acronyms wherever possible. Good titles should summarise the
+          content of the dataset and if relevant, the region the dataset covers.
+    example:
+    - - North West London COVID-19 Patient Level Situation Report
+    allOf:
+    - "$ref": "definitions-eightyCharacters.yaml"  
+  abstract:
+    # "$id": "#/summary/abstract"
+    title: Dataset Abstract
+    description: Provide a clear and brief descriptive signpost for researchers
+          who are searching for data that may be relevant to their research. The abstract
+          should allow the reader to determine the scope of the data collection and
+          accurately summarise its content. The optimal length is one paragraph (limited
+          to 255 characters) and effective abstracts should avoid long sentences and
+          abbreviations where possible
+    # "$comment": dct:abstract
+    example:
+        - CPRD Aurum contains primary care data contributed by General Practitioner
+          (GP) practices using EMIS Web® including patient registration information
+          and all care events that GPs have chosen to record as part of their usual
+          medical practice.
+    allOf:
+    - "$ref": "definitions-abstractText.yaml"    
+  # publisher:
+  #   # "$id": "#/summary/publisher"
+  #   # "$comment": Conforms to spec, but this MAY be an an object of organisation.
+  #   #       https://schema.org/publisher
+  #   title: Dataset publisher
+  #   description: This is the organisation responsible for running or supporting
+  #         the data access request process, as well as publishing and maintaining the
+  #         metadata. In most this will be the same as the HDR UK Organisation (Hub
+  #         or Alliance Member). However, in some cases this will be different i.e.
+  #         Tissue Directory are an HDR UK Gateway organisation but coordinate activities
+  #         across a number of data publishers i.e. Cambridge Blood and Stem Cell Biobank.
+  #   allOf:
+  #   - "$ref": "definitions-organisation.yaml"  
+  contactPoint:
+    # "$id": "#/summary/contactPoint"
+    title: Contact Point
+    # "$comment": dcat:contactPoint
+    # default: Defaulted to the contact point of the primary organisation of the
+    #       user however, can be overridden for specific datasets
+    example:
+    - SAILDatabank@swansea.ac.uk
+    description: 'Please provide a valid email address that can be used to coordinate
+          data access requests with the publisher. Organisations are expected to provide
+          a dedicated email address associated with the data access request process.
+          Notes: An employee’s email address can only be provided on a temporary basis
+          and if one is provided an explicit consent must be obtained for this purpose.'
+    allOf:
+    - "$ref": "definitions-emailAddress.yaml"  
+  keywords:
+    # "$id": "#/summary/keywords"
+    # "$comment": dcat:keyword. May be an array of strings or comma seperated list.
+    title: Keywords
+    description: 'Please provide relevant and specific keywords that can improve
+          the SEO of your dataset as a comma separated list. Notes: Onboarding portal
+          will suggest keywords based on title, abstract and description. We are compiling
+          a standardised list of keywords and synonyms across datasets to make filtering
+          easier for users.'
+    anyOf:
+    - "$ref": "definitions-commaSeparatedValues.yaml"
+    - type: array
+      items:
+        allOf:
+        - "$ref": "definitions-eightyCharacters.yaml"
+      uniqueItems: true
+      minItems: 1 
+  alternateIdentifiers:
+    # "$id": "#/summary/alternateIdentifiers"
+    # "$comment": DATA-CITE alternate-identifiers used. Note, will support comma
+    #       separated list for backwards compatibility with other systems
+    title: Alternate dataset identifiers
+    description: Alternate dataset identifiers or local identifiers
+    anyOf:
+    - "$ref": "definitions-commaSeparatedValues.yaml"
+    - type: array
+      items:
+        allOf:
+        - "$ref": "definitions-shortDescription.yaml"
+      uniqueItems: true
+      minItems: 1     
+  doiName:
+    # "$id": "#/summary/doiName"
+    title: Digital Object Identifier
+    description: All HDR UK registered datasets should either have a Digital Object
+          Identifier (DOI) or be working towards obtaining one. If a DOI is available,
+          please provide the DOI.
+    allOf:
+    - "$ref": "definitions-doi.yaml"
+        # "$comment": 'Vocabulary: DOI Data Dictionary '
+    example:
+        - 10.3399/bjgp17X692645    

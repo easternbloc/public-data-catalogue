@@ -103,7 +103,7 @@ x-spec-publication:
     - method: GET
       path: /datasets/$export  
 paths:
-  /datasets:    
+  /datasets/list:    
     get:
       summary: List Datasets (Get Data Set metadata)
       operationId: list-datasets      
@@ -121,43 +121,43 @@ paths:
        - $ref: '#/components/parameters/BearerAuthorization'
        - $ref: '#/components/parameters/RequestID'
        - $ref: '#/components/parameters/CorrelationID' 
-       - in: query
-         name: typeId
-         description: The list of IDs of the asset types. The returned assets are of one of types specified by this parameter.
-         required: true
-         schema:
-           type: array
-           items:
-             type: string
-             format: uuid
-             example: '00000000-0000-0000-0001-000400000001'          
-       - in: query
-         name: communityId
-         description: The ID of the community to find the assets in.
-         required: true
-         schema:
-           type: string
-           format: uuid 
-           example: '3673ded0-330d-4a67-b147-19f55a9e2265'              
+       # - in: query
+       #   name: typeId
+       #   description: The list of IDs of the asset types. The returned assets are of one of types specified by this parameter.
+       #   required: true
+       #   schema:
+       #     type: array
+       #     items:
+       #       type: string
+       #       format: uuid
+       #       example: '00000000-0000-0000-0001-000400000001'          
+       # - in: query
+       #   name: communityId
+       #   description: The ID of the community to find the assets in.
+       #   required: true
+       #   schema:
+       #     type: string
+       #     format: uuid 
+       #     example: '3673ded0-330d-4a67-b147-19f55a9e2265'              
        - in: query
          name: q
          description: query
          schema:
            type: string  
-       - in: query
-         name: offset
-         description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
-         schema:
-           type: integer
-           format: int32
-#           default: "0"                
-       - in: query
-         name: limit
-         description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
-         schema:
-           type: integer
-           format: int32
-#           default: "0"       
+#        - in: query
+#          name: offset
+#          description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
+#          schema:
+#            type: integer
+#            format: int32
+# #           default: "0"                
+#        - in: query
+#          name: limit
+#          description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
+#          schema:
+#            type: integer
+#            format: int32
+# #           default: "0"       
       responses:
         '200':
           description: OK
@@ -308,7 +308,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: components/schemas/dataset.schema.yaml
+                $ref: components/schemas/pdc.dataset.schema.yaml
               example:
                 $ref: components/examples/hdruk.json                
         "400":

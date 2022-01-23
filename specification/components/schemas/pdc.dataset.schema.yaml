@@ -1,0 +1,56 @@
+type: object
+title: HDR UK Dataset Schema
+description: HDR UK Dataset Metadata JSONSchema
+# version: 2.0.2 # Specification schema is invalid: Schema object cannot have additionalProperty: version #
+required:
+  - identifier
+  - version
+  - revisions
+  - issued
+  - modified
+  - summary
+additionalProperties: false
+properties:  
+  identifier:
+    # "$id": "#/properties/identifier"
+    title: Dataset identifier
+    # "$comment": "http://purl.org/dc/terms/identifier"
+    example:
+    - [ "226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
+    description: System dataset identifier
+    anyOf:
+    - "$ref": "definitions-uuidv4.yaml"
+    - "$ref": "definitions-url.yaml"  
+  version:
+    # "$id": "#/properties/version"
+    title: Dataset Version
+    description: Dataset metadata version
+    "$ref": "definitions-semver.yaml"   
+  revisions:
+    # "$id": "#/properties/revisions"
+    title: Dataset Revisions
+    description: Revisions of Dataset metadata
+    type: array
+    items:
+      allOf:
+      - "$ref": "definitions-revision.yaml"    
+  issued:
+    # "$id": "#/properties/issued"
+    title: Creation Date
+    # "$comment": "dcat:issued"
+    description: Dataset Metadata Creation Date
+    type: string
+    format: date-time
+  modified:
+    # "$id": "#/properties/modified"
+    title: Modification Date
+    # "$comment": "dcat:modified"
+    description: Dataset Metadata Creation Date
+    type: string
+    format: date-time   
+  summary:
+    # "$id": "#/properties/summary"
+    title: Summary
+    description: Summary metadata must be completed by Data Custodians onboarding
+      metadata into the Innovation Gateway MVP.
+    "$ref": "definitions-summary.yaml"       

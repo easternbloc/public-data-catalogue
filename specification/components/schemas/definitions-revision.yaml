@@ -1,0 +1,15 @@
+type: object
+description: Revisions of Dataset metadata
+required:
+  - version
+  - url
+additionalProperties: false
+properties:
+    version:
+      # "$id": "#/definitions/revision/version"
+      description: Semantic Version
+      "$ref": "definitions-semver.yaml"
+    url:
+      # "$id": "#/definitions/revision/url"
+      description: URL endpoint to obtain the version
+      "$ref": "definitions-url.yaml"  
