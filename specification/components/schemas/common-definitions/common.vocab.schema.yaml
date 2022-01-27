@@ -1,0 +1,414 @@
+type: object
+title: common definitions schema
+description: common definitions schema
+properties:
+  memberOf:
+    type: string
+    enum:
+    - HUB
+    - ALLIANCE
+    - OTHER
+    - NCS
+  physicalSampleAvailability:
+    type: string
+    enum:
+    - NOT AVAILABLE
+    - BONE MARROW
+    - CANCER CELL LINES
+    - CORE BIOPSY
+    - CDNA OR MRNA
+    - DNA
+    - FAECES
+    - IMMORTALIZED CELL LINES
+    - MICRORNA
+    - PERIPHERAL BLOOD CELLS
+    - PLASMA
+    - PM TISSUE
+    - PRIMARY CELLS
+    - RNA
+    - SALIVA
+    - SERUM
+    - SWABS
+    - TISSUE
+    - URINE
+    - WHOLE BLOOD
+    - AVAILABILITY TO BE CONFIRMED
+    - OTHER  
+  followup:
+    type: string
+    enum:
+    - 0 - 6 MONTHS
+    - 6 - 12 MONTHS
+    - 1 - 10 YEARS
+    - "> 10 YEARS"
+    - UNKNOWN
+    - CONTINUOUS
+    - OTHER
+  periodicity:
+    type: string
+    enum:
+    - STATIC
+    - IRREGULAR
+    - CONTINUOUS
+    - BIENNIAL
+    - ANNUAL
+    - BIANNUAL
+    - QUARTERLY
+    - BIMONTHLY
+    - MONTHLY
+    - BIWEEKLY
+    - WEEKLY
+    - SEMIWEEKLY
+    - DAILY
+    - OTHER   
+  purpose:
+    type: string
+    enum:
+    - STUDY
+    - DISEASE REGISTRY
+    - TRIAL
+    - CARE
+    - AUDIT
+    - ADMINISTRATIVE
+    - FINANCIAL
+    - STATUTORY
+    - OTHER  
+  source:
+    type: string
+    enum:
+    - EPR
+    - ELECTRONIC SURVEY
+    - LIMS
+    - OTHER INFORMATION SYSTEM
+    - PAPER BASED
+    - FREETEXT NLP
+    - MACHINE GENERATED
+    - OTHER  
+  setting:
+    type: string
+    enum:
+    - CLINIC
+    - PRIMARY CARE
+    - ACCIDENT AND EMERGENCY
+    - OUTPATIENTS
+    - IN-PATIENTS
+    - SERVICES
+    - COMMUNITY
+    - HOME
+    - PRIVATE
+    - PHARMACY
+    - SOCIAL CARE
+    - LOCAL AUTHORITY
+    - NATIONAL GOVERNMENT
+    - OTHER 
+  timelag:
+    type: string
+    enum:
+    - LESS 1 WEEK
+    - 1-2 WEEKS
+    - 2-4 WEEKS
+    - 1-2 MONTHS
+    - 2-6 MONTHS
+    - MORE 6 MONTHS
+    - VARIABLE
+    - NO TIMELAG
+    - NOT APPLICABLE
+    - OTHER
+  dataUseLimitation:
+    type: string
+    enum:
+    - GENERAL RESEARCH USE
+    - COMMERCIAL RESEARCH USE
+    - GENETIC STUDIES ONLY
+    - NO GENERAL METHODS RESEARCH
+    - NO RESTRICTION
+    - GEOGRAPHICAL RESTRICTIONS
+    - INSTITUTION SPECIFIC RESTRICTIONS
+    - NOT FOR PROFIT USE
+    - PROJECT SPECIFIC RESTRICTIONS
+    - RESEARCH SPECIFIC RESTRICTIONS
+    - USER SPECIFIC RESTRICTION
+    - RESEARCH USE ONLY
+    - NO LINKAGE 
+  dataUseRequirements:
+    type: string
+    enum:
+    - COLLABORATION REQUIRED
+    - PROJECT SPECIFIC RESTRICTIONS
+    - ETHICS APPROVAL REQUIRED
+    - INSTITUTION SPECIFIC RESTRICTIONS
+    - GEOGRAPHICAL RESTRICTIONS
+    - PUBLICATION MORATORIUM
+    - PUBLICATION REQUIRED
+    - RETURN TO DATABASE OR RESOURCE
+    - TIME LIMIT ON USE
+    - DISCLOSURE CONTROL
+    - NOT FOR PROFIT USE
+    - USER SPECIFIC RESTRICTION
+  deliveryLeadTime:
+    type: string
+    enum:
+    - LESS 1 WEEK
+    - 1-2 WEEKS
+    - 2-4 WEEKS
+    - 1-2 MONTHS
+    - 2-6 MONTHS
+    - MORE 6 MONTHS
+    - VARIABLE
+    - NOT APPLICABLE
+    - OTHER
+  standardisedDataModels:
+    type: string
+    enum:
+    - HL7 FHIR
+    - HL7 V2
+    - HL7 CDA
+    - HL7 CCOW
+    - LOINC
+    - DICOM
+    - I2B2
+    - IHE
+    - OMOP
+    - OPENEHR
+    - SENTINEL
+    - PCORNET
+    - CDISC
+    - NHS DATA DICTIONARY
+    - NHS SCOTLAND DATA DICTIONARY
+    - NHS WALES DATA DICTIONARY
+    - LOCAL
+    - OTHER
+  controlledVocabulary:
+    type: string
+    enum:
+    - LOCAL
+    - OPCS4
+    - READ
+    - SNOMED CT
+    - SNOMED RT
+    - DM PLUS D
+    - DM+D
+    - NHS NATIONAL CODES
+    - NHS SCOTLAND NATIONAL CODES
+    - NHS WALES NATIONAL CODES
+    - ODS
+    - LOINC
+    - ICD10
+    - ICD10CM
+    - ICD10PCS
+    - ICD9CM
+    - ICD9
+    - ICDO3
+    - AMT
+    - APC
+    - ATC
+    - CIEL
+    - HPO
+    - CPT4
+    - DPD
+    - DRG
+    - HEMONC
+    - JMDC
+    - KCD7
+    - MULTUM
+    - NAACCR
+    - NDC
+    - NDFRT
+    - OXMIS
+    - RXNORM
+    - RXNORM EXTENSION
+    - SPL
+    - OTHER
+  language:
+    type: string
+    enum:
+    - aa
+    - ab
+    - ae
+    - af
+    - ak
+    - am
+    - an
+    - ar
+    - as
+    - av
+    - ay
+    - az
+    - ba
+    - be
+    - bg
+    - bh
+    - bi
+    - bm
+    - bn
+    - bo
+    - br
+    - bs
+    - ca
+    - ce
+    - ch
+    - co
+    - cr
+    - cs
+    - cu
+    - cv
+    - cy
+    - da
+    - de
+    - dv
+    - dz
+    - ee
+    - el
+    - en
+    - eo
+    - es
+    - et
+    - eu
+    - fa
+    - ff
+    - fi
+    - fj
+    - fo
+    - fr
+    - fy
+    - ga
+    - gd
+    - gl
+    - gn
+    - gu
+    - gv
+    - ha
+    - he
+    - hi
+    - ho
+    - hr
+    - ht
+    - hu
+    - hy
+    - hz
+    - ia
+    - id
+    - ie
+    - ig
+    - ii
+    - ik
+    - io
+    - is
+    - it
+    - iu
+    - ja
+    - jv
+    - ka
+    - kg
+    - ki
+    - kj
+    - kk
+    - kl
+    - km
+    - kn
+    - ko
+    - kr
+    - ks
+    - ku
+    - kv
+    - kw
+    - ky
+    - la
+    - lb
+    - lg
+    - li
+    - ln
+    - lo
+    - lt
+    - lu
+    - lv
+    - mg
+    - mh
+    - mi
+    - mk
+    - ml
+    - mn
+    - mr
+    - ms
+    - mt
+    - my
+    - na
+    - nb
+    - nd
+    - ne
+    - ng
+    - nl
+    - nn
+    - 'no'
+    - nr
+    - nv
+    - ny
+    - oc
+    - oj
+    - om
+    - or
+    - os
+    - pa
+    - pi
+    - pl
+    - ps
+    - pt
+    - qu
+    - rm
+    - rn
+    - ro
+    - ru
+    - rw
+    - sa
+    - sc
+    - sd
+    - se
+    - sg
+    - si
+    - sk
+    - sl
+    - sm
+    - sn
+    - so
+    - sq
+    - sr
+    - ss
+    - st
+    - su
+    - sv
+    - sw
+    - ta
+    - te
+    - tg
+    - th
+    - ti
+    - tk
+    - tl
+    - tn
+    - to
+    - tr
+    - ts
+    - tt
+    - tw
+    - ty
+    - ug
+    - uk
+    - ur
+    - uz
+    - ve
+    - vi
+    - vo
+    - wa
+    - wo
+    - xh
+    - yi
+    - yo
+    - za
+    - zh
+    - zu    
+  statisticalPopulationConstrained:
+    type: string
+    enum:
+    - PERSONS
+    - EVENTS
+    - FINDINGS

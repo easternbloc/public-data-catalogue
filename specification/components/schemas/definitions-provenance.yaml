@@ -1,0 +1,13 @@
+type: object
+required:
+- temporal
+additionalProperties: false
+properties:
+  origin:
+    # "$id": "#/definitions/provenance/origin"
+    allOf:
+    - "$ref": "definitions-origin.yaml"
+  temporal:
+    # "$id": "#/definitions/provenance/temporal"
+    allOf:
+    - "$ref": "definitions-temporal.yaml"

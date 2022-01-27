@@ -1,0 +1,80 @@
+type: object
+additionalProperties: false
+properties:
+  dataUseLimitation:
+    # "$id": "#/properties/accessibility/usage/dataUseLimitation"
+    title: Data Use Limitation
+    # "$comment": https://www.ebi.ac.uk/ols/ontologies/duo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDUO_0000001
+    description: 'Please provide an indication of consent permissions for datasets
+          and/or materials, and relates to the purposes for which datasets and/or
+          material might be removed, stored or used. NOTE: we have extended the DUO
+          to include a value for NO LINKAGE'
+    anyOf:
+    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    # - "$ref": "definitions-commaSeparatedValues.yaml"
+    - type: array
+      items:
+        allOf:
+        - "$ref": "common-definitions/common.vocab.schema.yaml#/dataUseLimitation"
+        # - "$ref": "valuesets/dataUseLimitation.yaml"
+      uniqueItems: true
+      minItems: 1
+  dataUseRequirements:
+    # "$id": "#/properties/accessibility/usage/dataUseRequirements"
+    title: Data Use Requirements
+    description: Please indicate fit here are any additional conditions set for
+          use if any, multiple requirements may be provided. Please ensure that these
+          restrictions are documented in access rights information.
+    # "$comment": https://www.ebi.ac.uk/ols/ontologies/duo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDUO_0000001
+    anyOf:
+    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    # - "$ref": "definitions-commaSeparatedValues.yaml"
+    - type: array
+      items:
+        allOf:
+        - "$ref": "common-definitions/common.vocab.schema.yaml#/dataUseRequirements"
+        # - "$ref": "valuesets/dataUseRequirements.yaml"
+      uniqueItems: true
+      minItems: 1      
+  resourceCreator:
+    # "$id": "#/properties/accessibility/usage/resourceCreator"
+    title: Citation Requirements
+    # "$comment": dct:creator
+    description: Please provide the text that you would like included as part
+          of any citation that credits this dataset. This is typically just the name
+          of the publisher.   No employee details should be provided.
+    anyOf:
+    - "$ref": "common-definitions/common.schema.yaml#/shortDescription"
+    # - "$ref": "definitions-shortDescription.yaml"
+    - type: array
+      items:
+        $ref: 'common-definitions/common.schema.yaml#/shortDescription'      
+        # $ref: 'definitions-shortDescription.yaml'   
+  investigations:
+    title: Investigations
+    # "$comment": No standard identified
+    anyOf:
+    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    # - "$ref": "definitions-commaSeparatedValues.yaml"
+    - type: array
+      items:
+        allOf:
+        - "$ref": "common-definitions/common.schema.yaml#/url"
+        # - "$ref": "definitions-url.yaml"
+  isReferencedBy:
+    title: Citations
+    # "$comment": 'dct:isReferencedBy '
+    description: Please provide the keystone paper associated with the dataset.
+          Also include a list of known citations, if available and should be links
+          to existing resources where the dataset has been used or referenced. Please
+          provide multiple entries, or if you are using a csv upload please provide
+          them as a tab separated list.
+    anyOf:
+    - "$ref": "common-definitions/common.schema.yaml#/doi"
+    # - "$ref": "definitions-doi.yaml"
+    - type: array
+      items:
+      # Schema Fail. SWK replaced with '$ref: "definitions-doi.yaml" ' 
+      # - "$ref": "definitions-doi.yaml"    
+        $ref: "common-definitions/common.schema.yaml#/doi"    
+        # $ref: "definitions-doi.yaml" 

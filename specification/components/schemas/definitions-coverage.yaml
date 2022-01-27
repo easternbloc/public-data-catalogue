@@ -1,0 +1,81 @@
+type: object
+additionalProperties: false
+properties:
+  spatial:
+    # "$id": "#/properties/coverage/spatial"
+    title: Geographic Coverage
+    # "$comment": dct:spatial
+    description: The geographical area covered by the dataset. It is recommended
+          that links are to entries in a well-maintained gazetteer such as https://www.geonames.org/
+          or https://what3words.com/daring.lion.race.
+    # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
+    example:
+    - https://www.geonames.org/2635167/united-kingdom-of-great-britain-and-northern-ireland.html
+    anyOf:
+    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    # - "$ref": "definitions-commaSeparatedValues.yaml"
+    - type: array
+      items:
+        anyOf:
+        - "$ref": "common-definitions/common.schema.yaml#/url"  
+        # - "$ref": "definitions-url.yaml" 
+  typicalAgeRange:
+    # "$id": "#/properties/coverage/typicalAgeRange"
+    title: Age Range
+    # "$comment": https://schema.org/typicalAgeRange
+    description: Please indicate the age range in whole years of participants
+          in the dataset. Please provide range in the following format ‘[min age]
+          – [max age]’ where both the minimum and maximum are whole numbers (integers).
+    allOf:
+    - "$ref": "common-definitions/common.schema.yaml#/ageRange"   
+    # - "$ref": "definitions-ageRange.yaml"  
+  physicalSampleAvailability:
+    # "$id": "#/properties/coverage/physicalSampleAvailability"
+    title: Physical Sample Availability
+    # "$comment": No standard identified. Used enumeration from the UK Tissue Directory.
+    # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
+    example:
+    - BONE MARROW
+    description: Availability of physical samples associated with the dataset.
+          If samples are available, please indicate the types of samples that are
+          available. More than one type may be provided. If sample are not yet available,
+          please provide “AVAILABILITY TO BE CONFIRMED”. If samples are not available,
+          then please provide “NOT AVAILABLE”.
+    anyOf:
+    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    # - "$ref": "definitions-commaSeparatedValues.yaml"
+    - type: array
+    # HDR UK Schema FAIL: Schema object cannot have additionalProperty: contains
+    # SWK replaced 'contains' field with 'items' field.
+      items:
+        "$ref": "common-definitions/common.vocab.schema.yaml#/physicalSampleAvailability"
+        # "$ref": "valuesets/physicalSampleAvailability.yaml"
+      uniqueItems: true
+      minItems: 1         
+  followup:
+    # "$id": "#/properties/coverage/followup"
+    # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
+    type: string
+    title: Followup
+    # "$comment": No standard identified
+    default: UNKNOWN
+    description: If known, what is the typical time span that a patient appears
+          in the dataset (follow up period)
+    allOf:
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/followup"      
+    # - "$ref": "valuesets/followup.yaml"    
+  pathway:
+    # "$id": "#/properties/coverage/pathway"
+    title: Pathway
+    # "$comment": No standard identified
+    description: Please indicate if the dataset is representative of the patient
+          pathway and any limitations the dataset may have with respect to pathway
+          coverage. This could include if the dataset is from a single speciality
+          or area, a single tier of care, linked across two tiers (e.g. primary and
+          secondary care), or an integrated care record covering the whole patient
+          pathway.
+    allOf:
+     # FIXME: When using 'description' as object property openapi Specification schema invalid. expected 'common definitions schema' to be an object expected 'common definitions schema' to have type object. 
+    # expected 'string' to be 'object'. This is because 'description' field is part of openapi spec
+    # - "$ref": "common-definitions/common.schema.yaml#/description"
+    - "$ref": "common-definitions/definitions-description.yaml"

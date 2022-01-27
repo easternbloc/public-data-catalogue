@@ -97,7 +97,7 @@ x-spec-publication:
   operation-order:
   - operations:
     - method: GET
-      path: /datasets
+      path: /datasets/list
     - method: GET
       path: '/datasets/{id}'
     - method: GET

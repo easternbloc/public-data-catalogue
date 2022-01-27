@@ -17,10 +17,12 @@ properties:
           or identifier to differentiate it from other datasets within the Gateway.
           Please avoid acronyms wherever possible. Good titles should summarise the
           content of the dataset and if relevant, the region the dataset covers.
+    # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)      
     example:
     - - North West London COVID-19 Patient Level Situation Report
     allOf:
-    - "$ref": "definitions-eightyCharacters.yaml"  
+    - "$ref": "common-definitions/common.schema.yaml#/eightyCharacters" 
+    # - "$ref": "definitions-eightyCharacters.yaml"  
   abstract:
     # "$id": "#/summary/abstract"
     title: Dataset Abstract
@@ -31,32 +33,37 @@ properties:
           to 255 characters) and effective abstracts should avoid long sentences and
           abbreviations where possible
     # "$comment": dct:abstract
+    # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
     example:
         - CPRD Aurum contains primary care data contributed by General Practitioner
           (GP) practices using EMIS Web® including patient registration information
           and all care events that GPs have chosen to record as part of their usual
           medical practice.
     allOf:
-    - "$ref": "definitions-abstractText.yaml"    
-  # publisher:
-  #   # "$id": "#/summary/publisher"
-  #   # "$comment": Conforms to spec, but this MAY be an an object of organisation.
-  #   #       https://schema.org/publisher
-  #   title: Dataset publisher
-  #   description: This is the organisation responsible for running or supporting
-  #         the data access request process, as well as publishing and maintaining the
-  #         metadata. In most this will be the same as the HDR UK Organisation (Hub
-  #         or Alliance Member). However, in some cases this will be different i.e.
-  #         Tissue Directory are an HDR UK Gateway organisation but coordinate activities
-  #         across a number of data publishers i.e. Cambridge Blood and Stem Cell Biobank.
-  #   allOf:
-  #   - "$ref": "definitions-organisation.yaml"  
+    - "$ref": "common-definitions/common.schema.yaml#/abstractText"    
+    # - "$ref": "definitions-abstractText.yaml"    
+  publisher:
+    # "$id": "#/summary/publisher"
+    # "$comment": Conforms to spec, but this MAY be an an object of organisation.
+    #       https://schema.org/publisher
+    title: Dataset publisher
+    description: This is the organisation responsible for running or supporting
+          the data access request process, as well as publishing and maintaining the
+          metadata. In most this will be the same as the HDR UK Organisation (Hub
+          or Alliance Member). However, in some cases this will be different i.e.
+          Tissue Directory are an HDR UK Gateway organisation but coordinate activities
+          across a number of data publishers i.e. Cambridge Blood and Stem Cell Biobank.
+    allOf:
+    - "$ref": "definitions-organisation.yaml"  
   contactPoint:
-    # "$id": "#/summary/contactPoint"
+    # # "$id": "#/summary/contactPoint"
+    # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
+    type: string
     title: Contact Point
     # "$comment": dcat:contactPoint
-    # default: Defaulted to the contact point of the primary organisation of the
-    #       user however, can be overridden for specific datasets
+    default: Defaulted to the contact point of the primary organisation of the
+          user however, can be overridden for specific datasets
+    # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
     example:
     - SAILDatabank@swansea.ac.uk
     description: 'Please provide a valid email address that can be used to coordinate
@@ -65,7 +72,8 @@ properties:
           Notes: An employee’s email address can only be provided on a temporary basis
           and if one is provided an explicit consent must be obtained for this purpose.'
     allOf:
-    - "$ref": "definitions-emailAddress.yaml"  
+    - "$ref": "common-definitions/common.schema.yaml#/emailAddress"  
+    # - "$ref": "definitions-emailAddress.yaml" 
   keywords:
     # "$id": "#/summary/keywords"
     # "$comment": dcat:keyword. May be an array of strings or comma seperated list.
@@ -76,11 +84,13 @@ properties:
           a standardised list of keywords and synonyms across datasets to make filtering
           easier for users.'
     anyOf:
-    - "$ref": "definitions-commaSeparatedValues.yaml"
+    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "definitions-eightyCharacters.yaml"
+        - "$ref": "common-definitions/common.schema.yaml#/eightyCharacters" 
+        # - "$ref": "definitions-eightyCharacters.yaml"  
       uniqueItems: true
       minItems: 1 
   alternateIdentifiers:
@@ -90,11 +100,13 @@ properties:
     title: Alternate dataset identifiers
     description: Alternate dataset identifiers or local identifiers
     anyOf:
-    - "$ref": "definitions-commaSeparatedValues.yaml"
+    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "definitions-shortDescription.yaml"
+        - "$ref": "common-definitions/common.schema.yaml#/shortDescription"
+        # - "$ref": "definitions-shortDescription.yaml"
       uniqueItems: true
       minItems: 1     
   doiName:
@@ -104,7 +116,9 @@ properties:
           Identifier (DOI) or be working towards obtaining one. If a DOI is available,
           please provide the DOI.
     allOf:
-    - "$ref": "definitions-doi.yaml"
+    - "$ref": "common-definitions/common.schema.yaml#/doi"
+    # - "$ref": "definitions-doi.yaml"    
         # "$comment": 'Vocabulary: DOI Data Dictionary '
+    # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)    
     example:
-        - 10.3399/bjgp17X692645    
+    - 10.3399/bjgp17X692645    

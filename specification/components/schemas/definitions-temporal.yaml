@@ -1,0 +1,82 @@
+type: object
+required:
+- accrualPeriodicity
+- timeLag
+- startDate
+additionalProperties: false
+properties:
+  accrualPeriodicity:
+    # "$id": "#/properties/provenance/temporal/accrualPeriodicity"
+    # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
+    type: string
+    title: Periodicity
+    # "$comment": dct:accrualPeriodicity
+    default: ''
+    description: 'Please indicate the frequency of distribution release. If a
+          dataset is distributed regularly please choose a distribution release periodicity
+          from the constrained list and indicate the next release date. When the release
+          date becomes historical, a new release date will be calculated based on
+          the publishing periodicity. If a dataset has been published and will remain
+          static please indicate that it is static and indicated when it was released.
+          If a dataset is released on an irregular basis or “on-demand” please indicate
+          that it is Irregular and leave release date as null. If a dataset can be
+          published in real-time or near-real-time please indicate that it is continuous
+          and leave release date as null. Notes: see https://www.dublincore.org/specifications/dublin-core/collection-description/frequency/'
+    allOf:
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/periodicity"
+    # - "$ref": "valuesets/periodicity.yaml"
+  distributionReleaseDate:
+    # "$id": "#/properties/provenance/temporal/distributionReleaseDate"
+    title: Release Date
+    # "$comment": dcat:distribution_release_date
+    description: 'Date of the latest release of the dataset. If this is a regular
+          release i.e. quarterly, or this is a static dataset please complete this
+          alongside Periodicity. If this is Irregular or Continuously released please
+          leave this blank. Notes: Periodicity and release date will be used to determine
+          when the next release is expected. E.g. if the release date is documented
+          as 01/01/2020 and it is now 20/04/2020 and there is a quarterly release
+          schedule, the latest release will be calculated as 01/04/2020.'
+    anyOf:
+    - type: string
+      format: date
+    - type: string
+      format: date-time   
+  startDate:
+    # "$id": "#/properties/provenance/temporal/startDate"
+    title: Start Date
+    # "$comment": dcat:startDate
+    description: The start of the time period that the dataset provides coverage
+          for. If there are multiple cohorts in the dataset with varying start dates,
+          please provide the earliest date and use the description or the media attribute
+          to provide more information.
+    anyOf:
+    - type: string
+      format: date
+    - type: string
+      format: date-time
+  endDate:
+    # "$id": "#/properties/provenance/temporal/endDate"
+    title: End Date
+    # "$comment": dcat:endDate
+    description: The end of the time period that the dataset provides coverage
+          for. If the dataset is “Continuous” and has no known end date, please state
+          continuous. If there are multiple cohorts in the dataset with varying end
+          dates, please provide the latest date and use the description or the media
+          attribute to provide more information.
+    anyOf:
+    - type: string
+      format: date
+    - type: string
+      format: date-time
+    - type: string
+      enum:
+      - CONTINUOUS       
+  timeLag:
+    # "$id": "#/properties/provenance/temporal/timeLag"
+    title: Time Lag
+    # "$comment": No standard identified
+    description: Please indicate the typical time-lag between an event and the
+          data for that event appearing in the dataset
+    allOf:
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/timeLag"      
+    # - "$ref": "valuesets/timeLag.yaml"     
