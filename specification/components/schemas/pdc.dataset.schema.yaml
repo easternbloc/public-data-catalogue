@@ -29,7 +29,7 @@ properties:
     # "$id": "#/properties/version"
     title: Dataset Version
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example: "1.1.0" 
+    example: 1.1.0
     # - "1.1.0"  
     description: Dataset metadata version
     type: string
