@@ -13,7 +13,7 @@ properties:
           please use the “suggest and institute” function here: https://www.grid.ac/institutes#'
     # "$comment": https://schema.org/identifier
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/url"  
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
     # - "$ref": "definitions-url.yaml"
   name:
     # "$id": "#/organisation/name"
@@ -21,7 +21,7 @@ properties:
     description: Name of the organisation
     # "$comment": https://schema.org/name
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/eightyCharacters" 
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/eightyCharacters" 
     # - "$ref": "definitions-eightyCharacters.yaml"  
   logo:
     # "$id": "#/organisation/logo"
@@ -31,7 +31,7 @@ properties:
           .svg.
     # "$comment": https://schema.org/logo
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/url"  
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
     # - "$ref": "definitions-url.yaml"
   description:
     # "$id": "#/organisation/description"
@@ -49,12 +49,12 @@ properties:
     description: Organisation contact point(s)
     # "$comment": https://schema.org/contactPoint
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/emailAddress"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/emailAddress"
     # - "$ref": "definitions-emailAddress.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.schema.yaml#/emailAddress"
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/emailAddress"
         # - "$ref": "definitions-emailAddress.yaml"
   memberOf:
     # "$id": "#/organisation/memberOf"
@@ -63,7 +63,7 @@ properties:
           a Hub.
     # "$comment": https://schema.org/memberOf
     allOf:
-    - "$ref": "common-definitions/common.vocab.schema.yaml#/memberOf.yaml"    
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/memberOf.yaml"    
     # - "$ref": "valuesets/memberOf.yaml"  
   accessRights:
     # "$id": "#/organisation/accessRights"
@@ -73,12 +73,12 @@ properties:
           guidance is provided. If there is more than one access process i.e. industry
           vs academic please provide both.
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/url"  
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
     # - "$ref": "definitions-url.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.schema.yaml#/url"  
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
         # - "$ref": "definitions-url.yaml"
   deliveryLeadTime:
     # "$id": "#/organisation/deliveryLeadTime"
@@ -90,7 +90,7 @@ properties:
           the organisation. However, there will be the opportunity to overwrite this
           value for each dataset.'
     allOf:
-    - "$ref": "common-definitions/common.vocab.schema.yaml#/deliveryLeadTime"      
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/deliveryLeadTime"      
     # - "$ref": "valuesets/deliveryLeadTime.yaml" 
   accessService:
     # "$id": "#/organisation/accessService"
@@ -108,7 +108,7 @@ properties:
           for all datasets submitted by the organisation. However, there will be the
           opportunity to overwrite this value for each dataset.'
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/longDescription"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/longDescription"
     # - "$ref": "definitions-longDescription.yaml"    
   accessRequestCost:
     # "$id": "#/organisation/accessRequestCost"
@@ -119,12 +119,12 @@ properties:
           (if available) Definition: Indication of commercial model or cost (in GBP)
           for processing each data access request by the data custodian.'
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/shortDescription"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/shortDescription"
     # - "$ref": "definitions-shortDescription.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.schema.yaml#/url"  
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
         # - "$ref": "definitions-url.yaml" 
   dataUseLimitation:
     # "$id": "#/organisation/dataUseLimitation"
@@ -139,12 +139,12 @@ properties:
           organisation. However, there will be the opportunity to overwrite this value
           for each dataset.'
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.vocab.schema.yaml#/dataUseLimitation"
+        - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/dataUseLimitation"
         # - "$ref": "valuesets/dataUseLimitation.yaml"
       uniqueItems: true
       minItems: 1
@@ -156,12 +156,12 @@ properties:
           restrictions are documented in access rights information.
     # "$comment": https://www.ebi.ac.uk/ols/ontologies/duo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDUO_0000001
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.vocab.schema.yaml#/dataUseRequirements"
+        - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/dataUseRequirements"
         # - "$ref": "valuesets/dataUseRequirements.yaml"
       uniqueItems: true
       minItems: 1        

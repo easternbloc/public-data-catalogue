@@ -13,7 +13,7 @@ properties:
       items:
       # - "$ref": "definitions-purpose.yaml"  
         # $ref: "valuesets/purpose.yaml"
-        $ref: "common-definitions/common.vocab.schema.yaml#/definitions/urpose"
+        $ref: "common-definitions/common.vocab.schema.yaml#/definitions/purpose"
       uniqueItems: true
       minItems: 1
   source:

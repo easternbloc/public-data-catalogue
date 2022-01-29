@@ -79,4 +79,6 @@ properties:
           data for that event appearing in the dataset
     allOf:
     - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/timeLag"      
+    # allOf:
+    # - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/timeLag"      
     # - "$ref": "valuesets/timeLag.yaml"     
