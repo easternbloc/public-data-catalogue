@@ -16,9 +16,10 @@ properties:
     title: Dataset identifier
     # "$comment": "http://purl.org/dc/terms/identifier"
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example: ["226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
+    # example: ["226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
     # - ["226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
-    description: System dataset identifier
+    description: | 
+      System dataset identifier
     type: string
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/uuidv4"
@@ -29,16 +30,18 @@ properties:
     # "$id": "#/properties/version"
     title: Dataset Version
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example: 1.1.0
+    example: "1.1.0"
     # - "1.1.0"  
-    description: Dataset metadata version
+    description: | 
+      Dataset metadata version
     type: string
     "$ref": "common-definitions/common.schema.yaml#/definitions/semver"   
     # "$ref": "definitions-semver.yaml" 
   revisions:
     # "$id": "#/properties/revisions"
     title: Dataset Revisions
-    description: Revisions of Dataset metadata
+    description: | 
+      Revisions of Dataset metadata
     type: array
     items:
       allOf:
@@ -47,72 +50,81 @@ properties:
     # "$id": "#/properties/issued"
     title: Creation Date
     # "$comment": "dcat:issued"
-    description: Dataset Metadata Creation Date
+    description: | 
+      Dataset Metadata Creation Date
     type: string
     format: date-time
   modified:
     # "$id": "#/properties/modified"
     title: Modification Date
     # "$comment": "dcat:modified"
-    description: 'Dataset Metadata Modified Date'
+    description: |
+      Dataset Metadata Modified Date
     type: string
     format: date-time   
   summary:
     # "$id": "#/properties/summary"
     title: Summary
-    description: 'Summary metadata must be completed by Data Custodians onboarding
-      metadata into the Innovation Gateway MVP.'
+    description: | 
+      Summary metadata must be completed by Data Custodians onboarding
+      metadata into the Innovation Gateway MVP.
     "$ref": "definitions-summary.yaml"  
     type: object
   documentation:
     # "$id": "#/properties/documentation"
     title: Documentation
-    description: 'Documentation can include a rich text description of the dataset
+    description: | 
+      Documentation can include a rich text description of the dataset
       or links to media such as documents, images, presentations, videos or links
       to data dictionaries, profiles or dashboards. Organisations are required to
-      confirm that they have permission to distribute any additional media.'
+      confirm that they have permission to distribute any additional media.
     type: object
     "$ref": "definitions-documentation.yaml"       
   coverage:
     # "$id": "#/properties/coverage"
     title: Coverage
-    description: 'This information includes attributes for geographical and temporal
+    description: | 
+      This information includes attributes for geographical and temporal
       coverage, cohort details etc. to enable a deeper understanding of the dataset
       content so that researchers can make decisions about the relevance of the underlying
-      data.'
+      data.
     type: object
     "$ref": "definitions-coverage.yaml"  
   provenance:
     # "$id": "#/properties/provenance"
     title: Provenance
-    description: 'Provenance information allows researchers to understand data within
+    description: | 
+      Provenance information allows researchers to understand data within
       the context of its origins and can be an indicator of quality, authenticity
-      and timeliness.'
+      and timeliness.
     type: object
     "$ref": "definitions-provenance.yaml"    
   accessibility:
     # "$id": "#/properties/accessibility"
     title: Accessibility
-    description: 'Accessibility information allows researchers to understand access,
+    description: | 
+      Accessibility information allows researchers to understand access,
       usage, limitations, formats, standards and linkage or interoperability with
-      toolsets.'
+      toolsets.
     type: object
     "$ref": "definitions-accessibility.yaml"  
   enrichmentAndLinkage:
     # "$id": "#/properties/enrichmentAndLinkage"
     title: Enrichment and Linkage
-    description: 'This section includes information about related datasets that may
+    description: | 
+      This section includes information about related datasets that may
       have previously been linked, as well as indicating if there is the opportunity
       to link to other datasets in the future. If a dataset has been enriched and/or
       derivations, scores and existing tools are available this section allows providers
-      to indicate this to researchers.'
+      to indicate this to researchers.
     type: object
     "$ref": "definitions-enrichmentAndLinkage.yaml"    
   observations:
     # "$id": "#/properties/observations"
     title: Observations
     # "$comment": https://schema.org/observation
-    description: 'Multiple observations about the dataset may be provided and users
+    description: | 
+      Multiple observations about the dataset may be provided and users
       are expected to provide at least one observation (1..*). We will be supporting
       the schema.org observation model (https://schema.org/Observation) with default
       values. Users will be encouraged to provide their own statistical populations
@@ -122,7 +134,7 @@ properties:
       Events numConstraints: 0 &lt;b&gt; Statistical Population 3 &lt;/b&gt; type:
       StatisticalPopulation populationType: Findings numConstraints: 0 typeOf: Observation
       observedNode: &lt;b&gt; Statistical Population 1 &lt;/b&gt; measuredProperty:
-      count measuredValue: 32937 observationDate: “2017”'
+      count measuredValue: 32937 observationDate: “2017”
     type: array
     items:
       allOf:

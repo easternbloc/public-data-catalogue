@@ -23,7 +23,7 @@ properties:
           published in real-time or near-real-time please indicate that it is continuous
           and leave release date as null. Notes: see https://www.dublincore.org/specifications/dublin-core/collection-description/frequency/'
     allOf:
-    - "$ref": "common-definitions/common.vocab.schema.yaml#/periodicity"
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/periodicity"
     # - "$ref": "valuesets/periodicity.yaml"
   distributionReleaseDate:
     # "$id": "#/properties/provenance/temporal/distributionReleaseDate"
@@ -78,5 +78,5 @@ properties:
     description: Please indicate the typical time-lag between an event and the
           data for that event appearing in the dataset
     allOf:
-    - "$ref": "common-definitions/common.vocab.schema.yaml#/timeLag"      
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/timeLag"      
     # - "$ref": "valuesets/timeLag.yaml"     

@@ -16,7 +16,7 @@ properties:
     description: Please select one of the following statistical populations for
           you observation
     allOf:
-    - "$ref": "common-definitions/common.vocab.schema.yaml#/statisticalPopulationConstrained"
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/statisticalPopulationConstrained"
     # - "$ref": "valuesets/statisticalPopulationConstrained.yaml"
   measuredValue:
     # "$id": "#/properties/observation/measuredValue"
@@ -34,7 +34,7 @@ properties:
     description: If SNOMED CT term does not provide sufficient detail, please
           provide a description that disambiguates the population type.
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/abstractText"    
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/abstractText"    
     # - "$ref": "definitions-abstractText.yaml"     
   observationDate:
     # "$id": "#/properties/observation/observationDate"

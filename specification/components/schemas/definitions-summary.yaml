@@ -21,7 +21,7 @@ properties:
     example:
     - - North West London COVID-19 Patient Level Situation Report
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/eightyCharacters" 
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/eightyCharacters" 
     # - "$ref": "definitions-eightyCharacters.yaml"  
   abstract:
     # "$id": "#/summary/abstract"
@@ -40,7 +40,7 @@ properties:
           and all care events that GPs have chosen to record as part of their usual
           medical practice.
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/abstractText"    
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/abstractText"    
     # - "$ref": "definitions-abstractText.yaml"    
   publisher:
     # "$id": "#/summary/publisher"
@@ -72,7 +72,7 @@ properties:
           Notes: An employee’s email address can only be provided on a temporary basis
           and if one is provided an explicit consent must be obtained for this purpose.'
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/emailAddress"  
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/emailAddress"  
     # - "$ref": "definitions-emailAddress.yaml" 
   keywords:
     # "$id": "#/summary/keywords"
@@ -84,12 +84,12 @@ properties:
           a standardised list of keywords and synonyms across datasets to make filtering
           easier for users.'
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.schema.yaml#/eightyCharacters" 
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/eightyCharacters" 
         # - "$ref": "definitions-eightyCharacters.yaml"  
       uniqueItems: true
       minItems: 1 
@@ -100,12 +100,12 @@ properties:
     title: Alternate dataset identifiers
     description: Alternate dataset identifiers or local identifiers
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/ommaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.schema.yaml#/shortDescription"
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/shortDescription"
         # - "$ref": "definitions-shortDescription.yaml"
       uniqueItems: true
       minItems: 1     
@@ -116,7 +116,7 @@ properties:
           Identifier (DOI) or be working towards obtaining one. If a DOI is available,
           please provide the DOI.
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/doi"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/doi"
     # - "$ref": "definitions-doi.yaml"    
         # "$comment": 'Vocabulary: DOI Data Dictionary '
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)    

@@ -12,12 +12,12 @@ properties:
     example:
     - https://www.geonames.org/2635167/united-kingdom-of-great-britain-and-northern-ireland.html
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         anyOf:
-        - "$ref": "common-definitions/common.schema.yaml#/url"  
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
         # - "$ref": "definitions-url.yaml" 
   typicalAgeRange:
     # "$id": "#/properties/coverage/typicalAgeRange"
@@ -27,7 +27,7 @@ properties:
           in the dataset. Please provide range in the following format ‘[min age]
           – [max age]’ where both the minimum and maximum are whole numbers (integers).
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/ageRange"   
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/ageRange"   
     # - "$ref": "definitions-ageRange.yaml"  
   physicalSampleAvailability:
     # "$id": "#/properties/coverage/physicalSampleAvailability"
@@ -42,13 +42,13 @@ properties:
           please provide “AVAILABILITY TO BE CONFIRMED”. If samples are not available,
           then please provide “NOT AVAILABLE”.
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
     # HDR UK Schema FAIL: Schema object cannot have additionalProperty: contains
     # SWK replaced 'contains' field with 'items' field.
       items:
-        "$ref": "common-definitions/common.vocab.schema.yaml#/physicalSampleAvailability"
+        "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/physicalSampleAvailability"
         # "$ref": "valuesets/physicalSampleAvailability.yaml"
       uniqueItems: true
       minItems: 1         
@@ -62,7 +62,7 @@ properties:
     description: If known, what is the typical time span that a patient appears
           in the dataset (follow up period)
     allOf:
-    - "$ref": "common-definitions/common.vocab.schema.yaml#/followup"      
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/followup"      
     # - "$ref": "valuesets/followup.yaml"    
   pathway:
     # "$id": "#/properties/coverage/pathway"

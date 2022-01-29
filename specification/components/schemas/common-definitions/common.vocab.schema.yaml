@@ -1,7 +1,8 @@
 type: object
 title: common definitions schema
 description: common definitions schema
-properties:
+#properties:
+definitions: 
   memberOf:
     type: string
     enum:

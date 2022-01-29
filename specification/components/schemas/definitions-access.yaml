@@ -13,11 +13,11 @@ properties:
     anyOf:
     - type: string
       pattern: "^In Progress$"
-    - "$ref": "common-definitions/common.schema.yaml#/url"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/url"
     # - "$ref": "definitions-url.yaml"
     - type: array
       items:
-        "$ref": "common-definitions/common.schema.yaml#/url"
+        "$ref": "common-definitions/common.schema.yaml#/definitions/url"
         # "$ref": "definitions-url.yaml"
   accessService:
     # "$id": "#/properties/accessibility/access/accessService"
@@ -35,7 +35,7 @@ properties:
           for all datasets submitted by the organisation. However, there will be the
           opportunity to overwrite this value for each dataset.'
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/longDescription"       
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/longDescription"       
     # - "$ref": "definitions-longDescription.yaml"   
   accessRequestCost:
     # "$id": "#/properties/accessibility/access/accessRequestCost"
@@ -46,11 +46,11 @@ properties:
           Definition: Indication of commercial model or cost (in GBP) for processing
           each data access request by the data custodian.'
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/longDescription"       
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/longDescription"       
     # - "$ref": "definitions-longDescription.yaml"   
     - type: array
       items:
-        "$ref": "common-definitions/common.schema.yaml#/url"
+        "$ref": "common-definitions/common.schema.yaml#/definitions/url"
         # "$ref": "definitions-url.yaml"   
   deliveryLeadTime:
     # "$id": "#/properties/accessibility/access/deliveryLeadTime"
@@ -59,7 +59,7 @@ properties:
     description: Please provide an indication of the typical processing times
           based on the types of requests typically received.
     allOf:
-    - "$ref": "common-definitions/common.vocab.schema.yaml#/deliveryLeadTime"      
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/deliveryLeadTime"      
     # - "$ref": "valuesets/deliveryLeadTime.yaml" 
   jurisdiction:
     # "$id": "#/properties/accessibility/access/jurisdiction"
@@ -73,12 +73,12 @@ properties:
           associated ISO 3166-2 for regions, cities, states etc. for the country/state
           under whose laws the data subjects’ data is collected, processed and stored.
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.schema.yaml#/isocountrycode"       
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/isocountrycode"       
         # - "$ref": "definitions-isocountrycode.yaml"              
   dataController:
     # "$id": "#/properties/accessibility/access/dataController"
@@ -89,7 +89,7 @@ properties:
           and the way any Data Subject data, specifically personal data or are to
           be processed.
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/longDescription"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/longDescription"
     # - "$ref": "definitions-longDescription.yaml"
   dataProcessor:
     # "$id": "#/properties/accessibility/access/dataProcessor"
@@ -99,5 +99,5 @@ properties:
           personal data, means any person/entity (other than an employee of the data
           controller) who processes the data on behalf of the data controller.
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/longDescription"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/longDescription"
     # - "$ref": "definitions-longDescription.yaml"

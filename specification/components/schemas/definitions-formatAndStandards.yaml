@@ -20,12 +20,12 @@ properties:
           not been included in the list, please use “other” and contact support desk
           to ask for an addition. Notes: More than one vocabulary may be provided.'
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.vocab.schema.yaml#/controlledVocabulary"
+        - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/controlledVocabulary"
         # - "$ref": "valuesets/controlledVocabulary.yaml"
       minItems: 0
   conformsTo:
@@ -41,14 +41,14 @@ properties:
           that has not been included in the list, please use “other” and contact support
           desk to ask for an addition.
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
       # Schema Fail. SWK replaced with '$ref: "definitions-standardisedDataModels.yaml" ' 
       # - "$ref": "definitions-standardisedDataModels.yaml" 
         # $ref: "valuesets/standardisedDataModels.yaml"   
-        $ref: "common-definitions/common.vocab.schema.yaml#/standardisedDataModels"  
+        $ref: "common-definitions/common.vocab.schema.yaml#/definitions/standardisedDataModels"  
   language:
     # "$id": "#/properties/accessibility/formatAndStandards/language"
     # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
@@ -61,12 +61,12 @@ properties:
     #       given cardinality 1:*. Validate against external list of languages. Resources
     #       defined by the Library of Congress (ISO 639-1, ISO 639-2) SHOULD be used.'
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.vocab.schema.yaml#/language"
+        - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/language"
         # - "$ref": "valuesets/language.yaml"
       minItems: 1    
   format:
@@ -81,11 +81,11 @@ properties:
           to request your format.'
     # "$comment": http://purl.org/dc/terms/format
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.schema.yaml#/format"
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/format"
         # - "$ref": "definitions-format.yaml"
       minItems: 1     

@@ -10,12 +10,12 @@ properties:
           material might be removed, stored or used. NOTE: we have extended the DUO
           to include a value for NO LINKAGE'
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.vocab.schema.yaml#/dataUseLimitation"
+        - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/dataUseLimitation"
         # - "$ref": "valuesets/dataUseLimitation.yaml"
       uniqueItems: true
       minItems: 1
@@ -27,12 +27,12 @@ properties:
           restrictions are documented in access rights information.
     # "$comment": https://www.ebi.ac.uk/ols/ontologies/duo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDUO_0000001
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.vocab.schema.yaml#/dataUseRequirements"
+        - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/dataUseRequirements"
         # - "$ref": "valuesets/dataUseRequirements.yaml"
       uniqueItems: true
       minItems: 1      
@@ -44,22 +44,22 @@ properties:
           of any citation that credits this dataset. This is typically just the name
           of the publisher.   No employee details should be provided.
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/shortDescription"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/shortDescription"
     # - "$ref": "definitions-shortDescription.yaml"
     - type: array
       items:
-        $ref: 'common-definitions/common.schema.yaml#/shortDescription'      
+        $ref: 'common-definitions/common.schema.yaml#/definitions/shortDescription'      
         # $ref: 'definitions-shortDescription.yaml'   
   investigations:
     title: Investigations
     # "$comment": No standard identified
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/commaSeparatedValues"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
     # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
-        - "$ref": "common-definitions/common.schema.yaml#/url"
+        - "$ref": "common-definitions/common.schema.yaml#/definitions/url"
         # - "$ref": "definitions-url.yaml"
   isReferencedBy:
     title: Citations
@@ -70,11 +70,11 @@ properties:
           provide multiple entries, or if you are using a csv upload please provide
           them as a tab separated list.
     anyOf:
-    - "$ref": "common-definitions/common.schema.yaml#/doi"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/doi"
     # - "$ref": "definitions-doi.yaml"
     - type: array
       items:
       # Schema Fail. SWK replaced with '$ref: "definitions-doi.yaml" ' 
       # - "$ref": "definitions-doi.yaml"    
-        $ref: "common-definitions/common.schema.yaml#/doi"    
+        $ref: "common-definitions/common.schema.yaml#/definitions/doi"    
         # $ref: "definitions-doi.yaml" 
