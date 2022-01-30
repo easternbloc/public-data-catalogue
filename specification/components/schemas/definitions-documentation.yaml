@@ -16,8 +16,8 @@ properties:
     title: Associated Media
     # "$comment": https://schema.org/associatedMedia
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example:
-    - PDF Document that describes study protocol
+    example: PDF Document that describes study protocol
+    # - PDF Document that describes study protocol
     description: 'Please provide any media associated with the Gateway Organisation
           using a valid URI for the content. This is an opportunity to provide additional
           context that could be useful for researchers wanting to understand more
@@ -44,8 +44,8 @@ properties:
         #   citizens so the are navigable'
     default: NOT APPLICABLE
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example:
-    - Hospital Episodes Statistics datasets (A&E, APC, OP, AC MSDS).
+    example: Hospital Episodes Statistics datasets (A&E, APC, OP, AC MSDS).
+    # - Hospital Episodes Statistics datasets (A&E, APC, OP, AC MSDS).
     description: Please complete only if the dataset is part of a group or family
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"

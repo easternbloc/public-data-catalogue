@@ -11,8 +11,8 @@ properties:
     title: Statistical Population
     # "$comment": https://schema.org/observedNode
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example:
-    - PERSONS
+    example: PERSONS
+    # - PERSONS
     description: Please select one of the following statistical populations for
           you observation
     allOf:

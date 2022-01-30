@@ -9,6 +9,7 @@ required:
   - issued
   - modified
   - summary
+  - accessibility
 additionalProperties: false
 properties:  
   identifier:
@@ -24,19 +25,16 @@ properties:
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/uuidv4"
     - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
-    # - "$ref": "definitions-uuidv4.yaml"
-    # - "$ref": "definitions-url.yaml" 
   version:
     # "$id": "#/properties/version"
     title: Dataset Version
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example: "1.1.0"
+    example: 1.1.0
     # - "1.1.0"  
     description: | 
       Dataset metadata version
     type: string
     "$ref": "common-definitions/common.schema.yaml#/definitions/semver"   
-    # "$ref": "definitions-semver.yaml" 
   revisions:
     # "$id": "#/properties/revisions"
     title: Dataset Revisions

@@ -18,8 +18,8 @@ properties:
           Please avoid acronyms wherever possible. Good titles should summarise the
           content of the dataset and if relevant, the region the dataset covers.
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)      
-    example:
-    - - North West London COVID-19 Patient Level Situation Report
+    example: North West London COVID-19 Patient Level Situation Report
+    # - - North West London COVID-19 Patient Level Situation Report
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/eightyCharacters" 
     # - "$ref": "definitions-eightyCharacters.yaml"  
@@ -34,11 +34,14 @@ properties:
           abbreviations where possible
     # "$comment": dct:abstract
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example:
-        - CPRD Aurum contains primary care data contributed by General Practitioner
+    example: CPRD Aurum contains primary care data contributed by General Practitioner
           (GP) practices using EMIS Web® including patient registration information
           and all care events that GPs have chosen to record as part of their usual
           medical practice.
+        # - CPRD Aurum contains primary care data contributed by General Practitioner
+        #   (GP) practices using EMIS Web® including patient registration information
+        #   and all care events that GPs have chosen to record as part of their usual
+        #   medical practice.
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/abstractText"    
     # - "$ref": "definitions-abstractText.yaml"    
@@ -64,8 +67,8 @@ properties:
     default: Defaulted to the contact point of the primary organisation of the
           user however, can be overridden for specific datasets
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example:
-    - SAILDatabank@swansea.ac.uk
+    example: SAILDatabank@swansea.ac.uk
+    # - SAILDatabank@swansea.ac.uk
     description: 'Please provide a valid email address that can be used to coordinate
           data access requests with the publisher. Organisations are expected to provide
           a dedicated email address associated with the data access request process.
@@ -120,5 +123,5 @@ properties:
     # - "$ref": "definitions-doi.yaml"    
         # "$comment": 'Vocabulary: DOI Data Dictionary '
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)    
-    example:
-    - 10.3399/bjgp17X692645    
+    example: 10.3399/bjgp17X692645
+    # - 10.3399/bjgp17X692645    

@@ -24,8 +24,8 @@ properties:
     title: Access Service
     # "$comment": 'dcat:accessService '
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example:
-    - https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
+    example: https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
+    # - https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
     description: 'Please provide a brief description of the data access services
           that are available including: environment that is currently available to
           researchers;additional consultancy and services;any indication of costs

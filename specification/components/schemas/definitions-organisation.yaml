@@ -59,8 +59,7 @@ properties:
   memberOf:
     # "$id": "#/organisation/memberOf"
     title: Organisation Membership
-    description: Please indicate if the organisation is an Alliance Member or
-          a Hub.
+    description: Please indicate if the organisation is an Alliance Member or a Hub.      
     # "$comment": https://schema.org/memberOf
     allOf:
     - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/memberOf.yaml"    
@@ -97,8 +96,8 @@ properties:
     title: Organisation Access Service
     # "$comment": dcat:accessService
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    example:
-    - https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
+    example: https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
+    # - https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
     description: 'Please provide a brief description of the data access services
           that are available including: environment that is currently available to
           researchers;additional consultancy and services;any indication of costs
