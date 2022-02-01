@@ -22,7 +22,6 @@ properties:
     # - - North West London COVID-19 Patient Level Situation Report
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/eightyCharacters" 
-    # - "$ref": "definitions-eightyCharacters.yaml"  
   abstract:
     # "$id": "#/summary/abstract"
     title: Dataset Abstract
@@ -44,7 +43,6 @@ properties:
         #   medical practice.
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/abstractText"    
-    # - "$ref": "definitions-abstractText.yaml"    
   publisher:
     # "$id": "#/summary/publisher"
     # "$comment": Conforms to spec, but this MAY be an an object of organisation.
@@ -76,7 +74,6 @@ properties:
           and if one is provided an explicit consent must be obtained for this purpose.'
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/emailAddress"  
-    # - "$ref": "definitions-emailAddress.yaml" 
   keywords:
     # "$id": "#/summary/keywords"
     # "$comment": dcat:keyword. May be an array of strings or comma seperated list.
@@ -88,12 +85,10 @@ properties:
           easier for users.'
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/eightyCharacters" 
-        # - "$ref": "definitions-eightyCharacters.yaml"  
       uniqueItems: true
       minItems: 1 
   alternateIdentifiers:
@@ -104,12 +99,10 @@ properties:
     description: Alternate dataset identifiers or local identifiers
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/shortDescription"
-        # - "$ref": "definitions-shortDescription.yaml"
       uniqueItems: true
       minItems: 1     
   doiName:
@@ -120,7 +113,6 @@ properties:
           please provide the DOI.
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/doi"
-    # - "$ref": "definitions-doi.yaml"    
         # "$comment": 'Vocabulary: DOI Data Dictionary '
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)    
     example: 10.3399/bjgp17X692645

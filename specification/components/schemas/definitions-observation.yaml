@@ -17,7 +17,6 @@ properties:
           you observation
     allOf:
     - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/statisticalPopulationConstrained"
-    # - "$ref": "valuesets/statisticalPopulationConstrained.yaml"
   measuredValue:
     # "$id": "#/properties/observation/measuredValue"
     title: Measured Value
@@ -34,8 +33,7 @@ properties:
     description: If SNOMED CT term does not provide sufficient detail, please
           provide a description that disambiguates the population type.
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/definitions/abstractText"    
-    # - "$ref": "definitions-abstractText.yaml"     
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/abstractText"       
   observationDate:
     # "$id": "#/properties/observation/observationDate"
     # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'

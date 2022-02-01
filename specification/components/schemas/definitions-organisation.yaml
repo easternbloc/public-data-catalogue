@@ -14,7 +14,6 @@ properties:
     # "$comment": https://schema.org/identifier
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
-    # - "$ref": "definitions-url.yaml"
   name:
     # "$id": "#/organisation/name"
     title: Organisation Name
@@ -22,7 +21,6 @@ properties:
     # "$comment": https://schema.org/name
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/eightyCharacters" 
-    # - "$ref": "definitions-eightyCharacters.yaml"  
   logo:
     # "$id": "#/organisation/logo"
     title: Organisation Logo
@@ -32,7 +30,6 @@ properties:
     # "$comment": https://schema.org/logo
     allOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
-    # - "$ref": "definitions-url.yaml"
   description:
     # "$id": "#/organisation/description"
     title: Organisation Description
@@ -42,7 +39,6 @@ properties:
      # FIXME: When using 'description' as object property openapi Specification schema invalid. expected 'common definitions schema' to be an object expected 'common definitions schema' to have type object. 
     # expected 'string' to be 'object'. This is because 'description' field is part of openapi spec
     - "$ref": "common-definitions/common.schema.yaml#/definitions/description"
-    # - "$ref": "common-definitions/definitions-description.yaml"
   contactPoint:
     # "$id": "#/organisation/contactPoint"
     title: Organisation Contact Point
@@ -50,12 +46,10 @@ properties:
     # "$comment": https://schema.org/contactPoint
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/emailAddress"
-    # - "$ref": "definitions-emailAddress.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/emailAddress"
-        # - "$ref": "definitions-emailAddress.yaml"
   memberOf:
     # "$id": "#/organisation/memberOf"
     title: Organisation Membership
@@ -63,7 +57,6 @@ properties:
     # "$comment": https://schema.org/memberOf
     allOf:
     - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/memberOf"    
-    # - "$ref": "valuesets/memberOf.yaml"  
   accessRights:
     # "$id": "#/organisation/accessRights"
     title: Organisation Default Access Rights
@@ -73,12 +66,10 @@ properties:
           vs academic please provide both.
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
-    # - "$ref": "definitions-url.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
-        # - "$ref": "definitions-url.yaml"
   deliveryLeadTime:
     # "$id": "#/organisation/deliveryLeadTime"
     title: Access Request Duration
@@ -90,7 +81,6 @@ properties:
           value for each dataset.'
     allOf:
     - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/deliveryLeadTime"      
-    # - "$ref": "valuesets/deliveryLeadTime.yaml" 
   accessService:
     # "$id": "#/organisation/accessService"
     title: Organisation Access Service
@@ -107,8 +97,7 @@ properties:
           for all datasets submitted by the organisation. However, there will be the
           opportunity to overwrite this value for each dataset.'
     allOf:
-    - "$ref": "common-definitions/common.schema.yaml#/definitions/longDescription"
-    # - "$ref": "definitions-longDescription.yaml"    
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/longDescription"    
   accessRequestCost:
     # "$id": "#/organisation/accessRequestCost"
     title: Organisation Access Request Cost
@@ -119,12 +108,10 @@ properties:
           for processing each data access request by the data custodian.'
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/shortDescription"
-    # - "$ref": "definitions-shortDescription.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
-        # - "$ref": "definitions-url.yaml" 
   dataUseLimitation:
     # "$id": "#/organisation/dataUseLimitation"
     title: Data Use Limitation
@@ -139,12 +126,10 @@ properties:
           for each dataset.'
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/dataUseLimitation"
-        # - "$ref": "valuesets/dataUseLimitation.yaml"
       uniqueItems: true
       minItems: 1
   dataUseRequirements:
@@ -156,11 +141,9 @@ properties:
     # "$comment": https://www.ebi.ac.uk/ols/ontologies/duo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDUO_0000001
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/dataUseRequirements"
-        # - "$ref": "valuesets/dataUseRequirements.yaml"
       uniqueItems: true
       minItems: 1        

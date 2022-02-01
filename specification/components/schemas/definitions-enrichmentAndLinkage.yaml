@@ -14,14 +14,11 @@ properties:
           the datasets submitted.'
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         anyOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/url"
-        # - "$ref": "definitions-url.yaml"
         - "$ref": "common-definitions/common.schema.yaml#/definitions/eightyCharacters" 
-        # - "$ref": "definitions-eightyCharacters.yaml" 
   derivation:
     title: Derivations
     # "$comment": prov:Derivation
@@ -30,12 +27,10 @@ properties:
           can be provided as a derived extract alongside the dataset.
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/abstractText"    
-        # - "$ref": "definitions-abstractText.yaml"   
   tools:
     # "$id": "#/properties/enrichmentAndLinkage/tools"
     title: Tools
@@ -47,10 +42,8 @@ properties:
           lines of https://www.ga4gh.org/news/tool-registry-service-api-enabling-an-interoperable-library-of-genomics-analysis-tools/'
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/url"
-        # - "$ref": "definitions-url.yaml"
       minItems: 0            

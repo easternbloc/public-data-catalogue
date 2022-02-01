@@ -21,12 +21,10 @@ properties:
           to ask for an addition. Notes: More than one vocabulary may be provided.'
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/controlledVocabulary"
-        # - "$ref": "valuesets/controlledVocabulary.yaml"
       minItems: 0
   conformsTo:
     # "$id": "#/properties/accessibility/formatAndStandards/conformsTo"
@@ -42,7 +40,6 @@ properties:
           desk to ask for an addition.
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
       # Schema Fail. SWK replaced with '$ref: "definitions-standardisedDataModels.yaml" ' 
@@ -62,12 +59,10 @@ properties:
     #       defined by the Library of Congress (ISO 639-1, ISO 639-2) SHOULD be used.'
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/language"
-        # - "$ref": "valuesets/language.yaml"
       minItems: 1    
   format:
     # "$id": "#/properties/accessibility/formatAndStandards/format"
@@ -82,10 +77,8 @@ properties:
     # "$comment": http://purl.org/dc/terms/format
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
         allOf:
         - "$ref": "common-definitions/common.schema.yaml#/definitions/format"
-        # - "$ref": "definitions-format.yaml"
       minItems: 1     

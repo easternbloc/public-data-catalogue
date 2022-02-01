@@ -8,7 +8,6 @@ properties:
     description: Pleases indicate the purpose(s) that the dataset was collected.
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
       # - "$ref": "definitions-purpose.yaml"  
@@ -23,7 +22,6 @@ properties:
     description: Pleases indicate the source of the data extraction
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
       # - "$ref": "definitions-source.yaml"  
@@ -39,7 +37,6 @@ properties:
           settings may be provided
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/commaSeparatedValues"
-    # - "$ref": "definitions-commaSeparatedValues.yaml"
     - type: array
       items:
       # - "$ref": "definitions-setting.yaml"  

@@ -9,9 +9,7 @@ properties:
       # "$id": "#/definitions/revision/version"
       description: Semantic Version
       "$ref": "common-definitions/common.schema.yaml#/definitions/semver"   
-      # "$ref": "definitions-semver.yaml" 
     url: 
       # "$id": "#/definitions/revision/url"
       description: URL endpoint to obtain the version
       "$ref": "common-definitions/common.schema.yaml#/definitions/url"
-      # "$ref": "definitions-url.yaml"  

@@ -1,7 +1,6 @@
 type: object
 title: common definitions schema
 description: common definitions schema
-#properties:
 definitions: 
   uuidv4: 
    type: string
