@@ -77,5 +77,5 @@ properties:
     allOf:
      # FIXME: When using 'description' as object property openapi Specification schema invalid. expected 'common definitions schema' to be an object expected 'common definitions schema' to have type object. 
     # expected 'string' to be 'object'. This is because 'description' field is part of openapi spec
-    # - "$ref": "common-definitions/common.schema.yaml#/description"
-    - "$ref": "common-definitions/definitions-description.yaml"
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/description"
+    # - "$ref": "common-definitions/definitions-description.yaml"

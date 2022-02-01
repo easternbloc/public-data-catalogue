@@ -34,7 +34,9 @@ properties:
     description: | 
       Dataset metadata version
     type: string
-    "$ref": "common-definitions/common.schema.yaml#/definitions/semver"   
+    allOf:
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/semver"
+    # "$ref": "common-definitions/common.schema.yaml#/definitions/semver"   
   revisions:
     # "$id": "#/properties/revisions"
     title: Dataset Revisions
@@ -66,7 +68,10 @@ properties:
     description: | 
       Summary metadata must be completed by Data Custodians onboarding
       metadata into the Innovation Gateway MVP.
-    "$ref": "definitions-summary.yaml"  
+    # allOf keyword added to support rendering of "#/properties/summary" title and description fields in Bloomreach CMS dev portal 
+    allOf:
+    - "$ref": "definitions-summary.yaml"
+    # "$ref": "definitions-summary.yaml"  
     type: object
   documentation:
     # "$id": "#/properties/documentation"
@@ -77,7 +82,10 @@ properties:
       to data dictionaries, profiles or dashboards. Organisations are required to
       confirm that they have permission to distribute any additional media.
     type: object
-    "$ref": "definitions-documentation.yaml"       
+   # allOf keyword added to support rendering of "#/properties/documentation" title and description fields in Bloomreach CMS dev portal 
+    allOf:
+    - "$ref": "definitions-documentation.yaml"    
+    # "$ref": "definitions-documentation.yaml"       
   coverage:
     # "$id": "#/properties/coverage"
     title: Coverage
@@ -87,7 +95,10 @@ properties:
       content so that researchers can make decisions about the relevance of the underlying
       data.
     type: object
-    "$ref": "definitions-coverage.yaml"  
+   # allOf keyword added to support rendering of "#/properties/coverage" title and description fields in Bloomreach CMS dev portal 
+    allOf:
+    - "$ref": "definitions-coverage.yaml"      
+    # "$ref": "definitions-coverage.yaml"  
   provenance:
     # "$id": "#/properties/provenance"
     title: Provenance
@@ -96,7 +107,10 @@ properties:
       the context of its origins and can be an indicator of quality, authenticity
       and timeliness.
     type: object
-    "$ref": "definitions-provenance.yaml"    
+   # allOf keyword added to support rendering of "#/properties/provenance" title and description fields in Bloomreach CMS dev portal 
+    allOf:
+    - "$ref": "definitions-provenance.yaml"   
+    # "$ref": "definitions-provenance.yaml"    
   accessibility:
     # "$id": "#/properties/accessibility"
     title: Accessibility
@@ -105,7 +119,10 @@ properties:
       usage, limitations, formats, standards and linkage or interoperability with
       toolsets.
     type: object
-    "$ref": "definitions-accessibility.yaml"  
+   # allOf keyword added to support rendering of "#/properties/accessibility" title and description fields in Bloomreach CMS dev portal 
+    allOf:
+    - "$ref": "definitions-accessibility.yaml"    
+    # "$ref": "definitions-accessibility.yaml"  
   enrichmentAndLinkage:
     # "$id": "#/properties/enrichmentAndLinkage"
     title: Enrichment and Linkage
@@ -116,7 +133,10 @@ properties:
       derivations, scores and existing tools are available this section allows providers
       to indicate this to researchers.
     type: object
-    "$ref": "definitions-enrichmentAndLinkage.yaml"    
+   # allOf keyword added to support rendering of "#/properties/enrichmentAndLinkage" title and description fields in Bloomreach CMS dev portal 
+    allOf:
+    - "$ref": "definitions-enrichmentAndLinkage.yaml"     
+    # "$ref": "definitions-enrichmentAndLinkage.yaml"    
   observations:
     # "$id": "#/properties/observations"
     title: Observations

@@ -77,7 +77,7 @@ properties:
     # "$comment": No standard identified
     description: Please indicate the typical time-lag between an event and the data for that event appearing in the dataset
     allOf:
-    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/timeLag"      
+    - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/timelag"     
     # allOf:
     # - "$ref": "common-definitions/common.vocab.schema.yaml#/definitions/timeLag"      
     # - "$ref": "valuesets/timeLag.yaml"     
