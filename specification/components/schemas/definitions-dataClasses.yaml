@@ -1,0 +1,38 @@
+type: object
+additionalProperties: false
+properties:
+  id:
+    # "$id": "#/dataclasses/properties/id"
+    type: string
+    title: Data Class id (TBC)
+    description: | 
+      TBC
+    allOf:
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/url"
+  description:
+    # "$id": "#/dataclasses/properties/description"
+    type: string
+    title: Data Class Description (TBC)
+    description: TBC
+    allOf:
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/description"
+  name: 
+    # "$id": "#/dataclasses/properties/name"
+    type: string
+    title: Data Class Name (TBC)
+    description: TBC
+    allOf:
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/description"
+  dataElementCount:
+    # "$id": "#/dataclasses/properties/dataElementCount"
+    type: string
+    title: Data Eement Count (TBC)
+    description: | 
+      TBC
+    allOf:
+    - "$ref": "common-definitions/common.schema.yaml#/definitions/count"
+    example: 15
+  dataElements:
+    # "$id": "#/dataclasses/properties/dataElements"
+    description: Data Eements (TBC)
+    "$ref": "definitions-dataElements.yaml"  

@@ -412,3 +412,14 @@ definitions:
     - PERSONS
     - EVENTS
     - FINDINGS
+  dataType:
+    type: string
+    enum:
+    - List (URLS)
+    - Date
+    - String
+    - Boolean
+    - List (String)
+    - List (Ctegories)
+    - URL
+    - Year

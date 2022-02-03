@@ -15,13 +15,13 @@ properties:
   identifier:
     # "$id": "#/properties/identifier"
     title: Dataset identifier
+    type: string
     # "$comment": "http://purl.org/dc/terms/identifier"
     # HDR UK SCHEMA FAIL: Schema object cannot have additionalProperty: examples. SWK amended field too 'example' (matches pds api)
-    # example: ["226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
-    # - ["226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
+    # HDR UK SCHEMA examples: ["226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
+    # moved to common-definitions uuid4 and url for common usage across spec
     description: | 
       System dataset identifier
-    type: string
     anyOf:
     - "$ref": "common-definitions/common.schema.yaml#/definitions/uuidv4"
     - "$ref": "common-definitions/common.schema.yaml#/definitions/url"  
@@ -157,3 +157,13 @@ properties:
     items:
       allOf:
       - "$ref": "definitions-observation.yaml"    
+  structuralMetadata:
+     # structuralMetadata keyword NOT part of HDR UK Schema. Added by SWK
+    # "$id": "#/properties/structuralMetadata" 
+    title: Structural Metadata
+    description: | 
+      WARNING: STRUCTURAL METADATA REQUIREMENTS TBC
+    type: object
+    # items:
+    allOf:
+    - "$ref": "definitions-structuralMetadata.yaml"      
