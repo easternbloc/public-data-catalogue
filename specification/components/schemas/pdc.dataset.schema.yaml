@@ -1,6 +1,6 @@
 type: object
 title: HDR UK Dataset Schema
-description: HDR UK Dataset Metadata JSONSchema
+description: HDR UK Dataset Metadata Schema
 # version: 2.0.2
 required:
 - identifier
@@ -25,21 +25,21 @@ properties:
     anyOf:
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
-    # - "$ref": "#/definitions/uuidv4"
-    # - "$ref": "#/definitions/url"
 
   version:
     # "$id": "#/properties/version"
     title: Dataset Version
     description: Dataset metadata version
     "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/semver"
-    example:
-    - "1.1.0"
+    # example:
+    # - "1.1.0"
 
   revisions:
     # "$id": "#/properties/revisions"
     title: Dataset Revisions
-    description: Revisions of Dataset metadata
+    description: Revisions of Dataset metadata. Includes 
+      * Semantic Version of the dataset 
+      * URL endpoint to obtain the version.
     type: array
     items:
       allOf:
@@ -52,6 +52,7 @@ properties:
     description: Dataset Metadata Creation Date
     type: string
     format: date-time
+    example: 2020-08-05T14:35:59Z
 
   modified:
     # "$id": "#/properties/modified"
@@ -60,6 +61,7 @@ properties:
     description: Dataset Metadata Creation Date
     type: string
     format: date-time
+    example: 2021-01-28T14:15:46Z
 
   summary:
     # "$id": "#/properties/summary"
@@ -116,17 +118,27 @@ properties:
     # "$id": "#/properties/observations"
     title: Observations
     # "$comment": https://schema.org/observation
-    description: 'Multiple observations about the dataset may be provided and users
+    description: |
+
+      Multiple observations about the dataset may be provided and users
       are expected to provide at least one observation (1..*). We will be supporting
       the schema.org observation model (https://schema.org/Observation) with default
       values. Users will be encouraged to provide their own statistical populations
-      as the project progresses. Example: &lt;b&gt; Statistical Population 1 &lt;/b&gt;
-      type: StatisticalPopulation populationType: Persons numConstraints: 0 &lt;b&gt;
-      Statistical Population 2 &lt;/b&gt; type: StatisticalPopulation populationType:
-      Events numConstraints: 0 &lt;b&gt; Statistical Population 3 &lt;/b&gt; type:
-      StatisticalPopulation populationType: Findings numConstraints: 0 typeOf: Observation
-      observedNode: &lt;b&gt; Statistical Population 1 &lt;/b&gt; measuredProperty:
-      count measuredValue: 32937 observationDate: “2017”'
+      as the project progresses. Example: 
+      # &lt;b&gt; Statistical Population 1 &lt;/b&gt;
+      # type: StatisticalPopulation populationType: Persons numConstraints: 0 &lt;b&gt;
+      # Statistical Population 2 &lt;/b&gt; type: StatisticalPopulation populationType:
+      # Events numConstraints: 0 &lt;b&gt; Statistical Population 3 &lt;/b&gt; type:
+      # StatisticalPopulation populationType: Findings numConstraints: 0 typeOf: Observation
+      # observedNode: &lt;b&gt; Statistical Population 1 &lt;/b&gt; measuredProperty:
+      # count measuredValue: 32937 observationDate: “2017”'
+
+      | Statistical Population | Population Description                              | Population Size  | Measured Property | Observation Date | 
+      |------------------------|-----------------------------------------------------|----------------  |------------------ |----------------- |
+      | Persons                | Events relating to period between April - Sept 2017 | 32937            | Count             | 2017             |
+      | Events                 |                                                     |                  |                   |                  |    
+      | Findings               |                                                     |                  |                   |                  |
+     
     type: array
     items:
       allOf:
@@ -135,9 +147,13 @@ properties:
   structuralMetadata:
      # structuralMetadata keyword NOT part of HDR UK Schema. Added by SWK
     # "$id": "#/properties/structuralMetadata" 
+    # "$comment": "First phase includes only column level metadata, future versions will include value level attributes",
     title: Structural Metadata
     description: | 
-      WARNING: STRUCTURAL METADATA REQUIREMENTS TBC
+      Descriptions of all tables and data elements that can be included in the dataset.
+
+      WARNING: First phase includes only column level metadata, future versions will include value level attributes
+    # THis Code is BROKEN
     # type: array
     # items:
     #   allOf:
@@ -146,5 +162,10 @@ properties:
     #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataElements"
     # type: object
     # items:
-    allOf:
-    - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadata"
+    # THis Code WOrks
+    # allOf:
+    # - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadata"
+    type: array
+    items:
+      allOf:
+      - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClass"

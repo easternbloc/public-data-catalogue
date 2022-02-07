@@ -703,8 +703,8 @@ definitions:
         # "$id": "#/properties/accessibility/access/accessService"
         title: Access Service
         # "$comment": 'dcat:accessService '
-        example:
-        - https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
+        example: https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
+        # - https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
         description: 'Please provide a brief description of the data access services
           that are available including: environment that is currently available to
           researchers;additional consultancy and services;any indication of costs
@@ -932,8 +932,8 @@ definitions:
         # "$id": "#/properties/observation/observedNode"
         title: Statistical Population
         # "$comment": https://schema.org/observedNode
-        example:
-        - PERSONS
+        example: PERSONS
+        # - PERSONS
         description: Please select one of the following statistical populations for
           you observation
         allOf:
@@ -993,167 +993,184 @@ definitions:
           - Count
           - count
 
-  structuralMetadata:
-    description: TBC
-    additionalProperties: false
-    properties:
-      structuralMetadataCount:
-        # "$id": "#/properties/structuralMetadata/structuralMetadataCount"
-        description: TBC
-        "$ref": "#/definitions/structuralMetadataCount"  
-      dataClasses:
-        # "$id": "#/properties/structuralMetadata/dataClasses"
-        title: Data Classes
-        description: |
-          TBC
-        type: array
-        items:
-          allOf:
-          "$ref": "#/definitions/dataClasses"      
+  # structuralMetadata:
+  #   description: TBC
+  #   additionalProperties: false
+  #   properties:
+  #     structuralMetadataCount:
+  #       # "$id": "#/properties/structuralMetadata/structuralMetadataCount"
+  #       description: structural Metadata Count TBC
+  #       "$ref": "#/definitions/structuralMetadataCount"  
+  #     dataClasses:
+  #       # "$id": "#/properties/structuralMetadata/dataClasses"
+  #       title: Data Classes
+  #       description: |
+  #         TBC
+  #       type: array
+  #       items:
+  #         allOf:
+  #         "$ref": "#/definitions/dataClasses"      
 
-  structuralMetadataCount:
-    description: TBC
-    additionalProperties: false
-    properties:
-      structuralMetadata.dataClassesCount:
-        title: Data Classes Count
-        description: | 
-         TBC
-        type: string
-        allOf:
-        - "$ref": "#/definitions/count"
-        example: 1
-      structuralMetadata.tableName: 
-        title: Table Name
-        description: | 
-          TBC
-        type: string
-        allOf:
-        - "$ref": "#/definitions/count"
-        example: 1
-      structuralMetadata.tableDescription: 
-        title: Table Description 
-        description: | 
-         TBC
-        type: string
-        allOf:
-        - "$ref": "#/definitions/count"
-        example: 1
-      structuralMetadata.dataElementsCount: 
-        title: Data Element Count
-        description: | 
-          TBC
-        type: string
-        allOf:
-        - "$ref": "#/definitions/count"
-        example: 15
-      structuralMetadata.columnName: 
-        title: Column Name 
-        description: | 
-         TBC
-        type: string
-        allOf:
-        - "$ref": "#/definitions/count"
-        example: 15
-      structuralMetadata.columnDescription: 
-        title: Column Description 
-        description: | 
-          TBC
-        type: string
-        allOf:
-        - "$ref": "#/definitions/count"
-        example: 15
-      structuralMetadata.dataType: 
-        title: DataType
-        description: | 
-          TBC
-        type: string
-        allOf:
-        - "$ref": "#/definitions/count"
-        example: 15
-      structuralMetadata.sensitive: 
-        title: Sensitive
-        description: | 
-         TBC
-        type: string
-        allOf:
-        - "$ref": "#/definitions/count"
-        example: 0             
+  # structuralMetadataCount:
+  #   description: TBC
+  #   additionalProperties: false
+  #   properties:
+  #     structuralMetadata.dataClassesCount:
+  #       title: Data Classes Count
+  #       description: | 
+  #        TBC
+  #       type: string
+  #       allOf:
+  #       - "$ref": "#/definitions/count"
+  #       example: 1
+  #     structuralMetadata.tableName: 
+  #       title: Table Name
+  #       description: | 
+  #         TBC
+  #       type: string
+  #       allOf:
+  #       - "$ref": "#/definitions/count"
+  #       example: 1
+  #     structuralMetadata.tableDescription: 
+  #       title: Table Description 
+  #       description: | 
+  #        TBC
+  #       type: string
+  #       allOf:
+  #       - "$ref": "#/definitions/count"
+  #       example: 1
+  #     structuralMetadata.dataElementsCount: 
+  #       title: Data Element Count
+  #       description: | 
+  #         TBC
+  #       type: string
+  #       allOf:
+  #       - "$ref": "#/definitions/count"
+      #   example: 15
+      # structuralMetadata.columnName: 
+      #   title: Column Name 
+      #   description: | 
+      #    TBC
+      #   type: string
+      #   allOf:
+      #   - "$ref": "#/definitions/count"
+      #   example: 15
+      # structuralMetadata.columnDescription: 
+      #   title: Column Description 
+      #   description: | 
+      #     TBC
+      #   type: string
+      #   allOf:
+      #   - "$ref": "#/definitions/count"
+      #   example: 15
+      # structuralMetadata.dataType: 
+      #   title: DataType
+      #   description: | 
+      #     TBC
+      #   type: string
+      #   allOf:
+      #   - "$ref": "#/definitions/count"
+      #   example: 15
+      # structuralMetadata.sensitive: 
+      #   title: Sensitive
+      #   description: | 
+      #    TBC
+      #   type: string
+      #   allOf:
+      #   - "$ref": "#/definitions/count"
+      #   example: 0             
 
-  dataClasses:
+  dataClass:
+    # "$id": "#/definitions/dataClass"
+    required:
+    - name
+    - elements
     additionalProperties: false
     properties:
-      id:
-        # "$id": "#/dataclasses/properties/id"
-        type: string
-        title: Data Class id (TBC)
-        description: | 
-          TBC
-        allOf:
-        - "$ref": "#/definitions/uuidv4"
-      description:
-        # "$id": "#/dataclasses/properties/description"
-        type: string
-        title: Data Class Description (TBC)
-        description: TBC
-        allOf:
-        - "$ref": "#/definitions/description"
+      # id:
+      #   # "$id": "#/properties/dataClass/id"
+      #   type: string
+      #   title: Data Class id (TBC)
+      #   description: | 
+      #     TBC
+      #   allOf:
+      #   - "$ref": "#/definitions/uuidv4"
       name: 
-        # "$id": "#/dataclasses/properties/name"
+        # "$id": "#/properties/dataClass/name"
         type: string
-        title: Data Class Name (TBC)
-        description: TBC
+        title: Table Name
+        description: The name of a table in a dataset.
+        # "$comment": "Should be limited to 255 Characters, abstract text requires rewrite."
+      description:
+        # "$id": "#/properties/dataClass/description"
+        title: Table Description
+        description: A description of a table in a dataset.
         allOf:
-        - "$ref": "#/definitions/description"
-      dataElementsCount:
-        # "$id": "#/dataclasses/properties/dataElementsCount"
-        type: string
-        title: Data Elements Count (TBC)
-        description: TBC
-        example: 15
-        allOf:
-        - "$ref": "#/definitions/count"
-      dataElements:
-        # "$id": "#/dataclasses/properties/dataElements"
+        - "$ref": "#/definitions/shortDescription"
+
+      # dataElementsCount:
+      #   # "$id": "#/properties/dataClass/dataElementsCount"
+      #   type: string
+      #   title: Data Elements Count (TBC)
+      #   description: TBC
+      #   example: 15
+      #   allOf:
+      #   - "$ref": "#/definitions/count"
+
+      elements:
+        # "$id": "#/properties/dataClass/elements"
         title: Data Elements
         description: |
-          Data Elements (TBC)
+          A list of data elements contained within a table in a dataset.
         type: array
         items:
          allOf:
          - "$ref": "#/definitions/dataElements"   
 
   dataElements:
-    additionalProperties: false
+    # "$id": "#/definitions/dataElement"
+    required:
+    - name
+    - dataType
+    - sensitive
+    additionalProperties: true
     properties:
-      id:
-        # "$id": "#/dataElements/properties/id"
-        type: string
-        title: Data Element id (TBC)
-        description: | 
-          TBC
-        allOf:
-        - "$ref": "#/definitions/uuidv4"
-      description:
-        # "$id": "#/dataElements/properties/description"
-        type: string
-        title: Data Element Description (TBC)
-        description: TBC
-        allOf:
-        - "$ref": "#/definitions/description"
-      dataType:
-        # "$id": "#/dataElements/properties/dataType"
-        title: Datatype (TBC)
-        description: TBC     
-        allOf:
-        - "$ref": "#/definitions/dataType" 
       name: 
-        # "$id": "#/dataElements/properties/name"
+        # "$id": "#/properties/dataElement/name"
         type: string
-        title: Data Class Name (TBC)
-        description: TBC
+        title: Column Name
+        description: The name of a column in a table.
+        # "$comment": "255 Chars"
+      dataType:
+        # "$id": "#/properties/dataElement/dataType"
+        title: Data Type
+        description: The data type of values in the column   
+        # "$comment": "In future we could enumerate options for this, rather than just a string. 255 Chars"  
+        # allOf:
+        # - "$ref": "#/definitions/dataType" 
+        type: string
+      # id:
+      #   # "$id": "#/properties/dataElement/id"
+      #   type: string
+      #   title: Data Element id (TBC)
+      #   description: | 
+      #     TBC
+      #   allOf:
+      #   - "$ref": "#/definitions/uuidv4"
+      description:
+        # "$id": "#/properties/dataElement/description"
+        type: string
+        title: Column Description
+        description: A description of a column in a table.
+         # "$comment": "255 Chars"
         allOf:
-        - "$ref": "#/definitions/eightyCharacters"
+        - "$ref": "#/definitions/shortDescription"
+      sensitive:
+        # "$id": "#/properties/dataElement/sensitive"
+        type: boolean
+        title: Sensitive
+        description: A True or False value, indicating if the field is sensitive or not
+         # "$comment": "We could clarify a definition of what is sensitive in the future."     
 
   uuidv4:
     type: string
@@ -1224,9 +1241,9 @@ definitions:
     type: string
     pattern: "^[A-Z]{2}(-[A-Z]{2,3})?$"
 
-  count:
-    type: integer
-    minimum: 0
+  # count:
+  #   type: integer
+  #   minimum: 0
 
   memberOf:
     type: string

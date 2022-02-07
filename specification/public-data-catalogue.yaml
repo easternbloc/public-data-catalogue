@@ -171,12 +171,19 @@ paths:
                     properties:
                       q:
                         type: string
+                        description: TBC
+                        example: TBC
                       total:
                         type: string
+                        example: 181
                       limit:
                         type: string
+                        description: The maximum number of results to retrieve
+                        example: 1000
                       offset:
                         type: string
+                        description: The first result to retrieve
+                        example: 0
                   items:
                     type: array
                     items:
@@ -184,24 +191,40 @@ paths:
                       properties:
                         '@schema':
                           type: string
+                          example: Dataset
                         type:
                           type: string
+                          example: TBC
                         identifier:
                           type: string
+                          anyOf:
+                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         name:
                           type: string
+                          example: Civil Registration - Deaths
                         description:
                           type: string
+                          example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient data set, where a record represents one death registration. 
                         version:
-                          type: string
+                          type: string 
+                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
                         self:
                           type: string
+                          example: https://api.service.nhs.uk/public-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
                         issued:
                           type: string
+                          format: date-time
+                          example: 2020-08-05T14:35:59Z
                         modified:
                           type: string
+                          format: date-time
+                          example: 2021-01-28T14:15:46Z
                         source:
-                          type: string                
+                          description: The source of the data extraction
+                          type: string 
+                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
+                          example: OTHER
         "400":
           description: Bad Request
           content:
