@@ -118,13 +118,7 @@ properties:
     # "$id": "#/properties/observations"
     title: Observations
     # "$comment": https://schema.org/observation
-    description: |
-
-      Multiple observations about the dataset may be provided and users
-      are expected to provide at least one observation (1..*). We will be supporting
-      the schema.org observation model (https://schema.org/Observation) with default
-      values. Users will be encouraged to provide their own statistical populations
-      as the project progresses. Example: 
+      # BELOW code RMV from description value 
       # &lt;b&gt; Statistical Population 1 &lt;/b&gt;
       # type: StatisticalPopulation populationType: Persons numConstraints: 0 &lt;b&gt;
       # Statistical Population 2 &lt;/b&gt; type: StatisticalPopulation populationType:
@@ -132,7 +126,14 @@ properties:
       # StatisticalPopulation populationType: Findings numConstraints: 0 typeOf: Observation
       # observedNode: &lt;b&gt; Statistical Population 1 &lt;/b&gt; measuredProperty:
       # count measuredValue: 32937 observationDate: “2017”'
+    description: |
 
+      Multiple observations about the dataset may be provided and users
+      are expected to provide at least one observation (1..*). We will be supporting
+      the schema.org observation model (https://schema.org/Observation) with default
+      values. Users will be encouraged to provide their own statistical populations
+      as the project progresses. Example: 
+ 
       | Statistical Population | Population Description                              | Population Size  | Measured Property | Observation Date | 
       |------------------------|-----------------------------------------------------|----------------  |------------------ |----------------- |
       | Persons                | Events relating to period between April - Sept 2017 | 32937            | Count             | 2017             |
