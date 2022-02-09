@@ -131,15 +131,16 @@ properties:
       Multiple observations about the dataset may be provided and users
       are expected to provide at least one observation (1..*). We will be supporting
       the schema.org observation model (https://schema.org/Observation) with default
-      values. Users will be encouraged to provide their own statistical populations
-      as the project progresses. Example: 
- 
+      values. Example: 
+
       | Statistical Population | Population Description                              | Population Size  | Measured Property | Observation Date | 
       |------------------------|-----------------------------------------------------|----------------  |------------------ |----------------- |
       | Persons                | Events relating to period between April - Sept 2017 | 32937            | Count             | 2017             |
       | Events                 |                                                     |                  |                   |                  |    
       | Findings               |                                                     |                  |                   |                  |
-     
+  
+      Users will be encouraged to provide their own statistical populations as the project progresses. 
+
     type: array
     items:
       allOf:

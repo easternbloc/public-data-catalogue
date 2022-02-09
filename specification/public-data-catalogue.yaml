@@ -144,20 +144,20 @@ paths:
          description: query
          schema:
            type: string  
-#        - in: query
-#          name: offset
-#          description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
-#          schema:
-#            type: integer
-#            format: int32
-# #           default: "0"                
-#        - in: query
-#          name: limit
-#          description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
-#          schema:
-#            type: integer
-#            format: int32
-# #           default: "0"       
+       - in: query
+         name: offset
+         description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
+         schema:
+           type: integer
+           format: int32
+#           default: "0"                
+       - in: query
+         name: limit
+         description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
+         schema:
+           type: integer
+           format: int32
+#           default: "0"       
       responses:
         '200':
           description: OK
@@ -225,45 +225,74 @@ paths:
                           type: string 
                           "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
                           example: OTHER
-        "400":
-          description: Bad Request
+        # "400":
+        #   description: Bad Request
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        # "401":
+        #   description: Unauthorized
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: Invalid access token
+        # "404":
+        #   description: Not Found
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: "No datasets exist within given community Id"
+
+        "4XX":
+          description: |
+            An error occurred as follows:
+            
+            | HTTP status | Error code                 | Description |
+            | ----------- | -------------------------- | --------------------------------------------- |
+            | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
+            | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
+            | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
+    
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: forbidden
+                    code: structure
                     details:
-                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-        "401":
-          description: Unauthorized
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: Invalid access token
-        "404":
-          description: Not Found
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: "No datasets exist within given community Id"
+                      coding:
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
+                          version: '1'
+                          code: ACCESS_DENIED
+                          display: access has been denied to process this request
+                    # diagnostics: "Missing value - 'birth_date/birth_date_range_start/birth_date_range_end'"
+
+
         "500":
           description: Internal Server Error
           content:
@@ -282,24 +311,50 @@ paths:
                           code: UNKNOWN_ERROR
                           display: Unknown Error
                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        # "503":
+        #   description: Service Unavailable
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationErrorOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: unknown
+        #             details:
+        #               coding:
+        #                 - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+        #                   version: '1'
+        #                   code: UNKNOWN_ERROR
+        #                   display: Unknown Error
+        #             diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+
         "503":
-          description: Service Unavailable
+          description: |
+            The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
+
+            Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
+          headers:
+            RetryAfter:
+              $ref: 'components/schemas/RetryAfter.yaml'
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: unknown
+                    code: timeout
                     details:
                       coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
                           version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+                          code: SERVICE_UNAVAILABLE
+                          display: Service unavailable
+                    diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."
+
   '/datasets/{id}':
     get:
       summary: Get Dataset by ID
@@ -334,45 +389,73 @@ paths:
                 $ref: components/schemas/pdc.dataset.schema.yaml
               example:
                 $ref: components/examples/hdruk.json                
-        "400":
-          description: Bad Request
+        # "400":
+        #   description: Bad Request
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        # "401":
+        #   description: Unauthorized
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: Invalid access token
+        # "404":
+        #   description: Not Found
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: "No dataset exists for given resource Id"
+
+        "4XX":
+          description: |
+            An error occurred as follows:
+            
+            | HTTP status | Error code                 | Description |
+            | ----------- | -------------------------- | --------------------------------------------- |
+            | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
+            | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
+            | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
+    
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: forbidden
+                    code: structure
                     details:
-                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-        "401":
-          description: Unauthorized
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: Invalid access token
-        "404":
-          description: Not Found
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: "No dataset exists for given resource Id"
+                      coding:
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
+                          version: '1'
+                          code: ACCESS_DENIED
+                          display: access has been denied to process this request
+                    # diagnostics: "Missing value - 'birth_date/birth_date_range_start/birth_date_range_end'"
+
         "500":
           description: Internal Server Error
           content:
@@ -391,24 +474,49 @@ paths:
                           code: UNKNOWN_ERROR
                           display: Unknown Error
                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        # "503":
+        #   description: Service Unavailable
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationErrorOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: unknown
+        #             details:
+        #               coding:
+        #                 - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+        #                   version: '1'
+        #                   code: UNKNOWN_ERROR
+        #                   display: Unknown Error
+        #             diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+
         "503":
-          description: Service Unavailable
+          description: |
+            The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
+
+            Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
+          headers:
+            RetryAfter:
+              $ref: 'components/schemas/RetryAfter.yaml'
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: unknown
+                    code: timeout
                     details:
                       coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
                           version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+                          code: SERVICE_UNAVAILABLE
+                          display: Service unavailable
+                    diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."                    
  
   /datasets/$export:
     get:
@@ -445,51 +553,79 @@ paths:
       responses:
         "200":
           description: Success response
-          # content:
-          #   application/json:
-          #     schema:
-          #       $ref: components/schemas/dataset.schema.yaml
-          #     example:
-          #       $ref: components/examples/hdruk.json
-        "400":
-          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/pdc.dataset.schema.yaml
+              example:
+                $ref: components/examples/dataset-bundle-example1.json
+        # "400":
+        #   description: Bad Request
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
+        # "401":
+        #   description: Unauthorized
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: Invalid access token
+        # "404":
+        #   description: Not Found
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: forbidden
+        #             details:
+        #               text: "No dataset resources found"
+
+        "4XX":
+          description: |
+            An error occurred as follows:
+            
+            | HTTP status | Error code                 | Description |
+            | ----------- | -------------------------- | --------------------------------------------- |
+            | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
+            | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
+            | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
+    
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: forbidden
+                    code: structure
                     details:
-                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-        "401":
-          description: Unauthorized
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: Invalid access token
-        "404":
-          description: Not Found
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: "No dataset resources found"
+                      coding:
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
+                          version: '1'
+                          code: ACCESS_DENIED
+                          display: access has been denied to process this request
+                    # diagnostics: "Missing value - 'birth_date/birth_date_range_start/birth_date_range_end'"     
+
         "500":
           description: Internal Server Error
           content:
@@ -508,24 +644,50 @@ paths:
                           code: UNKNOWN_ERROR
                           display: Unknown Error
                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+        # "503":
+        #   description: Service Unavailable
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationErrorOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: unknown
+        #             details:
+        #               coding:
+        #                 - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+        #                   version: '1'
+        #                   code: UNKNOWN_ERROR
+        #                   display: Unknown Error
+        #             diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+
         "503":
-          description: Service Unavailable
+          description: |
+            The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
+
+            Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
+          headers:
+            RetryAfter:
+              $ref: 'components/schemas/RetryAfter.yaml'
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: unknown
+                    code: timeout
                     details:
                       coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
                           version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+                          code: SERVICE_UNAVAILABLE
+                          display: Service unavailable
+                    diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."
+
 components:
   parameters:                                                 
     BearerAuthorization:
@@ -563,3 +725,10 @@ components:
         type: string
         pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
         example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+    # RetryAfter:
+    #   name: retry-after
+    #   description: Time to wait before retrying your request in seconds
+    #   in: header
+    #   schema:
+    #     type: string
+    #     example: "5"           
