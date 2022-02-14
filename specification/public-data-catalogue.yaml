@@ -57,8 +57,7 @@ info:
     Here's an illustration:
     We support the following security patterns for application-restricted APIs:
     - [Application-restricted RESTful API - API key authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-api-key-authentication)
-    # - [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
-    
+   
     For more details, see [application-restricted APIs](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis).
 
     ## Environments and testing
@@ -170,7 +169,7 @@ paths:
                       q:
                         type: string
                         description: TBC
-                        example: TBC
+                        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
                       total:
                         type: string
                         example: 181
@@ -189,10 +188,10 @@ paths:
                       properties:
                         '@schema':
                           type: string
-                          example: Dataset
+                          example: https://hdruk.github.io/schemata/schema/dataset/latest/dataset.schema.json
                         type:
                           type: string
-                          example: TBC
+                          example: Dataset
                         identifier:
                           type: string
                           anyOf:
@@ -377,9 +376,27 @@ paths:
 
         | Statistical Population | Population Description                              | Population Size  | Measured Property | Observation Date | 
         |------------------------|-----------------------------------------------------|----------------  |------------------ |----------------- |
-        | Persons                | Events relating to period between April - Sept 2017 | 32937            | Count             | 2017             |
-        | Events                 | Number of unique death registrations since 1993 in England and Wales                                                    |  14900000                | Count                   |  15/01/2021                |    
-        | Findings               | Cancer Germline - Number of genomes                                                    | 17,891                 | Count                  | 2020-09-03                 |
+        | Persons                | Events relating to period between April - Sept 2017                  | 32937            | Count             | 2017             |
+        | Events                 | Number of unique death registrations since 1993 in England and Wales | 14900000         | Count             |  15/01/2021      |    
+        | Findings               | Cancer Germline - Number of genomes                                  | 17,891           | Count             | 2020-09-03       |
+
+        Test table Start:
+
+        | Statistical Population |
+        |------------------------|
+        | Persons                |
+        | Events                 |
+        | Findings               |
+
+        Test table End
+
+        An error occurred as follows:
+            
+        | HTTP status | Error code                 | Description |
+        | ----------- | -------------------------- | --------------------------------------------- |
+        | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
+        | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
+        | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
   
       parameters:
        # - $ref: '#/components/parameters/BearerAuthorization'
