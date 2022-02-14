@@ -57,7 +57,7 @@ info:
     Here's an illustration:
     We support the following security patterns for application-restricted APIs:
     - [Application-restricted RESTful API - API key authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-api-key-authentication)
-    - [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
+    # - [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
     
     For more details, see [application-restricted APIs](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis).
 
@@ -115,10 +115,8 @@ paths:
 
         Use this endpoint to retrieve UUIDs of Data Set metadata.
 
-        To get the information you must provide the CommunityId.
-
       parameters:
-       - $ref: '#/components/parameters/BearerAuthorization'
+       # - $ref: '#/components/parameters/BearerAuthorization'
        - $ref: '#/components/parameters/RequestID'
        - $ref: '#/components/parameters/CorrelationID' 
        # - in: query
@@ -211,7 +209,7 @@ paths:
                           "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
                         self:
                           type: string
-                          example: https://api.service.nhs.uk/public-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
+                          example: https://api.service.nhs.uk/public-data-catalogue/datasets/list?offset=0&limit=100&_page=1
                         issued:
                           type: string
                           format: date-time
@@ -225,6 +223,8 @@ paths:
                           type: string 
                           "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
                           example: OTHER
+              example:  
+                $ref: components/examples/dataset-list-example1.json            
         # "400":
         #   description: Bad Request
         #   content:
@@ -368,8 +368,21 @@ paths:
         Use this endpoint to retrieve Dataset by ID.
         
         The UUID is required to retrieve specific Data Set metadata using GET /datasets/{id} endpoint
+
+        ## Observations
+
+        Multiple observations about the dataset may be provided and users
+        are expected to provide at least one observation (1..*). We will be supporting
+        the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses.   Examples: 
+
+        | Statistical Population | Population Description                              | Population Size  | Measured Property | Observation Date | 
+        |------------------------|-----------------------------------------------------|----------------  |------------------ |----------------- |
+        | Persons                | Events relating to period between April - Sept 2017 | 32937            | Count             | 2017             |
+        | Events                 | Number of unique death registrations since 1993 in England and Wales                                                    |  14900000                | Count                   |  15/01/2021                |    
+        | Findings               | Cancer Germline - Number of genomes                                                    | 17,891                 | Count                  | 2020-09-03                 |
+  
       parameters:
-       - $ref: '#/components/parameters/BearerAuthorization'
+       # - $ref: '#/components/parameters/BearerAuthorization'
        - $ref: '#/components/parameters/RequestID'
        - $ref: '#/components/parameters/CorrelationID' 
        - in: path
@@ -528,8 +541,21 @@ paths:
         
         Operation invokes using a 'GET' with simple HTTP URL parameters (TBC)
 
+        ## Observations
+
+        Multiple observations about the dataset may be provided and users
+        are expected to provide at least one observation (1..*). We will be supporting
+        the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses.   Examples: 
+
+        | Statistical Population | Population Description                              | Population Size  | Measured Property | Observation Date | 
+        |------------------------|-----------------------------------------------------|----------------  |------------------ |----------------- |
+        | Persons                | Events relating to period between April - Sept 2017 | 32937            | Count             | 2017             |
+        | Events                 | Number of unique death registrations since 1993 in England and Wales                                                    |  14900000                | Count                   |  15/01/2021                |    
+        | Findings               | Cancer Germline - Number of genomes                                                    | 17,891                 | Count                  | 2020-09-03                 |
+  
+
       parameters:
-        - $ref: '#/components/parameters/BearerAuthorization'
+        # - $ref: '#/components/parameters/BearerAuthorization'
         - $ref: '#/components/parameters/CorrelationID'
         - $ref: '#/components/parameters/RequestID'
         - in: query
@@ -544,12 +570,12 @@ paths:
           schema:
             type: string
             format: date-time            
-        - in: query
-          name: communityId
-          description: The ID of the community to find the assets in.
-          schema:
-            type: string
-            format: uuid              
+        # - in: query
+        #   name: communityId
+        #   description: The ID of the community to find the assets in.
+        #   schema:
+        #     type: string
+        #     format: uuid              
       responses:
         "200":
           description: Success response
@@ -690,17 +716,17 @@ paths:
 
 components:
   parameters:                                                 
-    BearerAuthorization:
-      in: header
-      name: Authorization
-      description: |
-        An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
-        Required in all environments except sandbox.
-      required: true
-      schema:
-        type: string
-        format: '^Bearer\ [[:ascii:]]+$'
-        example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
+    # BearerAuthorization:
+    #   in: header
+    #   name: Authorization
+    #   description: |
+    #     An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+    #     Required in all environments except sandbox.
+    #   required: true
+    #   schema:
+    #     type: string
+    #     format: '^Bearer\ [[:ascii:]]+$'
+    #     example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
     CorrelationID:
       in: header
       name: X-Correlation-ID
