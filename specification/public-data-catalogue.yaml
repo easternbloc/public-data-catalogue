@@ -382,11 +382,11 @@ paths:
 
         Test table Start:
 
-        | Statistical Population | Population Size  | Measured Property | Observation Date |
-        |------------------------| ---------------- | ----------------- | ---------------- |
-        | Persons                | 32937            | Count             | 2017             |
-        | Events                 | 14900000         | Count             | 15/01/2021       |
-        | Findings               | 17,891           | Count             | 2020-09-03       |
+        | Statistical Population | Population Size  | Measured Property | Observation Date | Population Description |
+        |------------------------| ---------------- | ----------------- | ---------------- | ---------------------- |
+        | Persons                | 32937            | Count             | 2017             | Events relating to period between April - Sept 2017 |
+        | Events                 | 14900000         | Count             | 15/01/2021       | Number of unique death registrations since 1993 in England and Wales |
+        | Findings               | 17,891           | Count             | 2020-09-03       | Cancer Germline - Number of genomes |
 
         Test table End
 
