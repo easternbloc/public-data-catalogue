@@ -1,0 +1,22 @@
+{
+  "query": {
+    "q": "11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA",
+    "total": "181",
+    "limit": "1",
+    "offset": "0"
+  },
+  "items": [
+    {
+      "@schema": "https://raw.githubusercontent.com/HDRUK/schemata/master/schema/dataset/latest/dataset.schema.json",
+      "type": "Dataset",
+      "identifier": "dd5f0174-575f-4f4c-a4fc-b406aab953d9",
+      "name": "Civil Registration - Deaths",
+      "description": "Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient data set, where a record represents one death registration.",
+      "version": "1.1.0",
+      "self": "https://api.service.nhs.uk/public-data-catalogue/datasets/list?offset=0&limit=100&_page=1",
+      "issued": "2020-08-05T14:35:59.000Z",
+      "modified": "2021-01-28T14:15:46.000Z",
+      "source": "OTHER"
+    }
+  ]
+}
