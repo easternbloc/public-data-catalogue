@@ -382,11 +382,11 @@ paths:
 
         Test table Start:
 
-        | Statistical Population |
-        |------------------------|
-        | Persons                |
-        | Events                 |
-        | Findings               |
+        | Statistical Population | Population Size  | Measured Property | Observation Date |
+        |------------------------| ---------------- | ----------------- | ---------------- |
+        | Persons                | 32937            | Count             | 2017             |
+        | Events                 | 14900000         | Count             | 15/01/2021       |
+        | Findings               | 17,891           | Count             | 2020-09-03       |
 
         Test table End
 
