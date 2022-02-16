@@ -985,7 +985,7 @@ definitions:
         title: Measured Property
         # "$comment": https://schema.org/measuredProperty
         default: COUNT
-        description: Initially this will be defaulted to "COUNT"
+        description: Initially this will be defaulted to \"COUNT\"
         allOf:
         - type: string
           enum:

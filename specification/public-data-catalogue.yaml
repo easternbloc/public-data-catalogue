@@ -10,19 +10,19 @@ info:
     ## Overview
     Use this API to retrieve metadata from the Public Data Catalogue. 
 
-    Current scope is limited to information about NHSD National datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
+    Current scope is limited to information about NHSD National data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
     
     The API supports SEARCH and READ interactions. You can:
-    * List data sets (data set summaries)
-    * Get data set by ID 
+    * List datasets (data set summaries)
+    * Get dataset by ID 
 
-    Data sets resources include:
+    Data sets metadata include:
     * Characteristics such as: Publisher, Keywords, Coverage, Provenance, Access, Format and standards and Data utility  
     * Technical (Physical Data Dictionary) assets such as: Schemas, Tables and Columns
 
     You cannot currently use this API to:
-    * Retreive data sets as a bulk transfer
-    * Retrieve data set feeds (Atom Feed)
+    * Retreive datasets as a bulk transfer
+    * Retrieve dataset feeds (Atom Feed)
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
@@ -105,7 +105,7 @@ x-spec-publication:
 paths:
   /datasets/list:    
     get:
-      summary: List data sets (Get data set metadata)
+      summary: List datasets
       operationId: list-datasets      
       description: |
         ## Overview
@@ -370,7 +370,7 @@ paths:
       operationId:  get-datasets-id    
       description: |
         ## Overview
-        Use this endpoint to get dataset details from the Public Data Catalogue for a given dataset identifier (UUID).
+        Use this endpoint to get data set details from the Public Data Catalogue for a given dataset identifier (UUID).
   
         ## Data set metadata returned
 
@@ -387,7 +387,7 @@ paths:
 
         ## Observations
 
-        Multiple observations about the dataset may be provided and users
+        Multiple observations about the data set may be provided and users
         are expected to provide at least one observation (1..*). We will be supporting
         the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses.   Examples: 
 
@@ -747,9 +747,9 @@ components:
       name: X-Correlation-ID
       required: false
       description: |
-        A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk.
+        An optional ID which you can use to track transactions across multiple systems. It can take any value, but we recommend avoiding `.` characters.
+
         Mirrored back in a response header.
-        Avoid `.` characters.
       schema:
         type: string
         example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
@@ -758,10 +758,13 @@ components:
       name: X-Request-ID
       required: false
       description: |
-        A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests.
+        A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests and to trace the request if you contact our helpdesk.
+
         Must be a universally unique identifier (UUID) (ideally version 4).
-        If you re-send a failed request, use the same value in this header.
+
         Mirrored back in a response header.
+
+        If you re-send a failed request, use the same value in this header.
       schema:
         type: string
         pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'

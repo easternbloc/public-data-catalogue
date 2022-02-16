@@ -10,6 +10,7 @@ required:
 - modified
 - summary
 - accessibility
+- observations
 
 additionalProperties: false
 
