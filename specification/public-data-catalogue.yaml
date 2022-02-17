@@ -103,9 +103,7 @@ x-spec-publication:
     - method: GET
       path: /datasets/list
     - method: GET
-      path: '/datasets/{id}'
-    # - method: GET
-    #   path: /datasets/$export  
+      path: '/datasets/{id}' 
 paths:
   /datasets/list:    
     get:
@@ -129,27 +127,8 @@ paths:
         * the source of the data extraction  
 
       parameters:
-       # - $ref: '#/components/parameters/BearerAuthorization'
        - $ref: '#/components/parameters/RequestID'
-       - $ref: '#/components/parameters/CorrelationID' 
-       # - in: query
-       #   name: typeId
-       #   description: The list of IDs of the asset types. The returned assets are of one of types specified by this parameter.
-       #   required: true
-       #   schema:
-       #     type: array
-       #     items:
-       #       type: string
-       #       format: uuid
-       #       example: '00000000-0000-0000-0001-000400000001'          
-       # - in: query
-       #   name: communityId
-       #   description: The ID of the community to find the assets in.
-       #   required: true
-       #   schema:
-       #     type: string
-       #     format: uuid 
-       #     example: '3673ded0-330d-4a67-b147-19f55a9e2265'              
+       - $ref: '#/components/parameters/CorrelationID'           
        - in: query
          name: q
          description: query
@@ -238,46 +217,6 @@ paths:
                           example: OTHER
               example:  
                 $ref: components/examples/dataset-list-example1.json            
-        # "400":
-        #   description: Bad Request
-        #   content:
-        #     application/fhir+json:
-        #       schema:
-        #         $ref: components/schemas/OperationOutcome.yaml
-        #       example:
-        #         resourceType: OperationOutcome
-        #         issue:
-        #           - severity: error
-        #             code: forbidden
-        #             details:
-        #               text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-        # "401":
-        #   description: Unauthorized
-        #   content:
-        #     application/fhir+json:
-        #       schema:
-        #         $ref: components/schemas/OperationOutcome.yaml
-        #       example:
-        #         resourceType: OperationOutcome
-        #         issue:
-        #           - severity: error
-        #             code: forbidden
-        #             details:
-        #               text: Invalid access token
-        # "404":
-        #   description: Not Found
-        #   content:
-        #     application/fhir+json:
-        #       schema:
-        #         $ref: components/schemas/OperationOutcome.yaml
-        #       example:
-        #         resourceType: OperationOutcome
-        #         issue:
-        #           - severity: error
-        #             code: forbidden
-        #             details:
-        #               text: "No datasets exist within given community Id"
-
         "4XX":
           description: |
             An error occurred as follows:
@@ -303,8 +242,6 @@ paths:
                           version: '1'
                           code: ACCESS_DENIED
                           display: access has been denied to process this request
-                    # diagnostics: "Missing value - 'birth_date/birth_date_range_start/birth_date_range_end'"
-
 
         "500":
           description: Internal Server Error
@@ -324,24 +261,6 @@ paths:
                           code: UNKNOWN_ERROR
                           display: Unknown Error
                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-        # "503":
-        #   description: Service Unavailable
-        #   content:
-        #     application/fhir+json:
-        #       schema:
-        #         $ref: components/schemas/OperationErrorOutcome.yaml
-        #       example:
-        #         resourceType: OperationOutcome
-        #         issue:
-        #           - severity: error
-        #             code: unknown
-        #             details:
-        #               coding:
-        #                 - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-        #                   version: '1'
-        #                   code: UNKNOWN_ERROR
-        #                   display: Unknown Error
-        #             diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
 
         "503":
           description: |
@@ -402,7 +321,6 @@ paths:
         | Findings               | 17,891           | Count             | 2020-09-03       | Cancer Germline - Number of genomes |
 
       parameters:
-       # - $ref: '#/components/parameters/BearerAuthorization'
        - $ref: '#/components/parameters/RequestID'
        - $ref: '#/components/parameters/CorrelationID' 
        - in: path
@@ -422,45 +340,6 @@ paths:
                 $ref: components/schemas/pdc.dataset.schema.yaml
               example:
                 $ref: components/examples/hdruk.json                
-        # "400":
-        #   description: Bad Request
-        #   content:
-        #     application/fhir+json:
-        #       schema:
-        #         $ref: components/schemas/OperationOutcome.yaml
-        #       example:
-        #         resourceType: OperationOutcome
-        #         issue:
-        #           - severity: error
-        #             code: forbidden
-        #             details:
-        #               text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-        # "401":
-        #   description: Unauthorized
-        #   content:
-        #     application/fhir+json:
-        #       schema:
-        #         $ref: components/schemas/OperationOutcome.yaml
-        #       example:
-        #         resourceType: OperationOutcome
-        #         issue:
-        #           - severity: error
-        #             code: forbidden
-        #             details:
-        #               text: Invalid access token
-        # "404":
-        #   description: Not Found
-        #   content:
-        #     application/fhir+json:
-        #       schema:
-        #         $ref: components/schemas/OperationOutcome.yaml
-        #       example:
-        #         resourceType: OperationOutcome
-        #         issue:
-        #           - severity: error
-        #             code: forbidden
-        #             details:
-        #               text: "No dataset exists for given resource Id"
 
         "4XX":
           description: |
@@ -487,7 +366,6 @@ paths:
                           version: '1'
                           code: ACCESS_DENIED
                           display: access has been denied to process this request
-                    # diagnostics: "Missing value - 'birth_date/birth_date_range_start/birth_date_range_end'"
 
         "500":
           description: Internal Server Error
@@ -507,25 +385,7 @@ paths:
                           code: UNKNOWN_ERROR
                           display: Unknown Error
                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-        # "503":
-        #   description: Service Unavailable
-        #   content:
-        #     application/fhir+json:
-        #       schema:
-        #         $ref: components/schemas/OperationErrorOutcome.yaml
-        #       example:
-        #         resourceType: OperationOutcome
-        #         issue:
-        #           - severity: error
-        #             code: unknown
-        #             details:
-        #               coding:
-        #                 - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-        #                   version: '1'
-        #                   code: UNKNOWN_ERROR
-        #                   display: Unknown Error
-        #             diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-
+ 
         "503":
           description: |
             The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
@@ -550,202 +410,8 @@ paths:
                           code: SERVICE_UNAVAILABLE
                           display: Service unavailable
                     diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."                    
- 
-  # /datasets/$export:
-  #   get:
-  #     summary: Export all Datasets
-  #     operationId:  export-datasets    
-  #     description: |
-  #       ## Overview
-  #       Export all Datasets (OPTIONAL)  
-        
-  #       Operation invokes using a 'GET' with simple HTTP URL parameters (TBC)
-
-  #       ## Observations
-
-  #       Multiple observations about the dataset may be provided and users
-  #       are expected to provide at least one observation (1..*). We will be supporting
-  #       the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses.   Examples: 
-
-  #       | Statistical Population | Population Size  | Measured Property | Observation Date | Population Description |
-  #       |------------------------| ---------------- | ----------------- | ---------------- | ---------------------- |
-  #       | Persons                | 32937            | Count             | 2017             | Events relating to period between April - Sept 2017 |
-  #       | Events                 | 14900000         | Count             | 15/01/2021       | Number of unique death registrations since 1993 in England and Wales |
-  #       | Findings               | 17,891           | Count             | 2020-09-03       | Cancer Germline - Number of genomes |
-
-  #     parameters:
-  #       # - $ref: '#/components/parameters/BearerAuthorization'
-  #       - $ref: '#/components/parameters/CorrelationID'
-  #       - $ref: '#/components/parameters/RequestID'
-  #       - in: query
-  #         name: Start Date
-  #         description: Start Date 
-  #         schema:
-  #           type: string
-  #           format: date-time
-  #       - in: query
-  #         name: End Date
-  #         description: End Date
-  #         schema:
-  #           type: string
-  #           format: date-time            
-  #       # - in: query
-  #       #   name: communityId
-  #       #   description: The ID of the community to find the assets in.
-  #       #   schema:
-  #       #     type: string
-  #       #     format: uuid              
-  #     responses:
-  #       "200":
-  #         description: Success response
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: components/schemas/pdc.dataset.schema.yaml
-  #             example:
-  #               $ref: components/examples/dataset-bundle-example1.json
-  #       # "400":
-  #       #   description: Bad Request
-  #       #   content:
-  #       #     application/fhir+json:
-  #       #       schema:
-  #       #         $ref: components/schemas/OperationOutcome.yaml
-  #       #       example:
-  #       #         resourceType: OperationOutcome
-  #       #         issue:
-  #       #           - severity: error
-  #       #             code: forbidden
-  #       #             details:
-  #       #               text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-  #       # "401":
-  #       #   description: Unauthorized
-  #       #   content:
-  #       #     application/fhir+json:
-  #       #       schema:
-  #       #         $ref: components/schemas/OperationOutcome.yaml
-  #       #       example:
-  #       #         resourceType: OperationOutcome
-  #       #         issue:
-  #       #           - severity: error
-  #       #             code: forbidden
-  #       #             details:
-  #       #               text: Invalid access token
-  #       # "404":
-  #       #   description: Not Found
-  #       #   content:
-  #       #     application/fhir+json:
-  #       #       schema:
-  #       #         $ref: components/schemas/OperationOutcome.yaml
-  #       #       example:
-  #       #         resourceType: OperationOutcome
-  #       #         issue:
-  #       #           - severity: error
-  #       #             code: forbidden
-  #       #             details:
-  #       #               text: "No dataset resources found"
-
-  #       "4XX":
-  #         description: |
-  #           An error occurred as follows:
-            
-  #           | HTTP status | Error code                 | Description |
-  #           | ----------- | -------------------------- | --------------------------------------------- |
-  #           | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
-  #           | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
-  #           | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
-    
-  #         content:
-  #           application/fhir+json:
-  #             schema:
-  #               $ref: 'components/schemas/OperationOutcome-2.yaml'
-  #             example:
-  #               resourceType: OperationOutcome
-  #               issue:
-  #                 - severity: error
-  #                   code: structure
-  #                   details:
-  #                     coding:
-  #                       - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
-  #                         version: '1'
-  #                         code: ACCESS_DENIED
-  #                         display: access has been denied to process this request
-  #                   # diagnostics: "Missing value - 'birth_date/birth_date_range_start/birth_date_range_end'"     
-
-  #       "500":
-  #         description: Internal Server Error
-  #         content:
-  #           application/fhir+json:
-  #             schema:
-  #               $ref: components/schemas/OperationErrorOutcome.yaml
-  #             example:
-  #               resourceType: OperationOutcome
-  #               issue:
-  #                 - severity: error
-  #                   code: unknown
-  #                   details:
-  #                     coding:
-  #                       - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-  #                         version: '1'
-  #                         code: UNKNOWN_ERROR
-  #                         display: Unknown Error
-  #                   diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-  #       # "503":
-  #       #   description: Service Unavailable
-  #       #   content:
-  #       #     application/fhir+json:
-  #       #       schema:
-  #       #         $ref: components/schemas/OperationErrorOutcome.yaml
-  #       #       example:
-  #       #         resourceType: OperationOutcome
-  #       #         issue:
-  #       #           - severity: error
-  #       #             code: unknown
-  #       #             details:
-  #       #               coding:
-  #       #                 - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-  #       #                   version: '1'
-  #       #                   code: UNKNOWN_ERROR
-  #       #                   display: Unknown Error
-  #       #             diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-
-  #       "503":
-  #         description: |
-  #           The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
-
-  #           Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
-  #         headers:
-  #           RetryAfter:
-  #             $ref: 'components/schemas/RetryAfter.yaml'
-  #         content:
-  #           application/fhir+json:
-  #             schema:
-  #               $ref: 'components/schemas/OperationOutcome-2.yaml'
-  #             example:
-  #               resourceType: OperationOutcome
-  #               issue:
-  #                 - severity: error
-  #                   code: timeout
-  #                   details:
-  #                     coding:
-  #                       - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
-  #                         version: '1'
-  #                         code: SERVICE_UNAVAILABLE
-  #                         display: Service unavailable
-  #                   diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."
-
 components:
   parameters:                                                 
-    # BearerAuthorization:
-    #   in: header
-    #   name: Authorization
-    #   description: |
-    #     An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
-    #     Required in all environments except sandbox.
-    #   required: true
-    #   schema:
-    #     type: string
-    #     format: '^Bearer\ [[:ascii:]]+$'
-    #     example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
     CorrelationID:
       in: header
       name: X-Correlation-ID
