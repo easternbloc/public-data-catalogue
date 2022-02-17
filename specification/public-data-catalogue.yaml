@@ -8,27 +8,35 @@ info:
   description: |
     
     ## Overview
-    Use this API to retrieve metadata from the Public Data Catalogue. 
+    Use this API to access metadata from the Public Data Catalogue, such as data set descriptive and technical metadata. 
 
-    Current scope is limited to information about NHSD National data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
-    
-    The API supports SEARCH and READ interactions. You can:
-    * List datasets (data set summaries)
-    * Get dataset by ID 
-
-    Data sets metadata include:
-    * Characteristics such as: Publisher, Keywords, Coverage, Provenance, Access, Format and standards and Data utility  
-    * Technical (Physical Data Dictionary) assets such as: Schemas, Tables and Columns
+    You can:
+    * list datasets
+    * get dataset details
 
     You cannot currently use this API to:
-    * Retreive datasets as a bulk transfer
-    * Retrieve dataset feeds (Atom Feed)
+    * retrieve datasets as a bulk transfer
+    * retrieve dataset feeds
+
+    You can read the following data set metadata:
+    * publisher
+    * keywords
+    * coverage
+    * provenance
+    * standards
+    * data utility
+    * schemas
+    * tables
+    * columns
+
+    ## API Scope
+    Current scope is limited to information about national data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
 
     ## Related APIs
-    N/A
+    Not applicable
 
     ## API status and roadmap
     This API is initially for use by Health Data Research (HDR) UK developers with other use cases to follow later.
@@ -54,8 +62,9 @@ info:
     ## Security and authorisation
     
     This API is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis), meaning we authenticate and authorise the calling application and we do not authenticate or authorise the end user.
+    
     Although we don't authenticate or authorise the end user, for some APIs we do require the calling application to do it 'locally'. For other APIs we don't require the end user to be authenticated or authorised, or even to be present.
-    Here's an illustration:
+    
     We support the following security patterns for application-restricted APIs:
     - [Application-restricted RESTful API - API key authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-api-key-authentication)
    
@@ -66,6 +75,7 @@ info:
     | ---------------------------------------|-----------------------------------------------------|
     | Sandbox                                | `https://sandbox.api.service.nhs.uk/public-data-catalogue`|
     | Integration test                       | `https://int.api.service.nhs.uk/public-data-catalogue`    |
+    | Production                             | To be supplied                                            |
     
     ### Sandbox testing
     Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
@@ -84,6 +94,7 @@ info:
     ## Onboarding
     You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
+    More details to follow.
   contact:
     name: Public Data Catalogue API Support
     url: 'https://digital.nhs.uk/developer/help-and-support'
