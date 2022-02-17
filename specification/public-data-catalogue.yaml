@@ -19,15 +19,8 @@ info:
     * retrieve dataset feeds
 
     You can read the following data set metadata:
-    * publisher
-    * keywords
-    * coverage
-    * provenance
-    * standards
-    * data utility
-    * schemas
-    * tables
-    * columns
+    * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
+    * technical assets such as: schemas, tables and columns
 
     ## API Scope
     Current scope is limited to information about national data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
