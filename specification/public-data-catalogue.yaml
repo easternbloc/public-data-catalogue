@@ -8,7 +8,7 @@ info:
   description: |
     
     ## Overview
-    Use this API to access metadata from the Public Data Catalogue, such as data set descriptive and technical metadata. 
+    Use this API to access metadata from the Public Data Catalogue, such as dataset descriptive and technical metadata. 
 
     You can:
     * list datasets
@@ -18,12 +18,12 @@ info:
     * retrieve datasets as a bulk transfer
     * retrieve dataset feeds
 
-    You can read the following data set metadata:
+    You can read the following dataset metadata:
     * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
     * technical assets such as: schemas, tables and columns
 
     ### API scope
-    Current scope is limited to information about national data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
+    Current scope is limited to information about national health-related datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
@@ -45,7 +45,7 @@ info:
     ## Technology
     This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). 
 
-    ## Network Access
+    ## Network access
 
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). 
     For more details see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
@@ -111,12 +111,12 @@ paths:
       operationId: list-datasets      
       description: |
         ## Overview
-        Use this endpoint to list a summary of all Public Data Catalogue 'published' data sets.
+        Use this endpoint to list a summary of all Public Data Catalogue 'published' datasets.
 
-        ## Summary data set metadata returned
+        ## Summary dataset metadata returned
         
-        The summary data set metadata returned is not the full set of metadata that is returned on a retrieval of a data set by data set identifier.
-        The following Data set metadata is included:
+        The summary dataset metadata returned is not the full set of metadata that is returned on a retrieval of a dataset by dataset identifier.
+        The following dataset metadata is included:
         * schema
         * type
         * identifier
@@ -195,7 +195,7 @@ paths:
                           example: Civil Registration - Deaths
                         description:
                           type: string
-                          example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient data set, where a record represents one death registration. 
+                          example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient dataset, where a record represents one death registration. 
                         version:
                           type: string 
                           "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
@@ -293,9 +293,9 @@ paths:
       operationId:  get-datasets-id    
       description: |
         ## Overview
-        Use this endpoint to get data set details from the Public Data Catalogue for a given dataset identifier (UUID).
+        Use this endpoint to get dataset details from the Public Data Catalogue for a given dataset identifier (UUID).
   
-        ## Data set metadata returned
+        ## Dataset metadata returned
 
         Mandatory data elements include:
 
@@ -310,7 +310,7 @@ paths:
 
         ## Observations
 
-        Multiple observations about the data set may be provided and users
+        Multiple observations about the dataset may be provided and users
         are expected to provide at least one observation (1..*). We will be supporting
         the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses.   Examples: 
 
