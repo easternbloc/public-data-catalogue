@@ -8,27 +8,28 @@ info:
   description: |
     
     ## Overview
-    Use this API to retrieve metadata from the Public Data Catalogue. 
+    Use this API to access metadata from the Public Data Catalogue, such as dataset descriptive and technical metadata. 
 
-    Current scope is limited to information about NHSD National datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
-    
-    The API supports SEARCH and READ interactions. You can:
-    * List data sets (data set summaries)
-    * Get data set by ID 
-    * Export all data sets 
-
-    Data sets resources include:
-    * Technical (Physical Data Dictionary) assets such as: Schemas, Tables and Columns
-    * Characteristics such as: Publisher, Keywords, Coverage, Provenance, Access, Format and standards and Data utility  
+    You can:
+    * list datasets
+    * get dataset details
 
     You cannot currently use this API to:
-    * Retrieve data set feeds (Atom Feed)
+    * retrieve datasets as a bulk transfer
+    * retrieve dataset feeds
+
+    You can read the following dataset metadata:
+    * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
+    * technical assets such as: schemas, tables and columns
+
+    ### API scope
+    Current scope is limited to information about national health-related datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
 
     ## Related APIs
-    N/A
+    Not applicable
 
     ## API status and roadmap
     This API is initially for use by Health Data Research (HDR) UK developers with other use cases to follow later.
@@ -37,28 +38,29 @@ info:
     - the API is available in our sandbox and integration test environments
     - the API is not yet available for production use
     - we might make breaking changes, but only if we cannot avoid it, and we'll give advance notice
+
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=all&tag=reasonable-adjustment-flag#controls).
     If you have any other queries, please [contact us](https://digital.nhs.uk/developer/help-and-support).
 
     ## Technology
     This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). 
 
-    ## Network Access
-    TBC
+    ## Network access
 
-    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). To use this API with [NHS smartcards](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/nhs-smartcards-for-developers) (see below) you do need an HSCN connection, although internet-facing alternatives are available.
+    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). 
     For more details see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
 
-    ## Security and authorisation
     TBC
 
+    ## Security and authorisation
+    
     This API is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis), meaning we authenticate and authorise the calling application and we do not authenticate or authorise the end user.
+    
     Although we don't authenticate or authorise the end user, for some APIs we do require the calling application to do it 'locally'. For other APIs we don't require the end user to be authenticated or authorised, or even to be present.
-    Here's an illustration:
+    
     We support the following security patterns for application-restricted APIs:
     - [Application-restricted RESTful API - API key authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-api-key-authentication)
-    - [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
-    
+   
     For more details, see [application-restricted APIs](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis).
 
     ## Environments and testing
@@ -66,6 +68,7 @@ info:
     | ---------------------------------------|-----------------------------------------------------|
     | Sandbox                                | `https://sandbox.api.service.nhs.uk/public-data-catalogue`|
     | Integration test                       | `https://int.api.service.nhs.uk/public-data-catalogue`    |
+    | Production                             | To be supplied                                            |
     
     ### Sandbox testing
     Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
@@ -84,6 +87,7 @@ info:
     ## Onboarding
     You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
+    More details to follow.
   contact:
     name: Public Data Catalogue API Support
     url: 'https://digital.nhs.uk/developer/help-and-support'
@@ -93,43 +97,38 @@ servers:
     description: Sandbox environment
   - url: 'https://int.api.service.nhs.uk/public-data-catalogue'
     description: Integration test environment.   
+x-spec-publication:
+  operation-order:
+  - operations:
+    - method: GET
+      path: /datasets/list
+    - method: GET
+      path: '/datasets/{id}' 
 paths:
-  /datasets:    
+  /datasets/list:    
     get:
-      summary: List Datasets (Get Data Set metadata)
+      summary: List datasets
       operationId: list-datasets      
       description: |
         ## Overview
-        List all Dataset summaries.
+        Use this endpoint to list a summary of all Public Data Catalogue 'published' datasets.
 
-        Returns assets matching the given search criteria. Only parameters that are specified in this request and have not <code>null</code> values are used for filtering. All other parameters are ignored.
-
-        Use this endpoint to retrieve UUIDs of Data Set metadata.
-
-        To get the information you must provide the CommunityId.
+        ## Summary dataset metadata returned
+        
+        The summary dataset metadata returned is not the full set of metadata that is returned on a retrieval of a dataset by dataset identifier.
+        The following dataset metadata is included:
+        * schema
+        * type
+        * identifier
+        * description
+        * version
+        * date issued
+        * date modified
+        * the source of the data extraction  
 
       parameters:
-       - $ref: '#/components/parameters/BearerAuthorization'
        - $ref: '#/components/parameters/RequestID'
-       - $ref: '#/components/parameters/CorrelationID' 
-       - in: query
-         name: typeId
-         description: The list of IDs of the asset types. The returned assets are of one of types specified by this parameter.
-         required: true
-         schema:
-           type: array
-           items:
-             type: string
-             format: uuid
-             example: '00000000-0000-0000-0001-000400000001'          
-       - in: query
-         name: communityId
-         description: The ID of the community to find the assets in.
-         required: true
-         schema:
-           type: string
-           format: uuid 
-           example: '3673ded0-330d-4a67-b147-19f55a9e2265'              
+       - $ref: '#/components/parameters/CorrelationID'           
        - in: query
          name: q
          description: query
@@ -162,12 +161,19 @@ paths:
                     properties:
                       q:
                         type: string
+                        description: TBC
+                        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
                       total:
                         type: string
+                        example: 181
                       limit:
                         type: string
+                        description: The maximum number of results to retrieve
+                        example: 1000
                       offset:
                         type: string
+                        description: The first result to retrieve
+                        example: 0
                   items:
                     type: array
                     items:
@@ -175,63 +181,68 @@ paths:
                       properties:
                         '@schema':
                           type: string
+                          example: https://hdruk.github.io/schemata/schema/dataset/latest/dataset.schema.json
                         type:
                           type: string
+                          example: Dataset
                         identifier:
                           type: string
+                          anyOf:
+                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         name:
                           type: string
+                          example: Civil Registration - Deaths
                         description:
                           type: string
+                          example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient dataset, where a record represents one death registration. 
                         version:
-                          type: string
+                          type: string 
+                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
                         self:
                           type: string
+                          example: https://api.service.nhs.uk/public-data-catalogue/datasets/list?offset=0&limit=100&_page=1
                         issued:
                           type: string
+                          format: date-time
+                          example: 2020-08-05T14:35:59Z
                         modified:
                           type: string
+                          format: date-time
+                          example: 2021-01-28T14:15:46Z
                         source:
-                          type: string                
-        "400":
-          description: Bad Request
+                          description: The source of the data extraction
+                          type: string 
+                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
+                          example: OTHER
+              example:  
+                $ref: components/examples/dataset-list-example1.json            
+        "4XX":
+          description: |
+            An error occurred as follows:
+            
+            | HTTP status | Error code                 | Description |
+            | ----------- | -------------------------- | --------------------------------------------- |
+            | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
+            | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
+            | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
+    
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: forbidden
+                    code: structure
                     details:
-                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-        "401":
-          description: Unauthorized
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: Invalid access token
-        "404":
-          description: Not Found
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: "No datasets exist within given community Id"
+                      coding:
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
+                          version: '1'
+                          code: ACCESS_DENIED
+                          display: access has been denied to process this request
+
         "500":
           description: Internal Server Error
           content:
@@ -250,39 +261,66 @@ paths:
                           code: UNKNOWN_ERROR
                           display: Unknown Error
                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+
         "503":
-          description: Service Unavailable
+          description: |
+            The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
+
+            Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
+          headers:
+            RetryAfter:
+              $ref: 'components/schemas/RetryAfter.yaml'
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: unknown
+                    code: timeout
                     details:
                       coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
                           version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+                          code: SERVICE_UNAVAILABLE
+                          display: Service unavailable
+                    diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."
+
   '/datasets/{id}':
     get:
-      summary: Get Dataset by ID
+      summary: Get dataset details
       operationId:  get-datasets-id    
       description: |
         ## Overview
-        Get Dataset by ID.
+        Use this endpoint to get dataset details from the Public Data Catalogue for a given dataset identifier (UUID).
+  
+        ## Dataset metadata returned
 
-        Returns the asset having the given ID.
+        Mandatory data elements include:
 
-        Use this endpoint to retrieve Dataset by ID.
-        
-        The UUID is required to retrieve specific Data Set metadata using GET /datasets/{id} endpoint
+        * identifier
+        * version
+        * revisions
+        * issued
+        * modified 
+        * summary
+        * accessibility
+        * observations
+
+        ## Observations
+
+        Multiple observations about the dataset may be provided and users
+        are expected to provide at least one observation (1..*). We will be supporting
+        the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses.   Examples: 
+
+        | Statistical Population | Population Size  | Measured Property | Observation Date | Population Description |
+        |------------------------| ---------------- | ----------------- | ---------------- | ---------------------- |
+        | Persons                | 32937            | Count             | 2017             | Events relating to period between April - Sept 2017 |
+        | Events                 | 14900000         | Count             | 15/01/2021       | Number of unique death registrations since 1993 in England and Wales |
+        | Findings               | 17,891           | Count             | 2020-09-03       | Cancer Germline - Number of genomes |
+
       parameters:
-       - $ref: '#/components/parameters/BearerAuthorization'
        - $ref: '#/components/parameters/RequestID'
        - $ref: '#/components/parameters/CorrelationID' 
        - in: path
@@ -296,71 +334,41 @@ paths:
       responses:
         '200':
           description: OK
-          # content:
-          #   application/json:
-          #     schema:
-          #       $ref: components/schemas/dataset.schema.yaml
-          #     example:
-          #       $ref: components/examples/hdruk.json                
-        "400":
-          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/pdc.dataset.schema.yaml
+              example:
+                $ref: components/examples/hdruk.json                
+
+        "4XX":
+          description: |
+            An error occurred as follows:
+            
+            | HTTP status | Error code                 | Description |
+            | ----------- | -------------------------- | --------------------------------------------- |
+            | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
+            | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
+            | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
+    
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: forbidden
-                    details:
-                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-        "401":
-          description: Unauthorized
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: Invalid access token
-        "404":
-          description: Not Found
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: "No dataset exists for given resource Id"
-        "500":
-          description: Internal Server Error
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: unknown
+                    code: structure
                     details:
                       coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
                           version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-        "503":
-          description: Service Unavailable
+                          code: ACCESS_DENIED
+                          display: access has been denied to process this request
+
+        "500":
+          description: Internal Server Error
           content:
             application/fhir+json:
               schema:
@@ -378,143 +386,40 @@ paths:
                           display: Unknown Error
                     diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
  
-  /datasets/$export:
-    get:
-      summary: Export all Datasets
-      operationId:  export-datasets    
-      description: |
-        ## Overview
-        Export all Datasets (OPTIONAL)  
-        
-        Operation invokes using a 'GET' with simple HTTP URL parameters (TBC)
-
-      parameters:
-        - $ref: '#/components/parameters/BearerAuthorization'
-        - $ref: '#/components/parameters/CorrelationID'
-        - $ref: '#/components/parameters/RequestID'
-        - in: query
-          name: Start Date
-          description: Start Date 
-          schema:
-            type: string
-            format: date-time
-        - in: query
-          name: End Date
-          description: End Date
-          schema:
-            type: string
-            format: date-time            
-        - in: query
-          name: communityId
-          description: The ID of the community to find the assets in.
-          schema:
-            type: string
-            format: uuid              
-      responses:
-        "200":
-          description: Success response
-          # content:
-          #   application/json:
-          #     schema:
-          #       $ref: components/schemas/dataset.schema.yaml
-          #     example:
-          #       $ref: components/examples/hdruk.json
-        "400":
-          description: Bad Request
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: Required request parameter 'XXXXXXXX' for method parameter type String is not present
-        "401":
-          description: Unauthorized
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: Invalid access token
-        "404":
-          description: Not Found
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: forbidden
-                    details:
-                      text: "No dataset resources found"
-        "500":
-          description: Internal Server Error
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: unknown
-                    details:
-                      coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-                          version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
         "503":
-          description: Service Unavailable
+          description: |
+            The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
+
+            Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
+          headers:
+            RetryAfter:
+              $ref: 'components/schemas/RetryAfter.yaml'
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
+                $ref: 'components/schemas/OperationOutcome-2.yaml'
               example:
                 resourceType: OperationOutcome
                 issue:
                   - severity: error
-                    code: unknown
+                    code: timeout
                     details:
                       coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
                           version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+                          code: SERVICE_UNAVAILABLE
+                          display: Service unavailable
+                    diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."                    
 components:
   parameters:                                                 
-    BearerAuthorization:
-      in: header
-      name: Authorization
-      description: |
-        An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
-        Required in all environments except sandbox.
-      required: true
-      schema:
-        type: string
-        format: '^Bearer\ [[:ascii:]]+$'
-        example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
     CorrelationID:
       in: header
       name: X-Correlation-ID
       required: false
       description: |
-        A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk.
+        An optional ID which you can use to track transactions across multiple systems. It can take any value, but we recommend avoiding `.` characters.
+
         Mirrored back in a response header.
-        Avoid `.` characters.
       schema:
         type: string
         example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
@@ -523,10 +428,13 @@ components:
       name: X-Request-ID
       required: false
       description: |
-        A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests.
+        A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests and to trace the request if you contact our helpdesk.
+
         Must be a universally unique identifier (UUID) (ideally version 4).
-        If you re-send a failed request, use the same value in this header.
+
         Mirrored back in a response header.
+
+        If you re-send a failed request, use the same value in this header.
       schema:
         type: string
         pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
