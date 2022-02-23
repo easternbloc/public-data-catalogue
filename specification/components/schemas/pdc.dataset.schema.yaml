@@ -38,9 +38,7 @@ properties:
   revisions:
     # "$id": "#/properties/revisions"
     title: Dataset Revisions
-    description: Revisions of Dataset metadata. Includes 
-      * Semantic Version of the dataset 
-      * URL endpoint to obtain the version.
+    description: Includes the Semantic Version of the dataset and URL endpoint to obtain the version. 
     type: array
     items:
       allOf:
