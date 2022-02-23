@@ -305,6 +305,13 @@ paths:
         | issued       | Required                   | Dataset Metadata Creation Date. |
         | modified     | Required                   | Dataset Metadata Creation Date. |
         | summary      | Required                   | Summary metadata must be completed by Data Custodians onboarding metadata into the Innovation Gateway MVP. |
+        | documentation|                            | Documentation can include a rich text description of the dataset or links to media such as documents, images, presentations, videos or links to data dictionaries, profiles or dashboards. Organisations are required to confirm that they have permission to distribute any additional media. |
+        | coverage     |                            | This information includes attributes for geographical and temporal coverage, cohort details etc. to enable a deeper understanding of the dataset content so that researchers can make decisions about the relevance of the underlying data. |
+        | provenance   |                            | Provenance information allows researchers to understand data within the context of its origins and can be an indicator of quality, authenticity and timeliness. |
+        | accessibility| Required                   | Accessibility information allows researchers to understand access,  usage, limitations, formats, standards and linkage or interoperability with toolsets. |
+        | enrichment   |                            | This section includes information about related datasets that may have previously been linked, as well as indicating if there is the opportunity to link to other datasets in the future. If a dataset has been enriched and/or derivations, scores and existing tools are available this section allows providers to indicate this to researchers. |
+        | observations | Required                   | Multiple observations about the dataset may be provided and users are expected to provide at least one observation (1..*). We will be supporting the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses. Examples detailed in next section. |
+
 
 
 
