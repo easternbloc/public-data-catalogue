@@ -50,8 +50,6 @@ info:
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). 
     For more details see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
 
-    TBC
-
     ## Security and authorisation
     
     This API is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis), meaning we authenticate and authorise the calling application and we do not authenticate or authorise the end user.
@@ -98,6 +96,8 @@ servers:
   - url: 'https://int.api.service.nhs.uk/public-data-catalogue'
     description: Integration test environment.   
 x-spec-publication:
+  try-this-api:
+    disabled: false
   operation-order:
   - operations:
     - method: GET
@@ -297,18 +297,23 @@ paths:
   
         ## Dataset metadata returned
 
-        Mandatory data elements include:
+        | Data element | Conformance                | Description |
+        | ------------ | -------------------------- | --------------------------------------------- |
+        | identifier   | Required                   | System dataset identifier. |
+        | version      | Required                   | Dataset metadata version. |
+        | revisions    | Required                   | Revisions of Dataset metadata. Includes the Semantic Version of the dataset and URL endpoint to obtain the version. |
+        | issued       | Required                   | Dataset Metadata Creation Date. |
+        | modified     | Required                   | Dataset Metadata Creation Date. |
+        | summary      | Required                   | Summary metadata must be completed by Data Custodians onboarding metadata into the Innovation Gateway MVP. |
+        | documentation|                            | Documentation can include a rich text description of the dataset or links to media such as documents, images, presentations, videos or links to data dictionaries, profiles or dashboards. Organisations are required to confirm that they have permission to distribute any additional media. |
+        | coverage     |                            | This information includes attributes for geographical and temporal coverage, cohort details etc. to enable a deeper understanding of the dataset content so that researchers can make decisions about the relevance of the underlying data. |
+        | provenance   |                            | Provenance information allows researchers to understand data within the context of its origins and can be an indicator of quality, authenticity and timeliness. |
+        | accessibility| Required                   | Accessibility information allows researchers to understand access,  usage, limitations, formats, standards and linkage or interoperability with toolsets. |
+        | enrichmentAndLinkage|                     | This section includes information about related datasets that may have previously been linked, as well as indicating if there is the opportunity to link to other datasets in the future. If a dataset has been enriched and/or derivations, scores and existing tools are available this section allows providers to indicate this to researchers. |
+        | observations | Required                   | Multiple observations about the dataset may be provided and users are expected to provide at least one observation (1..*). Examples detailed in next section. |
 
-        * identifier
-        * version
-        * revisions
-        * issued
-        * modified 
-        * summary
-        * accessibility
-        * observations
-
-        ## Observations
+ 
+        ### Observations
 
         Multiple observations about the dataset may be provided and users
         are expected to provide at least one observation (1..*). We will be supporting
