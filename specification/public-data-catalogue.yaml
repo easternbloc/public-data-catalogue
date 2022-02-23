@@ -313,7 +313,7 @@ paths:
         | observations | Required                   | Multiple observations about the dataset may be provided and users are expected to provide at least one observation (1..*). Examples detailed in next section. |
 
  
-        ## Observations
+        ### Observations
 
         Multiple observations about the dataset may be provided and users
         are expected to provide at least one observation (1..*). We will be supporting
