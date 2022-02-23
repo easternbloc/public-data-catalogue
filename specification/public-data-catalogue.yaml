@@ -299,7 +299,19 @@ paths:
 
         | Data element | Conformance                | Description |
         | ------------ | -------------------------- | --------------------------------------------- |
-        | 400          | INVALID_RESOURCE_ID        | Invalid dataset id. |
+        | identifier   | Required                   | System dataset identifier. |
+        | version      | Required                   | Dataset metadata version. |
+        | revisions    | Required                   | Revisions of Dataset metadata. Includes the Semantic Version of the dataset and URL endpoint to obtain the version. |
+        | issued       | Required                   | Dataset Metadata Creation Date. |
+        | modified     | Required                   | Dataset Metadata Creation Date. |
+        | summary      | Required                   | Summary metadata must be completed by Data Custodians onboarding metadata into the Innovation Gateway MVP. |
+
+
+
+
+        | Data element | Conformance                | Description |
+        | ------------ | -------------------------- | --------------------------------------------- |
+        | identifier   | INVALID_RESOURCE_ID        | Invalid dataset id. |
         | 401          | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
         | 404          | RESOURCE_NOT_FOUND         | No dataset resources found. |
 
