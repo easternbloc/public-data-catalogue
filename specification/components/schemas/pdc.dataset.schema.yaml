@@ -57,7 +57,7 @@ properties:
     # "$id": "#/properties/modified"
     title: Modification Date
     # "$comment": "dcat:modified"
-    description: Dataset Metadata Creation Date
+    description: Dataset Metadata Modification Date
     type: string
     format: date-time
     example: 2021-01-28T14:15:46Z
