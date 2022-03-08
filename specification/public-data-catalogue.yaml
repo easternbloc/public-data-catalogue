@@ -175,19 +175,36 @@ paths:
                       #   type: string
                       #   description: The first result to retrieve
                       #   example: 0
+                  '@schema':    
+                    type: object
+                    properties:
+                        type:
+                          type: string
+                          description: JSON document type
+                          example: Dataset
+                        version:
+                          type: string 
+                          description: Dataset schema version
+                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
+                        url: 
+                          type: string
+                          description: Dataset URL
+                          anyOf:
+                          # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                   items:
                     type: array
                     items:
                       type: object
                       properties:
-                        '@schema':
-                          type: string
-                          description: HDR UK Dataset schema
-                          example: https://hdruk.github.io/schemata/schema/dataset/latest/dataset.schema.json
-                        type:
-                          type: string
-                          description: JSON document type
-                          example: Dataset
+                        # '@schema':
+                        #   type: string
+                        #   description: HDR UK Dataset schema
+                        #   example: https://hdruk.github.io/schemata/schema/dataset/latest/dataset.schema.json
+                        # type:
+                        #   type: string
+                        #   description: JSON document type
+                        #   example: Dataset
                         identifier:
                           type: string
                           description: Dataset identifier
@@ -208,10 +225,10 @@ paths:
                           type: string
                           description: Dataset description
                           example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient dataset, where a record represents one death registration. 
-                        version:
-                          type: string 
-                          description: Dataset schema version
-                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
+                        # version:
+                        #   type: string 
+                        #   description: Dataset schema version
+                        #   "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
                         self:
                           type: string
                           description: Self link

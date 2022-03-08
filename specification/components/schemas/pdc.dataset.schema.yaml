@@ -16,6 +16,15 @@ additionalProperties: false
 
 properties:
 
+  persistent identifier:
+    # SWK added to schema
+    title: Dataset persistent identifier
+    type: string
+    description: Dataset persistent identifier
+    anyOf:
+    - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+    - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
+
   identifier:
     # "$id": "#/properties/identifier"
     title: Dataset identifier
