@@ -16,7 +16,7 @@ additionalProperties: false
 
 properties:
 
-  persistent identifier:
+  persistentId:
     # SWK added to schema
     title: Dataset persistent identifier
     type: string

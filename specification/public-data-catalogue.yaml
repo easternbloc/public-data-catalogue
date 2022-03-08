@@ -155,6 +155,10 @@ paths:
                   total:
                     type: integer
                     minimum: 1
+                  self:
+                    type: string
+                    description: Self link
+                    example: https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
                 # type: object
                 # properties:
                 #   query:
@@ -175,45 +179,45 @@ paths:
                       #   type: string
                       #   description: The first result to retrieve
                       #   example: 0
-                  # '@schema':    
-                  #   type: object
-                  #   properties:
-                  #       type:
-                  #         type: string
-                  #         description: JSON document type
-                  #         example: Dataset
-                  #       version:
-                  #         type: string 
-                  #         description: Dataset schema version
-                  #         "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
-                  #       url: 
-                  #         type: string
-                  #         description: Dataset URL
-                  #         anyOf:
-                  #         # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
-                  #         - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
+                  '@schema':    
+                    type: object
+                    properties:
+                        type:
+                          type: string
+                          description: JSON document type
+                          example: Dataset
+                        version:
+                          type: string 
+                          description: Dataset schema version
+                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
+                        url: 
+                          type: string
+                          description: Dataset URL
+                          # anyOf:
+                          # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                   items:
                     type: array
                     items:
                       type: object
                       properties:
-                        '@schema':    
-                          type: object
-                          properties:
-                            type:
-                              type: string
-                              description: JSON document type
-                              example: Dataset
-                            version:
-                              type: string 
-                              description: Dataset schema version
-                              "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
-                            url: 
-                              type: string
-                              description: Dataset URL
-                              oneOf:
-                              # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
-                              - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
+                        # '@schema':    
+                        #   type: object
+                        #   properties:
+                        #     type:
+                        #       type: string
+                        #       description: JSON document type
+                        #       example: Dataset
+                        #     version:
+                        #       type: string 
+                        #       description: Dataset schema version
+                        #       "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
+                        #     url: 
+                        #       type: string
+                        #       description: Dataset URL
+                        #       oneOf:
+                        #       # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                        #       - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         # '@schema':
                         #   type: string
                         #   description: HDR UK Dataset schema
@@ -228,7 +232,7 @@ paths:
                           anyOf:
                           - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
                           - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
-                        persistent identifier:
+                        persistentId:
                           type: string
                           description: Dataset persistent identifier
                           anyOf:
