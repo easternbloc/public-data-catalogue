@@ -250,10 +250,10 @@ paths:
                         #   type: string 
                         #   description: Dataset schema version
                         #   "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
-                        self:
-                          type: string
-                          description: Self link
-                          example: https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
+                        # self:
+                        #   type: string
+                        #   description: Self link
+                        #   example: https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
                         issued:
                           type: string
                           description: Dataset metadata creation date
