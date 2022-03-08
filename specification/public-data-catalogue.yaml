@@ -155,10 +155,6 @@ paths:
                   total:
                     type: integer
                     minimum: 1
-                  self:
-                    type: string
-                    description: Self link
-                    example: https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
                 # type: object
                 # properties:
                 #   query:
