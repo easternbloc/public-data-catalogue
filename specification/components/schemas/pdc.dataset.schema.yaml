@@ -10,7 +10,7 @@ required:
 - modified
 - summary
 - accessibility
-- observations
+# - observations
 
 additionalProperties: false
 
@@ -153,28 +153,28 @@ properties:
       allOf:
       - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/observation"
 
-  structuralMetadata:
-     # structuralMetadata keyword NOT part of HDR UK Schema. Added by SWK
-    # "$id": "#/properties/structuralMetadata" 
-    # "$comment": "First phase includes only column level metadata, future versions will include value level attributes",
-    title: Structural Metadata
-    description: | 
-      Descriptions of all tables and data elements that can be included in the dataset.
+  # structuralMetadata:
+  #    # structuralMetadata keyword NOT part of HDR UK Schema. Added by SWK
+  #   # "$id": "#/properties/structuralMetadata" 
+  #   # "$comment": "First phase includes only column level metadata, future versions will include value level attributes",
+  #   title: Structural Metadata
+  #   description: | 
+  #     Descriptions of all tables and data elements that can be included in the dataset.
 
-      WARNING: First phase includes only column level metadata, future versions will include value level attributes
-    # THis Code is BROKEN
-    # type: array
-    # items:
-    #   allOf:
-    #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadataCount"
-    #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClasses"
-    #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataElements"
-    # type: object
-    # items:
-    # THis Code WOrks
-    # allOf:
-    # - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadata"
-    type: array
-    items:
-      allOf:
-      - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClass"
+  #     WARNING: First phase includes only column level metadata, future versions will include value level attributes
+  #   # THis Code is BROKEN
+  #   # type: array
+  #   # items:
+  #   #   allOf:
+  #   #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadataCount"
+  #   #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClasses"
+  #   #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataElements"
+  #   # type: object
+  #   # items:
+  #   # THis Code WOrks
+  #   # allOf:
+  #   # - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadata"
+  #   type: array
+  #   items:
+  #     allOf:
+  #     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClass"
