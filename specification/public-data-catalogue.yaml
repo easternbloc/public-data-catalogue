@@ -151,12 +151,16 @@ paths:
             application/json:
               schema:
                 type: object
+                title: Container object for all summary dataset resources that match search criteria
+                description: list of datasets
                 required:
                 - total
                 - items
                 properties:
                   total:
                     type: integer
+                    title: Total number of matches
+                    description: Used to return the total number of resources that match the search
                     minimum: 1
                 # type: object
                 # properties:
@@ -197,6 +201,8 @@ paths:
                   #         "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                   items:
                     type: array
+                    title: items in the container object
+                    description: Repeats all summary dataset resources that match search criteria
                     items:
                       type: object
                       required:
@@ -213,6 +219,8 @@ paths:
                       properties:
                         '@schema':    
                           type: object
+                          title: JSON Schema conformance
+                          description: JSON Schema specification that summary dataset item conforms to
                           required:
                           - type
                           - url
@@ -227,10 +235,12 @@ paths:
                             #   "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
                             url: 
                               type: string
-                              description: Dataset URL
-                              oneOf:
-                              # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
-                              - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
+                              title: Dataset schema URL
+                              description: Dataset schema URL resolves to version of conformant JSON schema
+                              example: https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json
+                              # oneOf:
+                              # # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                              # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         # '@schema':
                         #   type: string
                         #   description: HDR UK Dataset schema
@@ -241,31 +251,37 @@ paths:
                         #   example: Dataset
                         identifier:
                           type: string
-                          description: Dataset identifier
+                          title: Dataset resource identifier
+                          description: Dataset resource identifier
                           anyOf:
                           - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
                           - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         persistentId:
                           type: string
-                          description: Dataset persistent identifier
+                          title: Dataset persistent identifier
+                          description: Dataset persistent identifier that is common across all dataset revisions
                           anyOf:
                           - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
                           - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         name:
                           type: string
+                          title: Dataset name
                           description: Dataset name
                           example: Civil Registration - Deaths
                         description:
                           type: string
+                          title: Dataset description
                           description: Dataset description
                           example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient dataset, where a record represents one death registration. 
                         version:
                           type: string 
-                          description: Dataset schema version
+                          title: Dataset metadata version
+                          description: Dataset version
                           "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
                         self:
                           type: string
-                          description: Self link
+                          title: Self continuation link
+                          description: Self continuation link of a search result
                           example: https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
                         issued:
                           type: string
@@ -278,8 +294,9 @@ paths:
                           format: date-time
                           example: 2021-01-28T14:15:46Z
                         source:
-                          description: The source of the data extraction
                           type: string 
+                          title: The source of the dataset
+                          description: The source of the dataset
                           # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
                           example: OTHER
               example:  
