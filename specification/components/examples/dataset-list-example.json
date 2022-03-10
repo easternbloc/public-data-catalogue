@@ -1,0 +1,19 @@
+{
+  "total": "1",
+  "items": [
+    {
+      "@schema": {
+          "type": "Dataset",
+          "url": "https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json"
+    },  
+      "persistentId": "dd5f0174-575f-4f4c-a4fc-b406aab953d9",
+      "name": "Civil Registration - Deaths",
+      "description": "Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient data set, where a record represents one death registration.",
+      "version": "1.1.0",
+      "self": "https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9",
+      "issued": "2020-08-05T14:35:59.000Z",
+      "modified": "2021-01-28T14:15:46.000Z",
+      "source": "OTHER"
+    }
+  ]
+}
