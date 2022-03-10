@@ -3,6 +3,7 @@ title: HDR UK Dataset Schema
 description: HDR UK Dataset Metadata Schema
 # version: 2.0.2
 required:
+- persistentId
 - identifier
 - version
 - revisions
@@ -18,9 +19,9 @@ properties:
 
   persistentId:
     # SWK added to schema
+    # type: string
     title: Dataset persistent identifier
-    type: string
-    description: Dataset persistent identifier
+    description: Dataset persistent identifier that is common across all dataset resource revisions
     anyOf:
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
@@ -31,7 +32,7 @@ properties:
     # "$comment": "http://purl.org/dc/terms/identifier"
     # examples:
     # - [ "226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
-    description: System dataset identifier
+    description: System dataset identifier (logical identifier of the dataset resource assigned by the Central Metastore)
     anyOf:
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"

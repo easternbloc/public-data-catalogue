@@ -112,15 +112,17 @@ paths:
 
         ## Summary dataset metadata returned
         
-        The summary dataset metadata returned is not the full set of metadata that is returned on a retrieval of a dataset by dataset identifier.
+        The summary dataset metadata returned is not the full set of metadata that is returned on a retrieval of a dataset by dataset persistent identifier.
         The following dataset metadata is included:
-        * schema
-        * type
-        * identifier
-        * description
-        * version
-        * date issued
-        * date modified
+        * Schema conformance
+        * Dataset persistent identifier
+        * Dataset name
+        * Dataset description
+        * Dataset version
+        * Self continuation link
+        * Dataset metadata creation date
+        * Dataset metadata modification date
+        * Source of the metadata
 
       parameters:
        - $ref: '#/components/parameters/RequestID'
@@ -151,8 +153,8 @@ paths:
             application/json:
               schema:
                 type: object
-                title: Container object for all summary dataset resources that match search criteria
-                description: list of datasets
+                title: Container object for all matched resources
+                description: Container object for all summary dataset resources that match search criteria
                 required:
                 - total
                 - items
@@ -201,13 +203,13 @@ paths:
                   #         "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                   items:
                     type: array
-                    title: items in the container object
+                    title: Items in the container object
                     description: Repeats all summary dataset resources that match search criteria
                     items:
                       type: object
                       required:
                       - '@schema'
-                      - identifier
+                      # - identifier
                       - persistentId
                       - name
                       - description
@@ -227,7 +229,8 @@ paths:
                           properties:
                             type:
                               type: string
-                              description: JSON document type
+                              title: JSON document type
+                              description: The JSON dataset is a JSON document, which includes descriptive metadata
                               example: Dataset
                             # version:
                             #   type: string 
@@ -249,15 +252,15 @@ paths:
                         #   type: string
                         #   description: JSON document type
                         #   example: Dataset
-                        identifier:
-                          type: string
-                          title: Dataset resource identifier
-                          description: Dataset resource identifier
-                          anyOf:
-                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
-                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
+                        # identifier:
+                        #   type: string
+                        #   title: Dataset resource identifier
+                        #   description: Dataset resource identifier
+                        #   anyOf:
+                        #   - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                        #   - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         persistentId:
-                          type: string
+                          # type: string
                           title: Dataset persistent identifier
                           description: Dataset persistent identifier that is common across all dataset revisions
                           anyOf:
@@ -285,11 +288,13 @@ paths:
                           example: https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
                         issued:
                           type: string
+                          title: Creation date
                           description: Dataset metadata creation date
                           format: date-time
                           example: 2020-08-05T14:35:59Z
                         modified:
                           type: string
+                          title: Modification date
                           description: Dataset metadata modification date
                           format: date-time
                           example: 2021-01-28T14:15:46Z
@@ -300,7 +305,7 @@ paths:
                           # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
                           example: OTHER
               example:  
-                $ref: components/examples/dataset-list-example1.json            
+                $ref: components/examples/dataset-list-example.json            
         "4XX":
           description: |
             An error occurred as follows:
@@ -382,7 +387,7 @@ paths:
         </div></div>&nbsp;&nbsp;</div>
 
         ## Overview
-        Use this endpoint to get dataset details from the Health Research Data Catalogue for a given dataset identifier (UUID).
+        Use this endpoint to get the latest dataset details from the Health Research Data Catalogue for a given dataset persistent identifier.
   
         ## Dataset metadata returned
 
@@ -419,7 +424,7 @@ paths:
        - $ref: '#/components/parameters/CorrelationID' 
        - in: path
          name: id
-         description: ID of the Dataset
+         description: The persistent identifier of the dataset
          schema:
            type: string
            format: uuid 
@@ -433,7 +438,7 @@ paths:
               schema:
                 $ref: components/schemas/pdc.dataset.schema.yaml
               example:
-                $ref: components/examples/hdruk.json                
+                $ref: components/examples/dataset-example.json                
 
         "4XX":
           description: |
