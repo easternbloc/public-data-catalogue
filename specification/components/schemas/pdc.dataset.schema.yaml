@@ -3,6 +3,7 @@ title: HDR UK Dataset Schema
 description: HDR UK Dataset Metadata Schema
 # version: 2.0.2
 required:
+# - persistentId
 - identifier
 - version
 - revisions
@@ -10,11 +11,20 @@ required:
 - modified
 - summary
 - accessibility
-- observations
+# - observations
 
 additionalProperties: false
 
 properties:
+
+  # persistentId:
+  #   # SWK added to schema
+  #   # type: string
+  #   title: Dataset persistent identifier
+  #   description: Dataset persistent identifier that is common across all dataset resource revisions
+  #   anyOf:
+  #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+  #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
 
   identifier:
     # "$id": "#/properties/identifier"
@@ -22,7 +32,7 @@ properties:
     # "$comment": "http://purl.org/dc/terms/identifier"
     # examples:
     # - [ "226fb3f1-4471-400a-8c39-2b66d46a39b6", "https://web.www.healthdatagateway.org/dataset/226fb3f1-4471-400a-8c39-2b66d46a39b6"]
-    description: System dataset identifier
+    description: System dataset identifier (logical identifier of the dataset resource assigned by the Central Metastore)
     anyOf:
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
@@ -57,7 +67,7 @@ properties:
     # "$id": "#/properties/modified"
     title: Modification Date
     # "$comment": "dcat:modified"
-    description: Dataset Metadata Creation Date
+    description: Dataset Metadata Modification Date
     type: string
     format: date-time
     example: 2021-01-28T14:15:46Z
@@ -144,28 +154,28 @@ properties:
       allOf:
       - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/observation"
 
-  structuralMetadata:
-     # structuralMetadata keyword NOT part of HDR UK Schema. Added by SWK
-    # "$id": "#/properties/structuralMetadata" 
-    # "$comment": "First phase includes only column level metadata, future versions will include value level attributes",
-    title: Structural Metadata
-    description: | 
-      Descriptions of all tables and data elements that can be included in the dataset.
+  # structuralMetadata:
+  #    # structuralMetadata keyword NOT part of HDR UK Schema. Added by SWK
+  #   # "$id": "#/properties/structuralMetadata" 
+  #   # "$comment": "First phase includes only column level metadata, future versions will include value level attributes",
+  #   title: Structural Metadata
+  #   description: | 
+  #     Descriptions of all tables and data elements that can be included in the dataset.
 
-      WARNING: First phase includes only column level metadata, future versions will include value level attributes
-    # THis Code is BROKEN
-    # type: array
-    # items:
-    #   allOf:
-    #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadataCount"
-    #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClasses"
-    #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataElements"
-    # type: object
-    # items:
-    # THis Code WOrks
-    # allOf:
-    # - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadata"
-    type: array
-    items:
-      allOf:
-      - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClass"
+  #     WARNING: First phase includes only column level metadata, future versions will include value level attributes
+  #   # THis Code is BROKEN
+  #   # type: array
+  #   # items:
+  #   #   allOf:
+  #   #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadataCount"
+  #   #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClasses"
+  #   #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataElements"
+  #   # type: object
+  #   # items:
+  #   # THis Code WOrks
+  #   # allOf:
+  #   # - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/structuralMetadata"
+  #   type: array
+  #   items:
+  #     allOf:
+  #     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/dataClass"

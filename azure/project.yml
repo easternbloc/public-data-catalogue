@@ -1,4 +1,4 @@
 variables:
   service_name: public-data-catalogue
   short_service_name: pdc
-  service_base_path: public-data-catalogue
+  service_base_path: health-research-data-catalogue

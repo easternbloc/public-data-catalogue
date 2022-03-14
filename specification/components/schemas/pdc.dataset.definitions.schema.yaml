@@ -1080,36 +1080,36 @@ definitions:
       #   - "$ref": "#/definitions/count"
       #   example: 0             
 
-  dataClass:
-    # "$id": "#/definitions/dataClass"
-    required:
-    - name
-    - elements
-    additionalProperties: false
-    properties:
-      # id:
-      #   # "$id": "#/properties/dataClass/id"
-      #   type: string
-      #   title: Data Class id (TBC)
-      #   description: | 
-      #     TBC
-      #   allOf:
-      #   - "$ref": "#/definitions/uuidv4"
-      name: 
-        # "$id": "#/properties/dataClass/name"
-        # type: string
-        title: Table Name
-        description: The name of a table in a dataset.
-        # "$comment": "Should be limited to 255 Characters, abstract text requires rewrite."
-        allOf:
-        - "$ref": "#/definitions/abstractText"
-      description:
-        # "$id": "#/properties/dataClass/description"
-        title: Table Description
-        description: A description of a table in a dataset.
-        type: string
-        minLength: 1
-        maxLength: 20000
+  # dataClass:
+  #   # "$id": "#/definitions/dataClass"
+  #   required:
+  #   - name
+  #   - elements
+  #   additionalProperties: false
+  #   properties:
+  #     # id:
+  #     #   # "$id": "#/properties/dataClass/id"
+  #     #   type: string
+  #     #   title: Data Class id (TBC)
+  #     #   description: | 
+  #     #     TBC
+  #     #   allOf:
+  #     #   - "$ref": "#/definitions/uuidv4"
+  #     name: 
+  #       # "$id": "#/properties/dataClass/name"
+  #       # type: string
+  #       title: Table Name
+  #       description: The name of a table in a dataset.
+  #       # "$comment": "Should be limited to 255 Characters, abstract text requires rewrite."
+  #       allOf:
+  #       - "$ref": "#/definitions/abstractText"
+  #     description:
+  #       # "$id": "#/properties/dataClass/description"
+  #       title: Table Description
+  #       description: A description of a table in a dataset.
+  #       type: string
+  #       minLength: 1
+  #       maxLength: 20000
 
       # dataElementsCount:
       #   # "$id": "#/properties/dataClass/dataElementsCount"
@@ -1120,40 +1120,40 @@ definitions:
       #   allOf:
       #   - "$ref": "#/definitions/count"
 
-      elements:
-        # "$id": "#/properties/dataClass/elements"
-        title: Data Elements
-        description: |
-          A list of data elements contained within a table in a dataset.
-        type: array
-        items:
-         allOf:
-         - "$ref": "#/definitions/dataElements"   
+      # elements:
+      #   # "$id": "#/properties/dataClass/elements"
+      #   title: Data Elements
+      #   description: |
+      #     A list of data elements contained within a table in a dataset.
+      #   type: array
+      #   items:
+      #    allOf:
+      #    - "$ref": "#/definitions/dataElements"   
 
-  dataElements:
-    # "$id": "#/definitions/dataElement"
-    required:
-    - name
-    - dataType
-    - sensitive
-    additionalProperties: true
-    properties:
-      name: 
-        # "$id": "#/properties/dataElement/name"
-        # type: string
-        title: Column Name
-        description: The name of a column in a table.
-        # "$comment": "255 Chars"
-        allOf:
-        - "$ref": "#/definitions/abstractText"
-      dataType:
-        # "$id": "#/properties/dataElement/dataType"
-        title: Data Type
-        description: The data type of values in the column   
-        # "$comment": "In future we could enumerate options for this, rather than just a string. 255 Chars"  
-        # allOf:
-        # - "$ref": "#/definitions/dataType" 
-        type: string
+  # dataElements:
+  #   # "$id": "#/definitions/dataElement"
+  #   required:
+  #   - name
+  #   - dataType
+  #   - sensitive
+  #   additionalProperties: true
+  #   properties:
+  #     name: 
+  #       # "$id": "#/properties/dataElement/name"
+  #       # type: string
+  #       title: Column Name
+  #       description: The name of a column in a table.
+  #       # "$comment": "255 Chars"
+  #       allOf:
+  #       - "$ref": "#/definitions/abstractText"
+  #     dataType:
+  #       # "$id": "#/properties/dataElement/dataType"
+  #       title: Data Type
+  #       description: The data type of values in the column   
+  #       # "$comment": "In future we could enumerate options for this, rather than just a string. 255 Chars"  
+  #       # allOf:
+  #       # - "$ref": "#/definitions/dataType" 
+  #       type: string
       # id:
       #   # "$id": "#/properties/dataElement/id"
       #   type: string
@@ -1162,22 +1162,22 @@ definitions:
       #     TBC
       #   allOf:
       #   - "$ref": "#/definitions/uuidv4"
-      description:
-        # "$id": "#/properties/dataElement/description"
-        title: Column Description
-        description: A description of a column in a table.
-         # "$comment": "255 Chars"
-        type: string
-        minLength: 1
-        maxLength: 20000
-        # allOf:
-        # - "$ref": "#/definitions/shortDescription"
-      sensitive:
-        # "$id": "#/properties/dataElement/sensitive"
-        type: boolean
-        title: Sensitive
-        description: A True or False value, indicating if the field is sensitive or not
-         # "$comment": "We could clarify a definition of what is sensitive in the future."     
+      # description:
+      #   # "$id": "#/properties/dataElement/description"
+      #   title: Column Description
+      #   description: A description of a column in a table.
+      #    # "$comment": "255 Chars"
+      #   type: string
+      #   minLength: 1
+      #   maxLength: 20000
+      #   # allOf:
+      #   # - "$ref": "#/definitions/shortDescription"
+      # sensitive:
+      #   # "$id": "#/properties/dataElement/sensitive"
+      #   type: boolean
+      #   title: Sensitive
+      #   description: A True or False value, indicating if the field is sensitive or not
+      #    # "$comment": "We could clarify a definition of what is sensitive in the future."     
 
   uuidv4:
     type: string

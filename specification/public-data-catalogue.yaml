@@ -1,26 +1,26 @@
 # This is an OpenAPI Specification (https://swagger.io/specification/)
-# for the Public Data Catalogue API
+# for the Health Research Data Catalogue API
 # owned by NHS Digital (https://digital.nhs.uk/)
 openapi: "3.0.0"
 info:
   version: "{VERSION}"
-  title: Public Data Catalogue API
+  title: Health Research Data Catalogue API
   description: |
     
     ## Overview
-    Use this API to access metadata from the Public Data Catalogue, such as dataset descriptive and technical metadata. 
+    Use this API to retrieve information suitable for publication in a health research data catalogue. 
 
     You can:
-    * list datasets
-    * get dataset details
+    * get a list of datasets
+    * get details for a specific dataset 
 
     You cannot currently use this API to:
     * retrieve datasets as a bulk transfer
     * retrieve dataset feeds
 
-    You can read the following dataset metadata:
+    You can get the following information for each dataset:
     * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
-    * technical assets such as: schemas, tables and columns
+    * logical descriptions of field-level data
 
     ### API scope
     Current scope is limited to information about national health-related datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
@@ -29,7 +29,7 @@ info:
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
 
     ## Related APIs
-    Not applicable
+    There are no related APIs.
 
     ## API status and roadmap
     This API is initially for use by Health Data Research (HDR) UK developers with other use cases to follow later.
@@ -64,36 +64,28 @@ info:
     ## Environments and testing
     | Purpose                                | Base URL                                            |
     | ---------------------------------------|-----------------------------------------------------|
-    | Sandbox                                | `https://sandbox.api.service.nhs.uk/public-data-catalogue`|
-    | Integration test                       | `https://int.api.service.nhs.uk/public-data-catalogue`    |
-    | Production                             | To be supplied                                            |
+    | Sandbox                                | `https://sandbox.api.service.nhs.uk/health-research-data-catalogue`|
+    | Integration test                       | `https://int.api.service.nhs.uk/health-research-data-catalogue`    |
+    | Production                             | Not yet available                                         |
     
     ### Sandbox testing
-    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
-      - is for early developer testing
-      - only covers a limited set of scenarios
-      - is stateless, so it does not actually persist any updates
-      - is open access, so does not allow you to test authorisation
-      For more details on sandbox testing, or to try out the sandbox using our \"Try this API\" feature, see the documentation for each endpoint.
-    
+    Details of the sandbox environment to follow.
+ 
     ### Integration testing
-    Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
-    * is for formal integration testing
-    * is stateful, so persists updates
-    * includes authorisation, with [smartcard](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/nhs-smartcards-for-developers) and non-smartcard options
-    For more details see [integration testing with our RESTful APIs](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing-with-our-restful-apis).   
+    Details of the integration environment to follow.
+ 
     ## Onboarding
     You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
-    More details to follow.
+    More details on the onboarding process to follow.
   contact:
-    name: Public Data Catalogue API Support
+    name: Health Research Data Catalogue API Support
     url: 'https://digital.nhs.uk/developer/help-and-support'
     email: api.management@nhs.net
 servers:
-  - url: 'https://sandbox.api.service.nhs.uk/public-data-catalogue'
+  - url: 'https://sandbox.api.service.nhs.uk/health-research-data-catalogue'
     description: Sandbox environment
-  - url: 'https://int.api.service.nhs.uk/public-data-catalogue'
+  - url: 'https://int.api.service.nhs.uk/health-research-data-catalogue'
     description: Integration test environment.   
 x-spec-publication:
   try-this-api:
@@ -101,53 +93,59 @@ x-spec-publication:
   operation-order:
   - operations:
     - method: GET
-      path: /datasets/list
+      path: /datasets
     - method: GET
       path: '/datasets/{id}' 
 paths:
-  /datasets/list:    
+  /datasets:    
     get:
-      summary: List datasets
-      operationId: list-datasets      
+      summary: Get a list of datasets
+      operationId: get-datasets-list      
       description: |
+
+        <div class="nhsd-m-emphasis-box"><div class="nhsd-a-box nhsd-a-box--border-blue"><div class="nhsd-m-emphasis-box__content-box">
+            <p class="nhsd-t-body-s nhsd-t-word-break">Note: the sandbox API is under construction so Try this API responses don't work in this release. </p>
+        </div></div>&nbsp;&nbsp;</div>
+
         ## Overview
-        Use this endpoint to list a summary of all Public Data Catalogue 'published' datasets.
+        Use this endpoint to list a summary of all Health Research Data Catalogue 'published' datasets.
 
         ## Summary dataset metadata returned
         
-        The summary dataset metadata returned is not the full set of metadata that is returned on a retrieval of a dataset by dataset identifier.
+        The summary dataset metadata returned is not the full set of metadata that is returned on a retrieval of a dataset by dataset persistent identifier.
         The following dataset metadata is included:
-        * schema
-        * type
-        * identifier
-        * description
-        * version
-        * date issued
-        * date modified
-        * the source of the data extraction  
+        * Schema conformance
+        * Dataset persistent identifier
+        * Dataset name
+        * Dataset description
+        * Dataset version
+        * Self continuation link
+        * Dataset metadata creation date
+        * Dataset metadata modification date
+        * Source of the metadata
 
       parameters:
        - $ref: '#/components/parameters/RequestID'
        - $ref: '#/components/parameters/CorrelationID'           
-       - in: query
-         name: q
-         description: query
-         schema:
-           type: string  
-       - in: query
-         name: offset
-         description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
-         schema:
-           type: integer
-           format: int32
-#           default: "0"                
-       - in: query
-         name: limit
-         description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
-         schema:
-           type: integer
-           format: int32
-#           default: "0"       
+       # - in: query
+       #   name: q
+       #   description: query
+       #   schema:
+       #     type: string  
+#        - in: query
+#          name: offset
+#          description: The first result to retrieve. If not set (offset = 0), results will be retrieved starting from row 0.
+#          schema:
+#            type: integer
+#            format: int32
+# #           default: "0"                
+#        - in: query
+#          name: limit
+#          description: The maximum number of results to retrieve. If not set (limit = 0), the default limit will be used.
+#          schema:
+#            type: integer
+#            format: int32
+# #           default: "0"       
       responses:
         '200':
           description: OK
@@ -155,68 +153,166 @@ paths:
             application/json:
               schema:
                 type: object
+                title: Container object for all matched resources
+                description: Container object for all summary dataset resources that match search criteria
+                required:
+                - total
+                - items
                 properties:
-                  query:
-                    type: object
-                    properties:
-                      q:
-                        type: string
-                        description: TBC
-                        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
-                      total:
-                        type: string
-                        example: 181
-                      limit:
-                        type: string
-                        description: The maximum number of results to retrieve
-                        example: 1000
-                      offset:
-                        type: string
-                        description: The first result to retrieve
-                        example: 0
+                  total:
+                    type: integer
+                    title: Total number of matches
+                    description: Used to return the total number of resources that match the search
+                    minimum: 1
+                # type: object
+                # properties:
+                #   query:
+                #     type: object
+                #     properties:
+                #       # q:
+                #       #   type: string
+                #       #   description: TBC
+                #       #   example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+                #       total:
+                #         type: string
+                #         example: 181
+                      # limit:
+                      #   type: string
+                      #   description: The maximum number of results to retrieve
+                      #   example: 1000
+                      # offset:
+                      #   type: string
+                      #   description: The first result to retrieve
+                      #   example: 0
+                  # '@schema':    
+                  #   type: object
+                  #   properties:
+                  #       type:
+                  #         type: string
+                  #         description: JSON document type
+                  #         example: Dataset
+                  #       version:
+                  #         type: string 
+                  #         description: Dataset schema version
+                  #         "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
+                  #       url: 
+                  #         type: string
+                  #         description: Dataset URL
+                  #         # anyOf:
+                  #         # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                  #         "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                   items:
                     type: array
+                    title: Items in the container object
+                    description: Repeats all summary dataset resources that match search criteria
                     items:
                       type: object
+                      required:
+                      - '@schema'
+                      # - identifier
+                      - persistentId
+                      - name
+                      - description
+                      - version
+                      - self
+                      - issued
+                      - modified
+                      - source
                       properties:
-                        '@schema':
+                        '@schema':    
+                          type: object
+                          title: JSON Schema conformance
+                          description: JSON Schema specification that summary dataset item conforms to
+                          required:
+                          - type
+                          - url
+                          properties:
+                            type:
+                              type: string
+                              title: JSON document type
+                              description: The JSON dataset is a JSON document, which includes descriptive metadata
+                              example: Dataset
+                            # version:
+                            #   type: string 
+                            #   description: Dataset schema version
+                            #   "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
+                            url: 
+                              type: string
+                              title: Dataset schema URL
+                              description: Dataset schema URL resolves to version of conformant JSON schema
+                              example: https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json
+                              # oneOf:
+                              # # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                              # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
+                        # '@schema':
+                        #   type: string
+                        #   description: HDR UK Dataset schema
+                        #   example: https://hdruk.github.io/schemata/schema/dataset/latest/dataset.schema.json
+                        # type:
+                        #   type: string
+                        #   description: JSON document type
+                        #   example: Dataset
+                        # identifier:
+                        #   type: string
+                        #   title: Dataset resource identifier
+                        #   description: Dataset resource identifier
+                        #   anyOf:
+                        #   - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                        #   - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
+                        persistentId:
                           type: string
-                          example: https://hdruk.github.io/schemata/schema/dataset/latest/dataset.schema.json
-                        type:
-                          type: string
-                          example: Dataset
-                        identifier:
-                          type: string
-                          anyOf:
-                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
-                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
+                          title: Dataset persistent identifier
+                          description: Dataset persistent identifier that is common across all dataset revisions
+                          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                          minLength: 36
+                          maxLength: 36
+                          example: 226fb3f1-4471-400a-8c39-2b66d46a39b6
+                          # type: string
+                          # title: Dataset persistent identifier
+                          # description: Dataset persistent identifier that is common across all dataset revisions
+                          # anyOf:
+                          # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                          # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         name:
                           type: string
+                          title: Dataset name
+                          description: Dataset name
                           example: Civil Registration - Deaths
                         description:
                           type: string
+                          title: Dataset description
+                          description: Dataset description
                           example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient dataset, where a record represents one death registration. 
                         version:
                           type: string 
+                          title: Dataset metadata version
+                          description: Dataset version
                           "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
                         self:
                           type: string
-                          example: https://api.service.nhs.uk/public-data-catalogue/datasets/list?offset=0&limit=100&_page=1
+                          title: Self continuation link
+                          description: Self continuation link of a search result
+                          example: https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
                         issued:
                           type: string
+                          title: Creation date
+                          description: Dataset metadata creation date
                           format: date-time
                           example: 2020-08-05T14:35:59Z
                         modified:
                           type: string
+                          title: Modification date
+                          description: Dataset metadata modification date
                           format: date-time
                           example: 2021-01-28T14:15:46Z
                         source:
-                          description: The source of the data extraction
                           type: string 
-                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
+                          title: The source of the dataset
+                          description: The source of the dataset
+                          # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
                           example: OTHER
               example:  
-                $ref: components/examples/dataset-list-example1.json            
+                $ref: components/examples/dataset-list-example.json            
         "4XX":
           description: |
             An error occurred as follows:
@@ -289,11 +385,16 @@ paths:
 
   '/datasets/{id}':
     get:
-      summary: Get dataset details
+      summary: Get details for a specific dataset 
       operationId:  get-datasets-id    
       description: |
+
+        <div class="nhsd-m-emphasis-box"><div class="nhsd-a-box nhsd-a-box--border-blue"><div class="nhsd-m-emphasis-box__content-box">
+            <p class="nhsd-t-body-s nhsd-t-word-break">Note: the sandbox API is under construction so Try this API responses don't work in this release. </p>
+        </div></div>&nbsp;&nbsp;</div>
+
         ## Overview
-        Use this endpoint to get dataset details from the Public Data Catalogue for a given dataset identifier (UUID).
+        Use this endpoint to get the latest dataset details from the Health Research Data Catalogue for a given dataset persistent identifier.
   
         ## Dataset metadata returned
 
@@ -303,14 +404,14 @@ paths:
         | version      | Required                   | Dataset metadata version. |
         | revisions    | Required                   | Revisions of Dataset metadata. Includes the Semantic Version of the dataset and URL endpoint to obtain the version. |
         | issued       | Required                   | Dataset Metadata Creation Date. |
-        | modified     | Required                   | Dataset Metadata Creation Date. |
+        | modified     | Required                   | Dataset Metadata Modified Date. |
         | summary      | Required                   | Summary metadata must be completed by Data Custodians onboarding metadata into the Innovation Gateway MVP. |
         | documentation|                            | Documentation can include a rich text description of the dataset or links to media such as documents, images, presentations, videos or links to data dictionaries, profiles or dashboards. Organisations are required to confirm that they have permission to distribute any additional media. |
         | coverage     |                            | This information includes attributes for geographical and temporal coverage, cohort details etc. to enable a deeper understanding of the dataset content so that researchers can make decisions about the relevance of the underlying data. |
         | provenance   |                            | Provenance information allows researchers to understand data within the context of its origins and can be an indicator of quality, authenticity and timeliness. |
         | accessibility| Required                   | Accessibility information allows researchers to understand access,  usage, limitations, formats, standards and linkage or interoperability with toolsets. |
         | enrichmentAndLinkage|                     | This section includes information about related datasets that may have previously been linked, as well as indicating if there is the opportunity to link to other datasets in the future. If a dataset has been enriched and/or derivations, scores and existing tools are available this section allows providers to indicate this to researchers. |
-        | observations | Required                   | Multiple observations about the dataset may be provided and users are expected to provide at least one observation (1..*). Examples detailed in next section. |
+        | observations |                            | Multiple observations about the dataset may be provided and users are expected to provide at least one observation (1..*). Examples detailed in next section. |
 
  
         ### Observations
@@ -330,7 +431,7 @@ paths:
        - $ref: '#/components/parameters/CorrelationID' 
        - in: path
          name: id
-         description: ID of the Dataset
+         description: The persistent identifier of the dataset
          schema:
            type: string
            format: uuid 
@@ -344,7 +445,7 @@ paths:
               schema:
                 $ref: components/schemas/pdc.dataset.schema.yaml
               example:
-                $ref: components/examples/hdruk.json                
+                $ref: components/examples/dataset-example.json                
 
         "4XX":
           description: |

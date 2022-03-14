@@ -1,6 +1,6 @@
 SERVICE_NAME: public-data-catalogue
-PRODUCT_DISPLAY_NAME: public-data-catalogue
-DESCRIPTION: example description
+PRODUCT_DISPLAY_NAME: Health Research Data Catalogue
+DESCRIPTION: Health Research Data Catalogue API
 APIGEE_ENVIRONMENTS:
   - name: internal-dev
     display_name: Internal Development
@@ -30,6 +30,7 @@ apigee:
 {% for ENV in APIGEE_ENVIRONMENTS %}
 {% set TITLE = PRODUCT_DISPLAY_NAME + ' (' + ENV.display_name + ' Environment)' %}
 {% set NAME = SERVICE_NAME + '-' + ENV.name %}
+{% set PORTAL_VISIBILITY = not ENV.name.endswith("sandbox") %}
   - name: {{ ENV.name }}
     products:
       - name: {{ NAME }}
@@ -60,6 +61,6 @@ apigee:
         description: {{ DESCRIPTION }}
         requireCallbackUrl: false
         title: {{ TITLE }}
-        visibility: false
+        visibility: {{ PORTAL_VISIBILITY }}
         specId: {{ NAME }}
 {% endfor %}
