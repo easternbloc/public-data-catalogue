@@ -3,7 +3,7 @@ title: HDR UK Dataset Schema
 description: HDR UK Dataset Metadata Schema
 # version: 2.0.2
 required:
-- persistentId
+# - persistentId
 - identifier
 - version
 - revisions
@@ -17,14 +17,14 @@ additionalProperties: false
 
 properties:
 
-  persistentId:
-    # SWK added to schema
-    # type: string
-    title: Dataset persistent identifier
-    description: Dataset persistent identifier that is common across all dataset resource revisions
-    anyOf:
-    - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
-    - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
+  # persistentId:
+  #   # SWK added to schema
+  #   # type: string
+  #   title: Dataset persistent identifier
+  #   description: Dataset persistent identifier that is common across all dataset resource revisions
+  #   anyOf:
+  #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+  #   - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
 
   identifier:
     # "$id": "#/properties/identifier"

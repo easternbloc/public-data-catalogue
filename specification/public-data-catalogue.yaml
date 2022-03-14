@@ -260,12 +260,19 @@ paths:
                         #   - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
                         #   - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         persistentId:
-                          # type: string
+                          type: string
                           title: Dataset persistent identifier
                           description: Dataset persistent identifier that is common across all dataset revisions
-                          anyOf:
-                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
-                          - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
+                          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                          minLength: 36
+                          maxLength: 36
+                          example: 226fb3f1-4471-400a-8c39-2b66d46a39b6
+                          # type: string
+                          # title: Dataset persistent identifier
+                          # description: Dataset persistent identifier that is common across all dataset revisions
+                          # anyOf:
+                          # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
+                          # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         name:
                           type: string
                           title: Dataset name
