@@ -32,8 +32,12 @@ extends:
     service_name: ${{ variables.service_name }} 
     short_service_name: ${{ variables.short_service_name }} 
     service_base_path: ${{ variables.service_base_path }} 
+    jinja_templates:
+      HRDC_TARGET_SERVER: health-research-data-catalogue-api
     apigee_deployments:
       - environment: internal-dev
+        jinja_templates:
+          HRDC_TARGET_SERVER: health-research-data-catalogue-api
         post_deploy:
           - template: ./templates/run-smoke-tests.yml
       - environment: internal-dev-sandbox
