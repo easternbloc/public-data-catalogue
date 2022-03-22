@@ -113,7 +113,7 @@ paths:
 
         ## Summary dataset metadata returned
         
-        This summary dataset metadata returned by this search includes:
+        The summary dataset metadata returned by this search includes:
         * Schema conformance
         * Dataset persistent identifier
         * Dataset name
@@ -339,49 +339,57 @@ paths:
                           code: ACCESS_DENIED
                           display: access has been denied to process this request
 
-        "500":
-          description: Internal Server Error
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: unknown
-                    details:
-                      coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-                          version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
-
-        "503":
+        "5XX":
           description: |
-            The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
 
-            Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
-          headers:
-            RetryAfter:
-              $ref: 'components/schemas/RetryAfter.yaml'
-          content:
-            application/fhir+json:
-              schema:
-                $ref: 'components/schemas/OperationOutcome-2.yaml'
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: timeout
-                    details:
-                      coding:
-                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
-                          version: '1'
-                          code: SERVICE_UNAVAILABLE
-                          display: Service unavailable
-                    diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."
+            <div class="nhsd-m-emphasis-box"><div class="nhsd-a-box nhsd-a-box--border-blue"><div class="nhsd-m-emphasis-box__content-box">
+                <p class="nhsd-t-body-s nhsd-t-word-break">Note: 5XX Server Error reference guidance to follow. </p>
+            </div></div>&nbsp;&nbsp;</div>
+
+
+        # "500":
+        #   description: Internal Server Error
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationErrorOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: unknown
+        #             details:
+        #               coding:
+        #                 - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+        #                   version: '1'
+        #                   code: UNKNOWN_ERROR
+        #                   display: Unknown Error
+        #             diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+
+        # "503":
+        #   description: |
+        #     The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
+
+        #     Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
+        #   headers:
+        #     RetryAfter:
+        #       $ref: 'components/schemas/RetryAfter.yaml'
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: 'components/schemas/OperationOutcome-2.yaml'
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: timeout
+        #             details:
+        #               coding:
+        #                 - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
+        #                   version: '1'
+        #                   code: SERVICE_UNAVAILABLE
+        #                   display: Service unavailable
+        #             diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."
 
   '/datasets/{id}':
     get:
@@ -394,11 +402,11 @@ paths:
         </div></div>&nbsp;&nbsp;</div>
 
         ## Overview
-        Use this endpoint to get the latest dataset details from the Health Research Data Catalogue for a given dataset persistent identifier.
+        Use this endpoint to get dataset details for a given dataset persistent identifier.
   
         ## Dataset metadata returned
 
-        | Data element | Required / optional        | Description |
+        | Data element | Optionality                | Description |
         | ------------ | -------------------------- | --------------------------------------------- |
         | identifier   | Required                   | System dataset identifier. |
         | version      | Required                   | Dataset metadata version. |
@@ -473,49 +481,57 @@ paths:
                           code: ACCESS_DENIED
                           display: access has been denied to process this request
 
-        "500":
-          description: Internal Server Error
-          content:
-            application/fhir+json:
-              schema:
-                $ref: components/schemas/OperationErrorOutcome.yaml
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: unknown
-                    details:
-                      coding:
-                        - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
-                          version: '1'
-                          code: UNKNOWN_ERROR
-                          display: Unknown Error
-                    diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
- 
-        "503":
+        "5XX":
           description: |
-            The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
 
-            Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
-          headers:
-            RetryAfter:
-              $ref: 'components/schemas/RetryAfter.yaml'
-          content:
-            application/fhir+json:
-              schema:
-                $ref: 'components/schemas/OperationOutcome-2.yaml'
-              example:
-                resourceType: OperationOutcome
-                issue:
-                  - severity: error
-                    code: timeout
-                    details:
-                      coding:
-                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
-                          version: '1'
-                          code: SERVICE_UNAVAILABLE
-                          display: Service unavailable
-                    diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."                    
+            <div class="nhsd-m-emphasis-box"><div class="nhsd-a-box nhsd-a-box--border-blue"><div class="nhsd-m-emphasis-box__content-box">
+                <p class="nhsd-t-body-s nhsd-t-word-break">Note: 5XX Server Error reference guidance to follow. </p>
+            </div></div>&nbsp;&nbsp;</div>
+
+        # "500":
+        #   description: Internal Server Error
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: components/schemas/OperationErrorOutcome.yaml
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: unknown
+        #             details:
+        #               coding:
+        #                 - system: "https://fhir.nhs.uk/CodeSystem/Spine-ErrorOrWarningCode"
+        #                   version: '1'
+        #                   code: UNKNOWN_ERROR
+        #                   display: Unknown Error
+        #             diagnostics: "An unknown error occurred processing this request. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support."
+ 
+
+        # "503":
+        #   description: |
+        #     The request timed out during processing. This does not imply the request has failed or been rejected. Error code: `SERVICE_UNAVAILABLE`.
+
+        #     Re-send the request after the time specified in the `Retry-After` header using the same `X-Request-ID` value.
+        #   headers:
+        #     RetryAfter:
+        #       $ref: 'components/schemas/RetryAfter.yaml'
+        #   content:
+        #     application/fhir+json:
+        #       schema:
+        #         $ref: 'components/schemas/OperationOutcome-2.yaml'
+        #       example:
+        #         resourceType: OperationOutcome
+        #         issue:
+        #           - severity: error
+        #             code: timeout
+        #             details:
+        #               coding:
+        #                 - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
+        #                   version: '1'
+        #                   code: SERVICE_UNAVAILABLE
+        #                   display: Service unavailable
+        #             diagnostics: "The downstream domain processing has not completed within the configured timeout period. Using the same 'X-Request-ID' header, retry your request after the time specified by the 'Retry-After' response header."                    
 components:
   parameters:                                                 
     CorrelationID:
