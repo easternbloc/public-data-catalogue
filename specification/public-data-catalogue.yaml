@@ -342,10 +342,7 @@ paths:
         "5XX":
           description: |
 
-            <div class="nhsd-m-emphasis-box"><div class="nhsd-a-box nhsd-a-box--border-blue"><div class="nhsd-m-emphasis-box__content-box">
-                <p class="nhsd-t-body-s nhsd-t-word-break">Note: 5XX Server Error reference guidance to follow. </p>
-            </div></div>&nbsp;&nbsp;</div>
-
+            A 5xx status code means the server has a problem. For more details on the most common 5xx status codes and their meanings see the [HTTP status codes](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#http-status-codes) section of the NHS Digital Developer API Reference Guide.
 
         # "500":
         #   description: Internal Server Error
@@ -484,9 +481,7 @@ paths:
         "5XX":
           description: |
 
-            <div class="nhsd-m-emphasis-box"><div class="nhsd-a-box nhsd-a-box--border-blue"><div class="nhsd-m-emphasis-box__content-box">
-                <p class="nhsd-t-body-s nhsd-t-word-break">Note: 5XX Server Error reference guidance to follow. </p>
-            </div></div>&nbsp;&nbsp;</div>
+            A 5xx status code means the server has a problem. For more details on the most common 5xx status codes and their meanings see the [HTTP status codes](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#http-status-codes) section of the NHS Digital Developer API Reference Guide.
 
         # "500":
         #   description: Internal Server Error
