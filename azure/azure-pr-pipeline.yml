@@ -36,7 +36,7 @@ extends:
       HRDC_TARGET_SERVER: health-research-data-catalogue-api
     apigee_deployments:
       - environment: internal-dev
-         post_deploy:
+        post_deploy:
           - template: ./templates/run-smoke-tests.yml
       - environment: internal-dev-sandbox
         proxy_path: sandbox
