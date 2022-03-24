@@ -28,7 +28,7 @@
         <Enabled>true</Enabled>
       </SSLInfo>
       <LoadBalancer>
-        <Server name="health-research-data-catalogue-api" />
+        <Server name="{{ HRDC_TARGET_SERVER }}" />
       </LoadBalancer>
     </HTTPTargetConnection>
 <!--   <HTTPTargetConnection>
