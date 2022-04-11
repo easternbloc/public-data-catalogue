@@ -1,0 +1,8 @@
+<AssignMessage continueOnError="false" enabled="true" name="AssignMessage.AddBackendApiKeyHeader">
+  <Add>
+    <Headers>
+      <Header name="X-API-Key">{private.hrdcApiKey}</Header>
+    </Headers>
+  </Add>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
