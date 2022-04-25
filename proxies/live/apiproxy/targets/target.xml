@@ -12,10 +12,10 @@
   </FaultRules>
   <PreFlow>
     <Request>
-      <Step>
-        <!-- <Condition>request.header = "apikey"</Condition> -->
+     <!--  <Step>
+        <Condition>request.header = "apikey"</Condition>
         <Name>VerifyApiKey.FromHeader</Name>
-      </Step>
+      </Step> -->
       <Step>
         <Condition>request.header.apikey is null</Condition>
         <Name>OauthV2.VerifyAccessToken</Name>
