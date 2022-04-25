@@ -12,14 +12,14 @@
   </FaultRules>
   <PreFlow>
     <Request>
-     <!--  <Step>
-        <Condition>request.header = "apikey"</Condition>
-        <Name>VerifyApiKey.FromHeader</Name>
-      </Step> -->
       <Step>
+       <!--  <Condition>request.header = "apikey"</Condition> -->
+        <Name>VerifyApiKey.FromHeader</Name>
+      </Step>
+      <!-- <Step>
         <Condition>request.header.apikey is null</Condition>
         <Name>OauthV2.VerifyAccessToken</Name>
-      </Step>
+      </Step> -->
       <Step>
         <Name>AssignMessage.RemoveClientApiKeyHeader</Name>
       </Step>
