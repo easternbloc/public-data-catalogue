@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<KeyValueMapOperations encrypted="true" async="false" continueOnError="false" enabled="true" name="KeyValueMap.GetBackendApiKey" mapIdentifier="health-research-data-catalogue-api">
-    <DisplayName>KeyValueMap.GetBackendApiKey</DisplayName>
-    <Get assignTo="private.hrdcApiKey">
-        <Key>
-            <Parameter>api-key</Parameter>
-        </Key>
-    </Get>
-</KeyValueMapOperations>
