@@ -1,24 +1,9 @@
 <TargetEndpoint name="public-data-catalogue-target">
-  <!-- <FaultRules>
-    <FaultRule name="access_token_expired">
-      <Step>
-        <Name>ExtractVariables.OAuthErrorFaultString</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
-      </Step>
-      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
-    </FaultRule>
-  </FaultRules> -->
   <PreFlow>
     <Request>
       <Step>
         <Name>VerifyApiKey.FromHeader</Name>
       </Step>
-      <!-- <Step>
-        <Condition>request.header.apikey is null</Condition>
-        <Name>OauthV2.VerifyAccessToken</Name>
-      </Step> -->
       <Step>
         <Name>AssignMessage.RemoveClientApiKeyHeader</Name>
       </Step>
@@ -38,12 +23,12 @@
         <Server name="{{ HRDC_TARGET_SERVER }}" />
       </LoadBalancer>
     </HTTPTargetConnection>
-<!--   <HTTPTargetConnection>
-    <URL>http://mocktarget.apigee.net</URL>
-    <Properties>
-      <Property name="supports.http10">true</Property>
-      <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>
-      <Property name="retain.queryparams">apikey</Property>
-    </Properties>
-  </HTTPTargetConnection> -->
+    <DefaultFaultRule>
+     <Step>
+      <Name>AssignMessage.Errors.Defaults</Name>
+     </Step>
+     <Step>
+      <Name>AssignMessage.Errors.CatchAllMessage</Name>
+     </Step>
+   </DefaultFaultRule>
 </TargetEndpoint>
