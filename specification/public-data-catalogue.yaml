@@ -125,9 +125,9 @@ paths:
         * Source of the metadata
 
       parameters:
-       - $ref: '#/components/parameters/RequestID'
-       - $ref: '#/components/parameters/CorrelationID' 
-       - $ref: '#/components/parameters/ApiKey'           
+       - $ref: '#/components/parameters/ApiKey'      
+       - $ref: '#/components/parameters/CorrelationID'     
+       - $ref: '#/components/parameters/RequestID' 
        # - in: query
        #   name: q
        #   description: query
@@ -433,9 +433,9 @@ paths:
         | Findings               | 17,891           | Count             | 2020-09-03       | Cancer Germline - Number of genomes |
 
       parameters:
-       - $ref: '#/components/parameters/RequestID'
-       - $ref: '#/components/parameters/CorrelationID'
-       - $ref: '#/components/parameters/ApiKey' 
+       - $ref: '#/components/parameters/ApiKey'      
+       - $ref: '#/components/parameters/CorrelationID'     
+       - $ref: '#/components/parameters/RequestID' 
        - in: path
          name: id
          description: The persistent identifier of the dataset
