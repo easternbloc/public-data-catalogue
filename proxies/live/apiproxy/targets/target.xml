@@ -4,9 +4,6 @@
       <Step>
         <Name>VerifyApiKey.FromHeader</Name>
       </Step>
-     <!--  <Step>
-        <Name>AssignMessage.RemoveClientApiKeyHeader</Name>
-      </Step> -->
       <Step>
         <Name>Quota</Name>
       </Step>
