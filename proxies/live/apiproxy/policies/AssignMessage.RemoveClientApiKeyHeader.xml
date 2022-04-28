@@ -1,9 +1,0 @@
-<AssignMessage continueOnError="false" enabled="true" name="AssignMessage.RemoveClientApiKeyHeader">
-  <Remove>
-    <Headers>
-      <!-- <Header name="X-API-Key"/> -->
-      <Header name="apikey"/>
-    </Headers>
-  </Remove>
-  <AssignTo createNew="false" transport="http" type="request"/>
-</AssignMessage>
