@@ -13,7 +13,7 @@
     <Step>
       <Name>RaiseFault.InvalidOrMissingApiKey</Name>
     </Step>
-    <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey")</Condition>
+    <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey") or (fault.name Equals "RaiseFault.401Unauthorized")</Condition>
     </FaultRule>
   </FaultRules>
   <PreFlow>
