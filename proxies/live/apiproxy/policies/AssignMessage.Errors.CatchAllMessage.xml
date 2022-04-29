@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.Errors.CatchAllMessage">
   <Set>
-    <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+    <Payload contentType="application/json">
     {
         "resourceType": "OperationOutcome",
         "issue": [
             {
             "severity": "error",
-            "code": "%error.status.code#",
+            "code": "{hdrc.error.code}",
             "details": {
                 "coding": [
                 {
-                    "code": "%error.status.code#",
-                    "display": "%error.reason.phrase#"
+                    "system": "https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode",
+                    "version": "1",
+                    "code": "{hdrc.error.coding.code}",
+                    "display": "{hdrc.error.coding.display}"
                 }
                 ]
             },
-            "diagnostics": "%error.content#"
+            "diagnostics": "{hdrc.error.diagnostics}"
             }
         ]
     }
