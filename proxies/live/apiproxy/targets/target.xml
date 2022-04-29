@@ -1,5 +1,5 @@
 <TargetEndpoint name="public-data-catalogue-target">
-<!--   <FaultRules>
+  <FaultRules>
     <FaultRule name="access_token_expired">
       <Step>
         <Name>ExtractVariables.OAuthErrorFaultString</Name>
@@ -9,7 +9,7 @@
       </Step>
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
     </FaultRule>
-  </FaultRules> -->
+  </FaultRules>
   <PreFlow>
     <Request>
       <Step>
