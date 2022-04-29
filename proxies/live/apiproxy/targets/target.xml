@@ -1,6 +1,6 @@
 <TargetEndpoint name="public-data-catalogue-target">
   <FaultRules>
-    <FaultRule name="access_token_expired">
+    <!-- <FaultRule name="access_token_expired">
       <Step>
         <Name>ExtractVariables.OAuthErrorFaultString</Name>
       </Step>
@@ -8,6 +8,12 @@
         <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
       </Step>
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+    </FaultRule> -->
+    <FaultRule name="invalid_key_rule">
+    <Step>
+      <Name>AssignMessage.InvalidOrMissingApiKey</Name>
+    </Step>
+    <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey")</Condition>
     </FaultRule>
   </FaultRules>
   <PreFlow>
