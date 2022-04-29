@@ -11,7 +11,7 @@
     </FaultRule> -->
     <FaultRule name="invalid_key_rule">
     <Step>
-      <Name>AssignMessage.InvalidOrMissingApiKey</Name>
+      <Name>RaiseFault.InvalidOrMissingApiKey</Name>
     </Step>
     <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey")</Condition>
     </FaultRule>
