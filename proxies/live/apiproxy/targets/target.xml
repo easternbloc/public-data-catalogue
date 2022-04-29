@@ -13,7 +13,7 @@
   <PreFlow>
     <Request>
       <Step>
-        <Name>OauthV2.VerifyAccessToken</Name>
+        <Name>VerifyApiKey.FromHeader</Name>
       </Step>
       <Step>
         <Name>Quota</Name>
