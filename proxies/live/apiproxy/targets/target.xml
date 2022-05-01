@@ -1,6 +1,6 @@
 <TargetEndpoint name="public-data-catalogue-target">
   <FaultRules>
-    <!-- <FaultRule name="access_token_expired">
+    <FaultRule name="access_token_expired">
       <Step>
         <Name>ExtractVariables.OAuthErrorFaultString</Name>
       </Step>
@@ -8,15 +8,15 @@
         <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
       </Step>
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
-    </FaultRule> -->
-    <FaultRule name="invalid_key_rule">
+    </FaultRule>
+<!--     <FaultRule name="invalid_key_rule">
     <Step>
       <Name>RaiseFault.InvalidOrMissingApiKey</Name>
     </Step>
     <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition>
-    <!-- <Condition>oauth.v2.InvalidApiKeyForGivenResource</Condition> -->
-<!--     <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey") or (fault.name Equals "RaiseFault.401Unauthorized")</Condition> -->
-    </FaultRule>
+    <Condition>oauth.v2.InvalidApiKeyForGivenResource</Condition>
+    <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey") or (fault.name Equals "RaiseFault.401Unauthorized")</Condition>
+    </FaultRule> -->
   </FaultRules>
   <PreFlow>
     <Request>
@@ -39,12 +39,4 @@
         <Server name="{{ HRDC_TARGET_SERVER }}" />
       </LoadBalancer>
     </HTTPTargetConnection>
-    <DefaultFaultRule>
-    <!--  <Step>
-      <Name>AssignMessage.Errors.Defaults</Name>
-     </Step> -->
-     <Step>
-      <Name>AssignMessage.Errors.CatchAllMessage</Name>
-     </Step>
-   </DefaultFaultRule>
 </TargetEndpoint>
