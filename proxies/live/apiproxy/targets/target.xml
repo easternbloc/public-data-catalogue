@@ -10,11 +10,11 @@
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
     </FaultRule>
     <FaultRule name="invalid_key_rule">
-    <Step>
-      <Name>RaiseFault.InvalidOrMissingApiKey</Name>
-    </Step>
-    <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition>
-   <!--  <Condition>oauth.v2.InvalidApiKeyForGivenResource</Condition> -->
+      <Step>
+        <Name>RaiseFault.InvalidOrMissingApiKey</Name>
+      </Step>
+ <!--    <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition> -->
+      <Condition>oauth.v2.InvalidApiKeyForGivenResource</Condition>
     <!-- <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey") or (fault.name Equals "RaiseFault.401Unauthorized")</Condition> -->
     </FaultRule>
   </FaultRules>
