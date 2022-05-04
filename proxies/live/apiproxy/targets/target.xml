@@ -1,6 +1,6 @@
 <TargetEndpoint name="public-data-catalogue-target">
   <FaultRules>
-    <FaultRule name="access_token_expired">
+    <!-- <FaultRule name="access_token_expired">
       <Step>
         <Name>ExtractVariables.OAuthErrorFaultString</Name>
       </Step>
@@ -8,7 +8,7 @@
         <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
       </Step>
       <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
-    </FaultRule>
+    </FaultRule> -->
     <FaultRule name="invalid_key_rule">
       <Step>
         <Name>RaiseFault.InvalidOrMissingApiKey</Name>
@@ -18,6 +18,14 @@
      <!-- APIM Comditional FaultRule invokes policy -->
     <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey")</Condition>
   <!--   <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey") or (fault.name Equals "RaiseFault.401Unauthorized")</Condition> -->
+    </FaultRule>
+    <FaultRule name="allow_raisefaults">
+      <!-- prevent the DefaultFaultRule from executing when RaiseFault is used in a flow -->
+      <Step>
+        <Name>AssignMessage.CatchallErrorMessage</Name>
+        <Condition>(fault.name NotEquals "RaiseFault")</Condition>
+        </Step>
+      <Condition>(fault.name Equals "RaiseFault")</Condition>
     </FaultRule>
   </FaultRules>
   <PreFlow>
@@ -41,4 +49,9 @@
         <Server name="{{ HRDC_TARGET_SERVER }}" />
       </LoadBalancer>
     </HTTPTargetConnection>
+    <DefaultFaultRule>
+      <Step>
+        <Name>AssignMessage.Errors.CatchAllMessage</Name>
+      </Step>
+    </DefaultFaultRule>
 </TargetEndpoint>
