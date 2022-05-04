@@ -13,8 +13,8 @@
       <Step>
         <Name>RaiseFault.InvalidOrMissingApiKey</Name>
       </Step>
-    <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition>
-      <!-- <Condition>oauth.v2.InvalidApiKeyForGivenResource</Condition> -->
+ <!--    <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition> -->
+      <Condition>oauth.v2.InvalidApiKeyForGivenResource</Condition>
   <!--   <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey") or (fault.name Equals "RaiseFault.401Unauthorized")</Condition> -->
     </FaultRule>
   </FaultRules>
