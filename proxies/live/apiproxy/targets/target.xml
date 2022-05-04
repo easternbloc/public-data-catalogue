@@ -22,7 +22,7 @@
     <FaultRule name="allow_raisefaults">
       <!-- prevent the DefaultFaultRule from executing when RaiseFault is used in a flow -->
       <Step>
-        <Name>AssignMessage.CatchallErrorMessage</Name>
+        <Name>AssignMessage.Errors.CatchAllMessage</Name>
         <Condition>(fault.name NotEquals "RaiseFault")</Condition>
         </Step>
       <Condition>(fault.name Equals "RaiseFault")</Condition>
