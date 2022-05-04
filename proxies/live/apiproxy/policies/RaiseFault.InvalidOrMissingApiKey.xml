@@ -9,7 +9,7 @@
                 {
                     "severity": "error",
                     "code": "forbidden",
-                    "diagnostics": "API Key in header apikey is invalid or missing."
+                    "diagnostics": "API Key in header apikey is invalid or missing. Message ID: {messageid}"
                 }
                 ]
             }
