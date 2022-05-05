@@ -1,23 +1,12 @@
 <TargetEndpoint name="public-data-catalogue-target">
   <FaultRules>
-    <!-- <FaultRule name="access_token_expired">
-      <Step>
-        <Name>ExtractVariables.OAuthErrorFaultString</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
-      </Step>
-      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
-    </FaultRule> -->
     <FaultRule name="invalid_key_rule">
       <Step>
         <Name>RaiseFault.InvalidOrMissingApiKey</Name>
       </Step>
  <!--    <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition> -->
-     <!-- FAIL <Condition>oauth.v2.InvalidApiKeyForGivenResource</Condition> -->
-     <!-- APIM Comditional FaultRule invokes policy -->
+     <!-- APIM Conditional FaultRule invokes policy -->
     <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey")</Condition>
-  <!--   <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey") or (fault.name Equals "RaiseFault.401Unauthorized")</Condition> -->
     </FaultRule>
     <FaultRule name="allow_raisefaults">
       <!-- prevent the DefaultFaultRule from executing when RaiseFault is used in a flow -->
