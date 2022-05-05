@@ -1,19 +1,26 @@
 <TargetEndpoint name="public-data-catalogue-target">
   <FaultRules>
-    <FaultRule name="access_token_expired">
+    <FaultRule name="invalid_key_rule">
       <Step>
-        <Name>ExtractVariables.OAuthErrorFaultString</Name>
+        <Name>RaiseFault.InvalidOrMissingApiKey</Name>
       </Step>
+ <!--    <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition> -->
+     <!-- APIM Conditional FaultRule invokes policy -->
+    <Condition>(fault.name Equals "FailedToResolveAPIKey") or (fault.name Equals "InvalidApiKey")</Condition>
+    </FaultRule>
+    <FaultRule name="allow_raisefaults">
+      <!-- prevent the DefaultFaultRule from executing when RaiseFault is used in a flow -->
       <Step>
-        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
-      </Step>
-      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+        <Name>AssignMessage.Errors.CatchAllMessage</Name>
+        <Condition>(fault.name NotEquals "RaiseFault")</Condition>
+        </Step>
+      <Condition>(fault.name Equals "RaiseFault")</Condition>
     </FaultRule>
   </FaultRules>
   <PreFlow>
     <Request>
       <Step>
-        <Name>OauthV2.VerifyAccessToken</Name>
+        <Name>VerifyApiKey.FromHeader</Name>
       </Step>
       <Step>
         <Name>Quota</Name>
@@ -31,12 +38,9 @@
         <Server name="{{ HRDC_TARGET_SERVER }}" />
       </LoadBalancer>
     </HTTPTargetConnection>
-<!--   <HTTPTargetConnection>
-    <URL>http://mocktarget.apigee.net</URL>
-    <Properties>
-      <Property name="supports.http10">true</Property>
-      <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>
-      <Property name="retain.queryparams">apikey</Property>
-    </Properties>
-  </HTTPTargetConnection> -->
+    <DefaultFaultRule>
+      <Step>
+        <Name>AssignMessage.Errors.CatchAllMessage</Name>
+      </Step>
+    </DefaultFaultRule>
 </TargetEndpoint>
