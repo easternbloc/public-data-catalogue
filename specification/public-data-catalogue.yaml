@@ -22,6 +22,8 @@ info:
     * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
     * logical descriptions of field-level data
 
+    The API conforms to the HDR UK Dataset Schema Standard v2.0.2 created to enable sharing of information with the UK-wide health research data catalogue.
+
     ### API scope
     Current scope is limited to information about national health-related datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
 
@@ -154,16 +156,16 @@ paths:
             application/json:
               schema:
                 type: object
-                title: Container object for all matched resources
-                description: Container object for all summary dataset resources that match search criteria
+                # title: Container object for all matched resources
+                description: Container object for all summary dataset resources that match search criteria.
                 required:
                 - total
                 - items
                 properties:
                   total:
                     type: integer
-                    title: Total number of matches
-                    description: Used to return the total number of resources that match the search
+                    # title: Total number of matches
+                    description: Used to return the total number of resources that match the search.
                     minimum: 1
                 # type: object
                 # properties:
@@ -204,8 +206,8 @@ paths:
                   #         "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                   items:
                     type: array
-                    title: Items in the container object
-                    description: Repeats all summary dataset resources that match search criteria
+                    # title: Items in the container object
+                    description: Repeats all summary dataset resources (items) that match search criteria.
                     items:
                       type: object
                       required:
@@ -222,16 +224,16 @@ paths:
                       properties:
                         '@schema':    
                           type: object
-                          title: JSON Schema conformance
-                          description: JSON Schema specification that summary dataset item conforms to
+                          # title: JSON Schema conformance
+                          description: JSON Schema specification that summary dataset resource (item) conforms to.
                           required:
                           - type
                           - url
                           properties:
                             type:
                               type: string
-                              title: JSON document type
-                              description: The JSON dataset is a JSON document, which includes descriptive metadata
+                              # title: JSON document type
+                              description: JSON document type. The JSON dataset is a JSON document, which includes descriptive metadata.
                               example: Dataset
                             # version:
                             #   type: string 
@@ -239,8 +241,8 @@ paths:
                             #   "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver" 
                             url: 
                               type: string
-                              title: Dataset schema URL
-                              description: Dataset schema URL resolves to version of conformant JSON schema
+                              # title: Dataset schema URL
+                              description: Dataset schema URL resolves to version of conformant JSON schema.
                               example: https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json
                               # oneOf:
                               # # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/uuidv4"
@@ -262,8 +264,8 @@ paths:
                         #   - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         persistentId:
                           type: string
-                          title: Dataset persistent identifier
-                          description: Dataset persistent identifier that is common across all dataset revisions
+                          # title: Dataset persistent identifier
+                          description: Dataset persistent identifier that is common across all dataset revisions.
                           pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
                           minLength: 36
                           maxLength: 36
@@ -276,40 +278,40 @@ paths:
                           # - "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/url"
                         name:
                           type: string
-                          title: Dataset name
-                          description: Dataset name
+                          # title: Dataset name
+                          description: Dataset name.
                           example: Civil Registration - Deaths
                         description:
                           type: string
-                          title: Dataset description
-                          description: Dataset description
+                          # title: Dataset description
+                          description: Dataset description.
                           example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient dataset, where a record represents one death registration. 
                         version:
                           type: string 
-                          title: Dataset metadata version
-                          description: Dataset version
+                          # title: Dataset metadata version
+                          description: Dataset version.
                           "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
                         self:
                           type: string
-                          title: Self continuation link
-                          description: Self continuation link of a search result
+                          # title: Self continuation link
+                          description: Self continuation link of a search result.
                           example: https://api.service.nhs.uk/health-research-data-catalogue/datasets/dd5f0174-575f-4f4c-a4fc-b406aab953d9
                         issued:
                           type: string
-                          title: Creation date
-                          description: Dataset metadata creation date
+                          # title: Creation date
+                          description: Dataset metadata creation date.
                           format: date-time
                           example: 2020-08-05T14:35:59Z
                         modified:
                           type: string
-                          title: Modification date
-                          description: Dataset metadata modification date
+                          # title: Modification date
+                          description: Dataset metadata modification date.
                           format: date-time
                           example: 2021-01-28T14:15:46Z
                         source:
                           type: string 
-                          title: The source of the dataset
-                          description: The source of the dataset
+                          # title: The source of the dataset
+                          description: The source of the dataset.
                           # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
                           example: OTHER
               example:  
