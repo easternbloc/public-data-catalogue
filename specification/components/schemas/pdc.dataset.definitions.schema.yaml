@@ -32,7 +32,7 @@ definitions:
       title:
         # "$id": "#/summary/title"
         # "$comment": dct:title. title is reserved word in json schema
-        title: Title
+        # title: Title
         description: Title of the dataset limited to 80 characters. It should provide
           a short description of the dataset and be unique across the gateway. If
           your title is not unique, please add a prefix with your organisation name
@@ -45,13 +45,13 @@ definitions:
 
       abstract:
         # "$id": "#/summary/abstract"
-        title: Dataset Abstract
-        description: Provide a clear and brief descriptive signpost for researchers
+        # title: Dataset Abstract
+        description: Dataset Abstract provides a clear and brief descriptive signpost for researchers
           who are searching for data that may be relevant to their research. The abstract
           should allow the reader to determine the scope of the data collection and
           accurately summarise its content. The optimal length is one paragraph (limited
           to 255 characters) and effective abstracts should avoid long sentences and
-          abbreviations where possible
+          abbreviations where possible.
         # "$comment": dct:abstract
         example: CPRD Aurum contains primary care data contributed by General Practitioner
           (GP) practices using EMIS Web® including patient registration information
@@ -64,8 +64,8 @@ definitions:
         # "$id": "#/summary/publisher"
         # "$comment": Conforms to spec, but this MAY be an an object of organisation.
         #   https://schema.org/publisher
-        title: Dataset publisher
-        description: This is the organisation responsible for running or supporting
+        # title: Dataset publisher
+        description: Dataset publisher is the organisation responsible for running or supporting
           the data access request process, as well as publishing and maintaining the
           metadata. In most this will be the same as the HDR UK Organisation (Hub
           or Alliance Member). However, in some cases this will be different i.e.
@@ -78,7 +78,7 @@ definitions:
         # "$id": "#/summary/contactPoint"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Contact Point
+        # title: Contact Point
         # "$comment": dcat:contactPoint
         default: Defaulted to the contact point of the primary organisation of the
           user however, can be overridden for specific datasets
@@ -94,7 +94,7 @@ definitions:
       keywords:
         # "$id": "#/summary/keywords"
         # "$comment": dcat:keyword. May be an array of strings or comma seperated list.
-        title: Keywords
+        # title: Keywords
         description: 'Please provide relevant and specific keywords that can improve
           the SEO of your dataset as a comma separated list. Notes: Onboarding portal
           will suggest keywords based on title, abstract and description. We are compiling
@@ -113,8 +113,8 @@ definitions:
         # "$id": "#/summary/alternateIdentifiers"
         # "$comment": DATA-CITE alternate-identifiers used. Note, will support comma
         #   separated list for backwards compatibility with other systems
-        title: Alternate dataset identifiers
-        description: Alternate dataset identifiers or local identifiers
+        # title: Alternate dataset identifiers
+        description: Alternate dataset identifiers or local identifiers.
         anyOf:
         - "$ref": "#/definitions/commaSeparatedValues"
         - type: array
@@ -126,7 +126,7 @@ definitions:
 
       doiName:
         # "$id": "#/summary/doiName"
-        title: Digital Object Identifier
+        # title: Digital Object Identifier
         description: All HDR UK registered datasets should either have a Digital Object
           Identifier (DOI) or be working towards obtaining one. If a DOI is available,
           please provide the DOI.
@@ -142,12 +142,12 @@ definitions:
     required:
     - name
     - contactPoint
-    title: Organisation Metadata
-    description: Describes an organisation for purposes of discovery and identification.
+    # title: Organisation Metadata
+    description: Organisation metadata describes an organisation for purposes of discovery and identification.
     properties:
       identifier:
         # "$id": "#/organisation/identifier"
-        title: Organisation Identifier
+        # title: Organisation Identifier
         description: 'Please provide a Grid.ac identifier (see https://www.grid.ac/institutes)
           for your organisation. If your organisation does not have a Grid.ac identifier
           please use the “suggest and institute” function here: https://www.grid.ac/institutes#'
@@ -157,15 +157,15 @@ definitions:
 
       name:
         # "$id": "#/organisation/name"
-        title: Organisation Name
-        description: Name of the organisation
+        # title: Organisation Name
+        description: Name of the organisation.
         # "$comment": https://schema.org/name
         allOf:
         - "$ref": "#/definitions/eightyCharacters"
 
       logo:
         # "$id": "#/organisation/logo"
-        title: Organisation Logo
+        # title: Organisation Logo
         description: Please provide a logo associated with the Gateway Organisation
           using a valid URL. The following formats will be accepted .jpg, .png or
           .svg.
@@ -175,7 +175,7 @@ definitions:
 
       description:
         # "$id": "#/organisation/description"
-        title: Organisation Description
+        # title: Organisation Description
         description: Please provide a URL that describes the organisation.
         # "$comment": https://schema.org/description
         allOf:
@@ -183,8 +183,8 @@ definitions:
 
       contactPoint:
         # "$id": "#/organisation/contactPoint"
-        title: Organisation Contact Point
-        description: Organisation contact point(s)
+        # title: Organisation Contact Point
+        description: Organisation contact point(s).
         # "$comment": https://schema.org/contactPoint
         anyOf:
         - "$ref": "#/definitions/emailAddress"
@@ -195,7 +195,7 @@ definitions:
 
       memberOf:
         # "$id": "#/organisation/memberOf"
-        title: Organisation Membership
+        # title: Organisation Membership
         description: Please indicate if the organisation is an Alliance Member or
           a Hub.
         # "$comment": https://schema.org/memberOf
@@ -204,7 +204,7 @@ definitions:
 
       accessRights:
         # "$id": "#/organisation/accessRights"
-        title: Organisation Default Access Rights
+        # title: Organisation Default Access Rights
         # "$comment": dct:access_rights
         description: The URL of a webpage where the data access request process and/or
           guidance is provided. If there is more than one access process i.e. industry
@@ -217,7 +217,7 @@ definitions:
 
       deliveryLeadTime:
         # "$id": "#/organisation/deliveryLeadTime"
-        title: Access Request Duration
+        # title: Access Request Duration
         # "$comment": https://schema.org/deliveryLeadTime
         description: 'Please provide an indication of the typical processing times
           based on the types of requests typically received. Note: This value will
@@ -229,7 +229,7 @@ definitions:
 
       accessService:
         # "$id": "#/organisation/accessService"
-        title: Organisation Access Service
+        # title: Organisation Access Service
         # "$comment": dcat:accessService
         example: https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
         description: 'Please provide a brief description of the data access services
@@ -245,7 +245,7 @@ definitions:
 
       accessRequestCost:
         # "$id": "#/organisation/accessRequestCost"
-        title: Organisation Access Request Cost
+        # title: Organisation Access Request Cost
         # "$comment": No standard identified
         description: 'Please provide link(s) to a webpage or a short description detailing
           the commercial model for processing data access requests for the organisation
@@ -259,7 +259,7 @@ definitions:
 
       dataUseLimitation:
         # "$id": "#/organisation/dataUseLimitation"
-        title: Data Use Limitation
+        # title: Data Use Limitation
         # "$comment": https://www.ebi.ac.uk/ols/ontologies/duo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDUO_0000001
         description: 'Please provide an indication of consent permissions for datasets
           and/or materials, and relates to the purposes for which datasets and/or
@@ -280,7 +280,7 @@ definitions:
 
       dataUseRequirements:
         # "$id": "#/organisation/dataUseRequirements"
-        title: Data Use Requirements
+        # title: Data Use Requirements
         description: Please indicate fit here are any additional conditions set for
           use if any, multiple requirements may be provided. Please ensure that these
           restrictions are documented in access rights information.
@@ -300,7 +300,7 @@ definitions:
     properties:
       description:
         # "$id": "#/properties/documentation/description"
-        title: Description
+        # title: Description
         # "$comment": dc:description, https://schema.org/description
         description: A free-text description of the record.
         allOf:
@@ -308,7 +308,7 @@ definitions:
 
       associatedMedia:
         # "$id": "#/properties/documentation/associatedMedia"
-        title: Associated Media
+        # title: Associated Media
         # "$comment": https://schema.org/associatedMedia
         example: PDF Document that describes study protocol
         description: 'Please provide any media associated with the Gateway Organisation
@@ -331,7 +331,7 @@ definitions:
         # "$id": "#/properties/documentation/isPartOf"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Group
+        # title: Group
         # "$comment": 'https://schema.org/isPartOf NOTE: we may make Groups first class
         #   citizens so the are navigable'
         default: NOT APPLICABLE
@@ -356,7 +356,7 @@ definitions:
     properties:
       spatial:
         # "$id": "#/properties/coverage/spatial"
-        title: Geographic Coverage
+        # title: Geographic Coverage
         # "$comment": dct:spatial
         description: The geographical area covered by the dataset. It is recommended
           that links are to entries in a well-maintained gazetteer such as https://www.geonames.org/
@@ -371,7 +371,7 @@ definitions:
 
       typicalAgeRange:
         # "$id": "#/properties/coverage/typicalAgeRange"
-        title: Age Range
+        # title: Age Range
         # "$comment": https://schema.org/typicalAgeRange
         description: Please indicate the age range in whole years of participants
           in the dataset. Please provide range in the following format ‘[min age]
@@ -381,7 +381,7 @@ definitions:
 
       physicalSampleAvailability:
         # "$id": "#/properties/coverage/physicalSampleAvailability"
-        title: Physical Sample Availability
+        # title: Physical Sample Availability
         # "$comment": No standard identified. Used enumeration from the UK Tissue Directory.
         example: BONE MARROW
         description: Availability of physical samples associated with the dataset.
@@ -404,17 +404,17 @@ definitions:
         # "$id": "#/properties/coverage/followup"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Followup
+        # title: Followup
         # "$comment": No standard identified
         default: UNKNOWN
         description: If known, what is the typical time span that a patient appears
-          in the dataset (follow up period)
+          in the dataset (follow up period).
         allOf:
         - "$ref": "#/definitions/followup"
 
       pathway:
         # "$id": "#/properties/coverage/pathway"
-        title: Pathway
+        # title: Pathway
         # "$comment": No standard identified
         description: Please indicate if the dataset is representative of the patient
           pathway and any limitations the dataset may have with respect to pathway
@@ -446,7 +446,7 @@ definitions:
     properties:
       purpose:
         # "$id": "#/properties/provenance/origin/purpose"
-        title: Purpose
+        # title: Purpose
         # "$comment": https://ddialliance.org/Specification/DDI-Lifecycle/3.3/XMLSchema/FieldLevelDocumentation/
         description: Pleases indicate the purpose(s) that the dataset was collected.
         anyOf:
@@ -461,9 +461,9 @@ definitions:
 
       source:
         # "$id": "#/properties/provenance/origin/source"
-        title: Source
+        # title: Source
         # "$comment": https://dublincore.org/specifications/dublin-core/dcmi-terms/#source
-        description: Pleases indicate the source of the data extraction
+        description: Pleases indicate the source of the data extraction.
         anyOf:
         - "$ref": "#/definitions/commaSeparatedValues"
         - type: array
@@ -476,10 +476,10 @@ definitions:
 
       collectionSituation:
         # "$id": "#/properties/provenance/origin/collectionSituation"
-        title: Setting
+        # title: Setting
         # "$comment": https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/FieldLevelDocumentation/
         description: Pleases indicate the setting(s) where data was collected. Multiple
-          settings may be provided
+          settings may be provided.
         anyOf:
         - "$ref": "#/definitions/commaSeparatedValues"
         - type: array
@@ -501,7 +501,7 @@ definitions:
         # "$id": "#/properties/provenance/temporal/accrualPeriodicity"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Periodicity
+        # title: Periodicity
         # "$comment": dct:accrualPeriodicity
         default: ''
         description: 'Please indicate the frequency of distribution release. If a
@@ -519,7 +519,7 @@ definitions:
 
       distributionReleaseDate:
         # "$id": "#/properties/provenance/temporal/distributionReleaseDate"
-        title: Release Date
+        # title: Release Date
         # "$comment": dcat:distribution_release_date
         description: 'Date of the latest release of the dataset. If this is a regular
           release i.e. quarterly, or this is a static dataset please complete this
@@ -536,7 +536,7 @@ definitions:
 
       startDate:
         # "$id": "#/properties/provenance/temporal/startDate"
-        title: Start Date
+        # title: Start Date
         # "$comment": dcat:startDate
         description: The start of the time period that the dataset provides coverage
           for. If there are multiple cohorts in the dataset with varying start dates,
@@ -550,7 +550,7 @@ definitions:
 
       endDate:
         # "$id": "#/properties/provenance/temporal/endDate"
-        title: End Date
+        # title: End Date
         # "$comment": dcat:endDate
         description: The end of the time period that the dataset provides coverage
           for. If the dataset is “Continuous” and has no known end date, please state
@@ -568,10 +568,10 @@ definitions:
 
       timeLag:
         # "$id": "#/properties/provenance/temporal/timeLag"
-        title: Time Lag
+        # title: Time Lag
         # "$comment": No standard identified
         description: Please indicate the typical time-lag between an event and the
-          data for that event appearing in the dataset
+          data for that event appearing in the dataset.
         allOf:
         - "$ref": "#/definitions/timeLag"
 
@@ -583,20 +583,20 @@ definitions:
     properties:
       usage:
         # "$id": "#/definitions/accessibility/usage"
-        title: Usage
+        # title: Usage
         description: This section includes information about how the data can be used
-          and how it is currently being used
+          and how it is currently being used.
         "$ref": "#/definitions/usage"
 
       access:
         # "$id": "#/definitions/accessibility/access"
-        title: Access
-        description: This section includes information about data access
+        # title: Access
+        description: This section includes information about data access.
         "$ref": "#/definitions/access"
 
       formatAndStandards:
         # "$id": "#/definitions/accessibility/formatAndStandards"
-        title: Format and Standards
+        # title: Format and Standards
         description: Section includes technical attributes for language vocabularies,
           sizes etc. and gives researchers facts about and processing the underlying
           data in the dataset.
@@ -608,7 +608,7 @@ definitions:
     properties:
       dataUseLimitation:
         # "$id": "#/properties/accessibility/usage/dataUseLimitation"
-        title: Data Use Limitation
+        # title: Data Use Limitation
         # "$comment": https://www.ebi.ac.uk/ols/ontologies/duo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDUO_0000001
         description: 'Please provide an indication of consent permissions for datasets
           and/or materials, and relates to the purposes for which datasets and/or
@@ -625,7 +625,7 @@ definitions:
 
       dataUseRequirements:
         # "$id": "#/properties/accessibility/usage/dataUseRequirements"
-        title: Data Use Requirements
+        # title: Data Use Requirements
         description: Please indicate fit here are any additional conditions set for
           use if any, multiple requirements may be provided. Please ensure that these
           restrictions are documented in access rights information.
@@ -641,7 +641,7 @@ definitions:
 
       resourceCreator:
         # "$id": "#/properties/accessibility/usage/resourceCreator"
-        title: Citation Requirements
+        # title: Citation Requirements
         # "$comment": dct:creator
         description: Please provide the text that you would like included as part
           of any citation that credits this dataset. This is typically just the name
@@ -653,7 +653,8 @@ definitions:
               $ref: '#/definitions/shortDescription'
 
       investigations:
-        title: Investigations
+        # title: Investigations
+        description: Investigations.
         # "$comment": No standard identified
         anyOf:
         - "$ref": "#/definitions/commaSeparatedValues"
@@ -663,7 +664,7 @@ definitions:
             - "$ref": "#/definitions/url"
 
       isReferencedBy:
-        title: Citations
+        # title: Citations
         # "$comment": 'dct:isReferencedBy '
         description: Please provide the keystone paper associated with the dataset.
           Also include a list of known citations, if available and should be links
@@ -688,7 +689,8 @@ definitions:
     properties:
       accessRights:
         # "$id": "#/properties/accessibility/access/accessRights"
-        title: Access Rights
+        # title: Access Rights
+        description: Access rights.
         # "$comment": 'dct:access_rights NOTE: need to ensure that this is consistent
         #   across the organisation info and the dataset info'
         anyOf:
@@ -701,7 +703,7 @@ definitions:
 
       accessService:
         # "$id": "#/properties/accessibility/access/accessService"
-        title: Access Service
+        # title: Access Service
         # "$comment": 'dcat:accessService '
         example: https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
         # - https://cnfl.extge.co.uk/display/GERE/Research+Environment+User+Guide
@@ -718,7 +720,7 @@ definitions:
 
       accessRequestCost:
         # "$id": "#/properties/accessibility/access/accessRequestCost"
-        title: Organisation Access Request Cost
+        # title: Organisation Access Request Cost
         # "$comment": No standard identified
         description: 'Please provide link(s) to a webpage detailing the commercial
           model for processing data access requests for the organisation (if available)
@@ -732,7 +734,7 @@ definitions:
 
       deliveryLeadTime:
         # "$id": "#/properties/accessibility/access/deliveryLeadTime"
-        title: Access Request Duration
+        # title: Access Request Duration
         # "$comment": https://schema.org/deliveryLeadTime
         description: Please provide an indication of the typical processing times
           based on the types of requests typically received.
@@ -759,7 +761,7 @@ definitions:
 
       dataController:
         # "$id": "#/properties/accessibility/access/dataController"
-        title: Data Controller
+        # title: Data Controller
         # "$comment": " dpv:DataController"
         description: Data Controller means a person/entity who (either alone or jointly
           or in common with other persons/entities) determines the purposes for which
@@ -770,7 +772,7 @@ definitions:
 
       dataProcessor:
         # "$id": "#/properties/accessibility/access/dataProcessor"
-        title: Data Processor
+        # title: Data Processor
         # "$comment": dpv:DataProcessor
         description: A Data Processor, in relation to any Data Subject data, specifically
           personal data, means any person/entity (other than an employee of the data
@@ -791,7 +793,7 @@ definitions:
         # "$id": "#/properties/accessibility/formatAndStandards/vocabularyEncodingScheme"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Controlled Vocabulary
+        # title: Controlled Vocabulary
         # "$comment": https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcam/VocabularyEncodingScheme
         default: LOCAL
         description: 'List any relevant terminologies / ontologies / controlled vocabularies,
@@ -812,7 +814,7 @@ definitions:
         # "$id": "#/properties/accessibility/formatAndStandards/conformsTo"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Conforms To
+        # title: Conforms To
         # "$comment": dct:conformsTo
         default: LOCAL
         description: List standardised data models that the dataset has been stored
@@ -832,7 +834,7 @@ definitions:
         # "$id": "#/properties/accessibility/formatAndStandards/language"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Language
+        # title: Language
         description: This should list all the languages in which the dataset metadata
           and underlying data is made available.
         default: en
@@ -849,7 +851,7 @@ definitions:
 
       format:
         # "$id": "#/properties/accessibility/formatAndStandards/format"
-        title: Format
+        # title: Format
         description: 'If multiple formats are available please specify. See application,
           audio, image, message, model, multipart, text, video, https://www.iana.org/assignments/media-types/media-types.xhtml
           Note: If your file format is not included in the current list of formats,
@@ -872,7 +874,7 @@ definitions:
     properties:
       qualifiedRelation:
         # "$id": "#/properties/enrichmentAndLinkage/qualifiedRelation"
-        title: Linked Datasets
+        # title: Linked Datasets
         # "$comment": dcat:qualifiedRelation
         description: 'If applicable, please provide the DOI of other datasets that
           have previously been linked to this dataset and their availability. If no
@@ -890,7 +892,7 @@ definitions:
             - "$ref": "#/definitions/eightyCharacters"
 
       derivation:
-        title: Derivations
+        # title: Derivations
         # "$comment": prov:Derivation
         description: Indicate if derived datasets or predefined extracts are available
           and the type of derivation available. Notes. Single or multiple dimensions
@@ -904,7 +906,7 @@ definitions:
 
       tools:
         # "$id": "#/properties/enrichmentAndLinkage/tools"
-        title: Tools
+        # title: Tools
         # "$comment": No standard identified. We encourage users to adopt a model along
         #   the lines of https://www.ga4gh.org/news/tool-registry-service-api-enabling-an-interoperable-library-of-genomics-analysis-tools/
         description: 'Please provide the URL of any analysis tools or models that
@@ -930,18 +932,18 @@ definitions:
     properties:
       observedNode:
         # "$id": "#/properties/observation/observedNode"
-        title: Statistical Population
+        # title: Statistical Population
         # "$comment": https://schema.org/observedNode
         example: PERSONS
         # - PERSONS
         description: Please select one of the following statistical populations for
-          you observation
+          you observation.
         allOf:
         - "$ref": "#/definitions/statisticalPopulationConstrained"
 
       measuredValue:
         # "$id": "#/properties/observation/measuredValue"
-        title: Measured Value
+        # title: Measured Value
         # "$comment": https://schema.org/measuredValue
         description: 'Please provide the population size associated with the population
           type the dataset i.e. 1000 people in a study, or 87 images (MRI) of Knee
@@ -951,7 +953,7 @@ definitions:
 
       disambiguatingDescription:
         # "$id": "#/properties/observation/disambiguatingDescription"
-        title: Disambiguating Description
+        # title: Disambiguating Description
         # "$comment": 'https://schema.org/disambiguatingDescription '
         description: If SNOMED CT term does not provide sufficient detail, please
           provide a description that disambiguates the population type.
@@ -962,7 +964,7 @@ definitions:
         # "$id": "#/properties/observation/observationDate"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Observation Date
+        # title: Observation Date
         # "$comment": https://schema.org/observationDate
         default: release date
         description: Please provide the date that the observation was made. Some datasets
@@ -982,10 +984,10 @@ definitions:
         # "$id": "#/properties/observation/measuredProperty"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Measured Property
+        # title: Measured Property
         # "$comment": https://schema.org/measuredProperty
         default: COUNT
-        description: Initially this will be defaulted to \"COUNT\"
+        description: Initially this will be defaulted to \"COUNT\".
         allOf:
         - type: string
           enum:
