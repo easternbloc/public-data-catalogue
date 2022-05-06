@@ -38,9 +38,9 @@
         <Server name="{{ HRDC_TARGET_SERVER }}" />
       </LoadBalancer>
     </HTTPTargetConnection>
-    <DefaultFaultRule>
+   <!--  <DefaultFaultRule>
       <Step>
         <Name>AssignMessage.Errors.CatchAllMessage</Name>
       </Step>
-    </DefaultFaultRule>
+    </DefaultFaultRule> -->
 </TargetEndpoint>
