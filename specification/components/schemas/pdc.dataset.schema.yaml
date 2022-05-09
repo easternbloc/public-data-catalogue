@@ -38,7 +38,7 @@ properties:
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
 
   version:
-    # SWK: $ref approach does not support rendered 'field description'
+    # SWK: $ref approach does not support rendered 'field description'. Added 'version' defintion schema inline as workaround.
     # "$id": "#/properties/version"
     # title: Dataset Version
     # description: Dataset metadata version.
@@ -80,17 +80,19 @@ properties:
   summary:
     # "$id": "#/properties/summary"
     # title: Summary
-    description: Summary metadata must be completed by Data Custodians onboarding.
-      metadata into the Innovation Gateway MVP.
+    # SWK: $ref approach does not support rendered 'field description' from here. Moved 'field description' to #/definitions/summary as workaround.
+    # description: Summary metadata must be completed by Data Custodians onboarding.
+    #   metadata into the Innovation Gateway MVP.
     "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/summary"
 
   documentation:
     # "$id": "#/properties/documentation"
     # title: Documentation
-    description: Documentation can include a rich text description of the dataset
-      or links to media such as documents, images, presentations, videos or links
-      to data dictionaries, profiles or dashboards. Organisations are required to
-      confirm that they have permission to distribute any additional media.
+    # SWK: $ref approach does not support rendered 'field description' from here. Moved 'field description' to #/definitions/documentation as workaround.
+    # description: Documentation can include a rich text description of the dataset
+    #   or links to media such as documents, images, presentations, videos or links
+    #   to data dictionaries, profiles or dashboards. Organisations are required to
+    #   confirm that they have permission to distribute any additional media.
     "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/documentation"
 
   coverage:

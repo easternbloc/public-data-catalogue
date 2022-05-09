@@ -21,6 +21,8 @@ definitions:
 
   summary:
     # "$id": "#/definitions/summary"
+    description: Summary metadata must be completed by Data Custodians onboarding.
+      metadata into the Innovation Gateway MVP.
     required:
     - title
     - abstract
@@ -296,6 +298,10 @@ definitions:
 
   documentation:
     # "$id": "#/definitions/documentation"
+    description: Documentation can include a rich text description of the dataset
+      or links to media such as documents, images, presentations, videos or links
+      to data dictionaries, profiles or dashboards. Organisations are required to
+      confirm that they have permission to distribute any additional media.
     additionalProperties: false
     properties:
       description:
