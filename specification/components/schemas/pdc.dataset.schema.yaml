@@ -38,12 +38,17 @@ properties:
     - "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/url"
 
   version:
+    # SWK: $ref approach does not support rendered 'field description'
     # "$id": "#/properties/version"
     # title: Dataset Version
-    description: Dataset metadata version.
-    "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/semver"
+    # description: Dataset metadata version.
+    # "$ref": "pdc.dataset.definitions.schema.yaml#/definitions/semver"
     # example:
     # - "1.1.0"
+    type: string 
+    description: Dataset metadata version.
+    pattern: "^([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
+    example: 1.1.0
 
   revisions:
     # "$id": "#/properties/revisions"

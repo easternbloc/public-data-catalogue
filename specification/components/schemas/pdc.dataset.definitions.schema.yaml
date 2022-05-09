@@ -336,7 +336,7 @@ definitions:
         #   citizens so the are navigable'
         default: NOT APPLICABLE
         example: Hospital Episodes Statistics datasets (A&E, APC, OP, AC MSDS).
-        description: Please complete only if the dataset is part of a group or family
+        description: Please complete only if the dataset is part of a group or family.
         anyOf:
         - "$ref": "#/definitions/commaSeparatedValues"
         - type: array
@@ -613,7 +613,7 @@ definitions:
         description: 'Please provide an indication of consent permissions for datasets
           and/or materials, and relates to the purposes for which datasets and/or
           material might be removed, stored or used. NOTE: we have extended the DUO
-          to include a value for NO LINKAGE'
+          to include a value for NO LINKAGE.'
         anyOf:
         - "$ref": "#/definitions/commaSeparatedValues"
         - type: array
@@ -745,7 +745,7 @@ definitions:
         # "$id": "#/properties/accessibility/access/jurisdiction"
         # HDR UK SCHEMA FAIL: expected object to have property 'type'. Fails on 'default:' field. SWK added property 'type: string'
         type: string
-        title: Jurisdiction
+        # title: Jurisdiction
         default: GB-ENG
         # "$comment": 'http://purl.org/dc/terms/Jurisdiction FIXME: Add ISO 3166-2 Subdivision
         #   code pattern'
@@ -912,7 +912,7 @@ definitions:
         description: 'Please provide the URL of any analysis tools or models that
           have been created for this dataset and are available for further use. Multiple
           tools may be provided. Note: We encourage users to adopt a model along the
-          lines of https://www.ga4gh.org/news/tool-registry-service-api-enabling-an-interoperable-library-of-genomics-analysis-tools/'
+          lines of https://www.ga4gh.org/news/tool-registry-service-api-enabling-an-interoperable-library-of-genomics-analysis-tools/.'
         anyOf:
         - "$ref": "#/definitions/commaSeparatedValues"
         - type: array

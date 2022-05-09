@@ -22,7 +22,7 @@ info:
     * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
     * logical descriptions of field-level data
 
-    The API conforms to the HDR UK Dataset Schema Standard v2.0.2 created to enable sharing of information with the UK-wide health research data catalogue.
+    The API conforms to the [HDR UK Dataset Schema Standard v2.0.2](https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json) created to enable sharing of information with the UK-wide 'federated' health research data catalogue.
 
     ### API scope
     Current scope is limited to information about national health-related datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
@@ -290,7 +290,9 @@ paths:
                           type: string 
                           # title: Dataset metadata version
                           description: Dataset version.
-                          "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
+                          # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
+                          pattern: "^([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
+                          example: 1.1.0
                         self:
                           type: string
                           # title: Self continuation link
@@ -440,7 +442,7 @@ paths:
        - $ref: '#/components/parameters/RequestID'         
        - in: path
          name: id
-         description: The persistent identifier of the dataset
+         description: The persistent identifier of the dataset.
          schema:
            type: string
            format: uuid 
