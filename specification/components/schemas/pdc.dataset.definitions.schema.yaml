@@ -358,6 +358,10 @@ definitions:
 
   coverage:
     # "$id": "#/definitions/coverage"
+    description: Coverage information includes attributes for geographical and temporal
+      coverage, cohort details etc. to enable a deeper understanding of the dataset
+      content so that researchers can make decisions about the relevance of the underlying
+      data.
     additionalProperties: false
     properties:
       spatial:
@@ -433,6 +437,9 @@ definitions:
 
   provenance:
     # "$id": "#/definitions/provenance"
+    description: Provenance information allows researchers to understand data within
+      the context of its origins and can be an indicator of quality, authenticity
+      and timeliness.
     required:
     - temporal
     additionalProperties: false
@@ -519,7 +526,7 @@ definitions:
           If a dataset is released on an irregular basis or “on-demand” please indicate
           that it is Irregular and leave release date as null. If a dataset can be
           published in real-time or near-real-time please indicate that it is continuous
-          and leave release date as null. Notes: see https://www.dublincore.org/specifications/dublin-core/collection-description/frequency/'
+          and leave release date as null. Notes: see https://www.dublincore.org/specifications/dublin-core/collection-description/frequency/.'
         allOf:
         - "$ref": "#/definitions/periodicity"
 
@@ -583,6 +590,9 @@ definitions:
 
   accessibility:
     # "$id": "#/definitions/accessibility"
+    description: Accessibility information allows researchers to understand access,
+      usage, limitations, formats, standards and linkage or interoperability with
+      toolsets.
     required:
     - access
     additionalProperties: false
@@ -590,26 +600,31 @@ definitions:
       usage:
         # "$id": "#/definitions/accessibility/usage"
         # title: Usage
-        description: This section includes information about how the data can be used
-          and how it is currently being used.
+        # SWK: $ref approach does not support rendered 'field description' from here. Moved 'field description' to #/definitions/usage as workaround.
+        # description: This section includes information about how the data can be used
+        #   and how it is currently being used.
         "$ref": "#/definitions/usage"
 
       access:
         # "$id": "#/definitions/accessibility/access"
         # title: Access
-        description: This section includes information about data access.
+        # SWK: $ref approach does not support rendered 'field description' from here. Moved 'field description' to #/definitions/access as workaround.
+        # description: This section includes information about data access.
         "$ref": "#/definitions/access"
 
       formatAndStandards:
         # "$id": "#/definitions/accessibility/formatAndStandards"
         # title: Format and Standards
-        description: Section includes technical attributes for language vocabularies,
-          sizes etc. and gives researchers facts about and processing the underlying
-          data in the dataset.
+        # SWK: $ref approach does not support rendered 'field description' from here. Moved 'field description' to #/definitions/aformatAndStandards as workaround.        
+        # description: Section includes technical attributes for language vocabularies,
+        #   sizes etc. and gives researchers facts about and processing the underlying
+        #   data in the dataset.
         "$ref": "#/definitions/formatAndStandards"
 
   usage:
     # "$id": "#/definitions/usage"
+    description: This section includes information about how the data can be used
+          and how it is currently being used.
     additionalProperties: false
     properties:
       dataUseLimitation:
@@ -687,6 +702,7 @@ definitions:
 
   access:
     # "$id": "#/definitions/access"
+    description: This section includes information about data access.
     required:
     - accessRights
     - jurisdiction
@@ -788,6 +804,9 @@ definitions:
 
   formatAndStandards:
     # "$id": "#/definitions/formatAndStandards"
+    description: Section includes technical attributes for language vocabularies,
+          sizes etc. and gives researchers facts about and processing the underlying
+          data in the dataset.
     additionalProperties: false
     required:
     - vocabularyEncodingScheme
@@ -876,6 +895,11 @@ definitions:
 
   enrichmentAndLinkage:
     # "$id": "#/definitions/enrichmentAndLinkage"
+    description: Enrichment and Linkage includes information about related datasets that may
+      have previously been linked, as well as indicating if there is the opportunity
+      to link to other datasets in the future. If a dataset has been enriched and/or
+      derivations, scores and existing tools are available this section allows providers
+      to indicate this to researchers.
     additionalProperties: false
     properties:
       qualifiedRelation:
