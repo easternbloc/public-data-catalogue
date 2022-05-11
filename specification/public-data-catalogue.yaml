@@ -11,21 +11,21 @@ info:
     Use this API to retrieve information suitable for publication in a health research data catalogue. 
 
     You can:
-    * get a list of datasets
-    * get dataset details 
+    * get a list of data sets
+    * get data set details 
 
     You cannot currently use this API to:
-    * retrieve datasets as a bulk transfer
-    * retrieve dataset feeds
+    * retrieve data sets as a bulk transfer
+    * retrieve data set feeds
 
-    You can get the following information for each dataset:
+    You can get the following information for each data set:
     * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
     * logical descriptions of field-level data
 
     The API conforms to the [HDR UK Dataset Schema Standard v2.0.2](https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json) created to enable sharing of information with the UK-wide 'federated' health research data catalogue.
 
     ### API scope
-    Current scope is limited to information about national health-related datasets (such as description, size of the population contained within that dataset and the legal basis for access) that can help researchers and innovators decide whether a dataset could be useful to their research and help them to make further health discoveries.
+    Current scope is limited to information about national health-related data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
@@ -102,7 +102,7 @@ x-spec-publication:
 paths:
   /datasets:    
     get:
-      summary: Get a list of datasets
+      summary: Get a list of data sets
       operationId: get-datasets-list      
       description: |
 
@@ -111,19 +111,19 @@ paths:
         </div></div>&nbsp;&nbsp;</div>
 
         ## Overview
-        Use this endpoint to get a summary list of published datasets.
+        Use this endpoint to get a summary list of published data sets.
 
-        ## Summary dataset metadata returned
+        ## Summary data set metadata returned
         
-        The summary dataset metadata returned by this search includes:
+        The summary data set metadata returned by this search includes:
         * Schema conformance
-        * Dataset persistent identifier
-        * Dataset name
-        * Dataset description
-        * Dataset version
+        * Data set persistent identifier
+        * Data set name
+        * Data set description
+        * Data set version
         * Self continuation link
-        * Dataset metadata creation date
-        * Dataset metadata modification date
+        * Data set metadata creation date
+        * Data set metadata modification date
         * Source of the metadata
 
       parameters:
@@ -265,7 +265,7 @@ paths:
                         persistentId:
                           type: string
                           # title: Dataset persistent identifier
-                          description: Dataset persistent identifier that is common across all dataset revisions.
+                          description: Data set persistent identifier that is common across all data set revisions.
                           pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
                           minLength: 36
                           maxLength: 36
@@ -279,17 +279,17 @@ paths:
                         name:
                           type: string
                           # title: Dataset name
-                          description: Dataset name.
+                          description: Data set name.
                           example: Civil Registration - Deaths
                         description:
                           type: string
                           # title: Dataset description
-                          description: Dataset description.
+                          description: Data set description.
                           example: Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient dataset, where a record represents one death registration. 
                         version:
                           type: string 
                           # title: Dataset metadata version
-                          description: Dataset version.
+                          description: Data set version.
                           # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/semver"
                           pattern: "^([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
                           example: 1.1.0
@@ -301,19 +301,19 @@ paths:
                         issued:
                           type: string
                           # title: Creation date
-                          description: Dataset metadata creation date.
+                          description: Data set metadata creation date.
                           format: date-time
                           example: 2020-08-05T14:35:59Z
                         modified:
                           type: string
                           # title: Modification date
-                          description: Dataset metadata modification date.
+                          description: Data set metadata modification date.
                           format: date-time
                           example: 2021-01-28T14:15:46Z
                         source:
                           type: string 
                           # title: The source of the dataset
-                          description: The source of the dataset.
+                          description: The source of the data set.
                           # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
                           example: OTHER
               example:  
@@ -324,7 +324,6 @@ paths:
             
             | HTTP status | Error code                 | Description |
             | ----------- | -------------------------- | --------------------------------------------- |
-            | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
             | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
             | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
     
@@ -395,7 +394,7 @@ paths:
 
   '/datasets/{id}':
     get:
-      summary: Get dataset details 
+      summary: Get data set details 
       operationId:  get-datasets-id    
       description: |
 
@@ -404,29 +403,29 @@ paths:
         </div></div>&nbsp;&nbsp;</div>
 
         ## Overview
-        Use this endpoint to get dataset details for a given dataset persistent identifier.
+        Use this endpoint to get data set details for a given data set persistent identifier.
   
-        ## Dataset metadata returned
+        ## Data set metadata returned
 
         | Data element | Optionality                | Description |
         | ------------ | -------------------------- | --------------------------------------------- |
-        | identifier   | Required                   | System dataset identifier. |
-        | version      | Required                   | Dataset metadata version. |
-        | revisions    | Required                   | Revisions of Dataset metadata. Includes the Semantic Version of the dataset and URL endpoint to obtain the version. |
-        | issued       | Required                   | Dataset Metadata Creation Date. |
-        | modified     | Required                   | Dataset Metadata Modified Date. |
+        | identifier   | Required                   | System data set identifier. |
+        | version      | Required                   | Data set metadata version. |
+        | revisions    | Required                   | Revisions of Data set metadata. Includes the Semantic Version of the data set and URL endpoint to obtain the version. |
+        | issued       | Required                   | Data set Metadata Creation Date. |
+        | modified     | Required                   | Data set Metadata Modified Date. |
         | summary      | Required                   | Summary metadata must be completed by Data Custodians onboarding metadata into the Innovation Gateway MVP. |
-        | documentation| Optional                   | Documentation can include a rich text description of the dataset or links to media such as documents, images, presentations, videos or links to data dictionaries, profiles or dashboards. Organisations are required to confirm that they have permission to distribute any additional media. |
-        | coverage     | Optional                   | This information includes attributes for geographical and temporal coverage, cohort details etc. to enable a deeper understanding of the dataset content so that researchers can make decisions about the relevance of the underlying data. |
+        | documentation| Optional                   | Documentation can include a rich text description of the data set or links to media such as documents, images, presentations, videos or links to data dictionaries, profiles or dashboards. Organisations are required to confirm that they have permission to distribute any additional media. |
+        | coverage     | Optional                   | This information includes attributes for geographical and temporal coverage, cohort details etc. to enable a deeper understanding of the data set content so that researchers can make decisions about the relevance of the underlying data. |
         | provenance   | Optional                   | Provenance information allows researchers to understand data within the context of its origins and can be an indicator of quality, authenticity and timeliness. |
         | accessibility| Required                   | Accessibility information allows researchers to understand access,  usage, limitations, formats, standards and linkage or interoperability with toolsets. |
-        | enrichmentAndLinkage| Optional            | This section includes information about related datasets that may have previously been linked, as well as indicating if there is the opportunity to link to other datasets in the future. If a dataset has been enriched and/or derivations, scores and existing tools are available this section allows providers to indicate this to researchers. |
-        | observations | Optional                   | Multiple observations about the dataset may be provided and users are expected to provide at least one observation (1..*). Examples detailed in next section. |
+        | enrichmentAndLinkage| Optional            | This section includes information about related data sets that may have previously been linked, as well as indicating if there is the opportunity to link to other data sets in the future. If a data set has been enriched and/or derivations, scores and existing tools are available this section allows providers to indicate this to researchers. |
+        | observations | Optional                   | Multiple observations about the data set may be provided and users are expected to provide at least one observation (1..*). Examples detailed in next section. |
 
  
         ### Observations
 
-        Multiple observations about the dataset may be provided and users
+        Multiple observations about the data set may be provided and users
         are expected to provide at least one observation (1..*). We will be supporting
         the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses.   Examples: 
 
@@ -442,7 +441,7 @@ paths:
        - $ref: '#/components/parameters/RequestID'         
        - in: path
          name: id
-         description: The persistent identifier of the dataset.
+         description: The persistent identifier of the data set.
          schema:
            type: string
            format: uuid 
@@ -464,7 +463,6 @@ paths:
             
             | HTTP status | Error code                 | Description |
             | ----------- | -------------------------- | --------------------------------------------- |
-            | 400         | INVALID_RESOURCE_ID        | Invalid dataset id. |
             | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
             | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
     
