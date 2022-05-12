@@ -326,6 +326,7 @@ paths:
             | ----------- | -------------------------- | --------------------------------------------- |
             | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
             | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
+            | 404         | INVALID_ENDPOINT_PATH      | Invalid endpoint path. |            
     
           content:
             application/fhir+json:
@@ -465,6 +466,7 @@ paths:
             | ----------- | -------------------------- | --------------------------------------------- |
             | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
             | 404         | RESOURCE_NOT_FOUND         | No dataset resources found. |
+            | 404         | INVALID_ENDPOINT_PATH      | Invalid endpoint path. |               
     
           content:
             application/fhir+json:
