@@ -128,7 +128,7 @@ app.get("/_status", handlers.status);
 app.get("/health", handlers.status);
 app.all("/hello", handlers.hello);
 app.all("/datasets", handlers.datasets);
-app.all("/datasets{id}", handlers.datasetsId);
+app.all("/datasets/{id}", handlers.datasetsId);
 app.use(on_error)
 app.use(after_request);
 
