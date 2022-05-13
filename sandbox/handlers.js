@@ -87,28 +87,46 @@ async function datasets(req, res, next) {
 
 async function datasetsId(req, res, next) {
 
-    var persistentIdentifier = req.path["id"];
-    // var patientIdentifier = req.query["patient.identifier"].split("|")[1];
-
     write_log(res, "info", {
-        message: "datasetsId",
+        message: "datasets",
         req: {
             path: req.path,
             query: req.query,
-            headers: req.rawHeaders,
-            persistentIdentifier: persistentIdentifier
+            headers: req.rawHeaders
         }
     });
-    if (persistentIdentifier == null || persistentIdentifier == "") {
-        res.status(404).json(errResponse1);
-    } else if (persistentIdentifier == "dd5f0174-575f-4f4c-a4fc-b406aab953d9") {
-        res.json(getResponseEndpoint2);
-    } else {
-        res.status(404).json(errResponse2);
-    }
+
+
+    // res.json({message: "hello world"});
+    res.json(getResponseEndpoint2);
     res.end();
     next();
 }
+
+// async function datasetsId(req, res, next) {
+
+//     var persistentIdentifier = req.path["id"];
+//     // var patientIdentifier = req.query["patient.identifier"].split("|")[1];
+
+//     write_log(res, "info", {
+//         message: "datasetsId",
+//         req: {
+//             path: req.path,
+//             query: req.query,
+//             headers: req.rawHeaders,
+//             persistentIdentifier: persistentIdentifier
+//         }
+//     });
+//     if (persistentIdentifier == null || persistentIdentifier == "") {
+//         res.status(404).json(errResponse1);
+//     } else if (persistentIdentifier == "dd5f0174-575f-4f4c-a4fc-b406aab953d9") {
+//         res.json(getResponseEndpoint2);
+//     } else {
+//         res.status(404).json(errResponse2);
+//     }
+//     res.end();
+//     next();
+// }
 
 module.exports = {
     status: status,
