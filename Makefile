@@ -20,9 +20,19 @@ clean:
 	rm -rf build
 	rm -rf dist
 
-publish: clean
+# SWK sandbox test
+copy-examples-to-sandbox:
+	mkdir -p sandbox/responses
+	cp specification/components/examples/* sandbox/responses
+
+# publish: clean
+# 	mkdir -p build
+# 	npm run publish 2> /dev/null
+
+# SWK sandbox test
+publish: clean copy-examples-to-sandbox
 	mkdir -p build
-	npm run publish 2> /dev/null
+	npm run publish 2> /dev/null	
 
 serve:
 	npm run serve
