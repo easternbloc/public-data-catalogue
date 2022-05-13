@@ -112,7 +112,7 @@ async function datasets(req, res, next) {
 
 module.exports = {
     status: status,
-    hello: hello
+    hello: hello,
     datasets: datasets,
     // datasetsId: datasetsId
 };
