@@ -1,7 +1,8 @@
 "use strict";
-const getResponse = require("./responses/dataset-example.json");
-const errResponse = require("./responses/OperationOutcome-INVALID_ENDPOINT_PATH.json");
-const errResponse1 = require("./responses/OperationOutcome-RESOURCE_NOT_FOUND.json");
+const getResponseEndpoint1 = require("./responses/dataset-list-example.json");
+const getResponseEndpoint2 = require("./responses/dataset-example.json");
+const errResponse1 = require("./responses/OperationOutcome-INVALID_ENDPOINT_PATH.json");
+const errResponse2 = require("./responses/OperationOutcome-RESOURCE_NOT_FOUND.json");
 
 const log = require("loglevel");
 
@@ -65,33 +66,53 @@ async function hello(req, res, next) {
     next();
 }
 
-async function datasets(req, res, next) {
 
-    var persistentIdentifier = req.path["id"];
-    // var patientIdentifier = req.query["patient.identifier"].split("|")[1];
+async function datasets(req, res, next) {
 
     write_log(res, "info", {
         message: "datasets",
         req: {
             path: req.path,
             query: req.query,
-            headers: req.rawHeaders,
-            persistentIdentifier: persistentIdentifier
+            headers: req.rawHeaders
         }
     });
-    if (persistentIdentifier == null || persistentIdentifier == "") {
-        res.status(404).json(errResponse);
-    } else if (persistentIdentifier == "dd5f0174-575f-4f4c-a4fc-b406aab953d9") {
-        res.json(getResponse);
-    } else {
-        res.status(404).json(errResponse1);
-    }
+
+
+    // res.json({message: "hello world"});
+    res.json(getResponseEndpoint1);
     res.end();
     next();
 }
 
+// async function datasetsId(req, res, next) {
+
+//     var persistentIdentifier = req.path["id"];
+//     // var patientIdentifier = req.query["patient.identifier"].split("|")[1];
+
+//     write_log(res, "info", {
+//         message: "datasets",
+//         req: {
+//             path: req.path,
+//             query: req.query,
+//             headers: req.rawHeaders,
+//             persistentIdentifier: persistentIdentifier
+//         }
+//     });
+//     if (persistentIdentifier == null || persistentIdentifier == "") {
+//         res.status(404).json(errResponse1);
+//     } else if (persistentIdentifier == "dd5f0174-575f-4f4c-a4fc-b406aab953d9") {
+//         res.json(getResponseEndpoint2);
+//     } else {
+//         res.status(404).json(errResponse2);
+//     }
+//     res.end();
+//     next();
+// }
+
 module.exports = {
     status: status,
     hello: hello
-    datasets: datasets
+    datasets: datasets,
+    // datasetsId: datasetsId
 };
