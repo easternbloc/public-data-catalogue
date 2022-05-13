@@ -67,7 +67,7 @@ async function hello(req, res, next) {
 
 async function datasets(req, res, next) {
 
-    var persistentIdentifier = req.query["id"];
+    var persistentIdentifier = req.path["id"];
     // var patientIdentifier = req.query["patient.identifier"].split("|")[1];
 
     write_log(res, "info", {
@@ -80,11 +80,11 @@ async function datasets(req, res, next) {
         }
     });
     if (persistentIdentifier == null || persistentIdentifier == "") {
-        res.status(400).json(errResponse);
+        res.status(404).json(errResponse);
     } else if (persistentIdentifier == "dd5f0174-575f-4f4c-a4fc-b406aab953d9") {
         res.json(getResponse);
     } else {
-        res.json(errResponse1);
+        res.status(404).json(errResponse1);
     }
     res.end();
     next();
