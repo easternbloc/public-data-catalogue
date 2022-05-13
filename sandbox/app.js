@@ -127,6 +127,7 @@ app.get("/_ping", handlers.status);
 app.get("/_status", handlers.status);
 app.get("/health", handlers.status);
 app.all("/hello", handlers.hello);
+app.all("/datasets", handlers.datasets);
 app.use(on_error)
 app.use(after_request);
 
