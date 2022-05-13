@@ -36,6 +36,11 @@ extends:
       - environment: internal-dev
         post_deploy:
           - template: ./templates/run-smoke-tests.yml
+          # SWK: test sandbox
+      - environment: internal-dev-sandbox
+        proxy_path: sandbox
+        post_deploy:
+          - template: ./templates/run-smoke-tests.yml          
       - environment: internal-qa
         post_deploy:
           - template: ./templates/run-smoke-tests.yml
