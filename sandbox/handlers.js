@@ -91,7 +91,7 @@ async function datasetsId(req, res, next) {
     // var patientIdentifier = req.query["patient.identifier"].split("|")[1];
 
     write_log(res, "info", {
-        message: "datasets",
+        message: "datasetsId",
         req: {
             path: req.path,
             query: req.query,
