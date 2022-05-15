@@ -1,8 +1,8 @@
 "use strict";
 const getResponseEndpoint1 = require("./responses/dataset-list-example.json");
-const getResponseEndpoint2 = require("./responses/dataset-example.json");
-const errResponse1 = require("./responses/OperationOutcome-INVALID_ENDPOINT_PATH.json");
-const errResponse2 = require("./responses/OperationOutcome-RESOURCE_NOT_FOUND.json");
+// const getResponseEndpoint2 = require("./responses/dataset-example.json");
+// const errResponse1 = require("./responses/OperationOutcome-INVALID_ENDPOINT_PATH.json");
+// const errResponse2 = require("./responses/OperationOutcome-RESOURCE_NOT_FOUND.json");
 
 const log = require("loglevel");
 
