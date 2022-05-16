@@ -8,7 +8,7 @@ info:
   description: |
     
     ## Overview
-    Use this API to retrieve information suitable for publication in a health research data catalogue. 
+    Use this API to retrieve metadata information suitable for publication in a health research data catalogue. 
 
     You can:
     * get a list of data sets
@@ -18,14 +18,14 @@ info:
     * retrieve data sets as a bulk transfer
     * retrieve data set feeds
 
-    You can get the following information for each data set:
+    You can get the following metadata information for each data set:
     * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
     * logical descriptions of field-level data
 
-    The API conforms to the [HDR UK Dataset Schema Standard v2.0.2](https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json) created to enable sharing of information with the UK-wide 'federated' health research data catalogue.
+    The API conforms to the [HDR UK Dataset Metadata Schema Standard v2.0.2](https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json) created to enable sharing of information with the UK-wide 'federated' health research data catalogue.
 
     ### API scope
-    Current scope is limited to information about national health-related data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
+    Current scope is limited to metadata information about national health-related data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
@@ -157,7 +157,7 @@ paths:
               schema:
                 type: object
                 # title: Container object for all matched resources
-                description: Container object for all summary dataset resources that match search criteria.
+                description: Container object for all summary dataset resources that match the request.
                 required:
                 - total
                 - items
@@ -165,7 +165,7 @@ paths:
                   total:
                     type: integer
                     # title: Total number of matches
-                    description: Used to return the total number of resources that match the search.
+                    description: The total number of resources that match the request.
                     minimum: 1
                 # type: object
                 # properties:
@@ -207,7 +207,7 @@ paths:
                   items:
                     type: array
                     # title: Items in the container object
-                    description: Repeats all summary dataset resources (items) that match search criteria.
+                    description: Repeats all summary dataset resources (items) that match the request.
                     items:
                       type: object
                       required:
@@ -315,9 +315,9 @@ paths:
                           # title: The source of the dataset
                           description: The source of the data set.
                           # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
-                          example: OTHER
+                          example: Other
               example:  
-                $ref: components/examples/dataset-list-example.json            
+                $ref: components/examples/dataset-list-example2.json            
         "4XX":
           description: |
             An error occurred as follows:
