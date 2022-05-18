@@ -1,0 +1,33 @@
+{
+    "total": "2",
+    "items": [
+        {
+            "@schema": {
+                "type": "Data Set",
+                "url": "https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json"
+            },
+            "persistentId": "tt6gh174-575f-4f4c-a4fc-b406aabj9765",
+            "name": "COVID-19 UK Non-hospital Antigen Testing Results",
+            "description": "COVID-19 Key Worker Testing Results data is required by NHS Digital to support COVID-19 requests for linkage, analysis and dissemination to other organisations who require the data in a timely manner. These requests are often urgent and in support of direct care and service monitoring, planning and research. These are all functions that NHS Digital have been asked to deliver as a national resource in response to COVID-19, through the recent direction from the SoS.\n\nAntigen test results relating to subjects tested within the following:\n\n• Drive through test centre\n• Home test\n\nThe Key Worker Testing results relate to a subject who has been tested. This may be a key worker or a symptomatic household member. \n\nThe dataset will be composed of:\n• Patient identity and contact details\n• Testing centre and laboratory details\n• Test results\n• Test kit types (manufacturer)\n• Key worker indicator and employer organisation\n\nThe data cover UK and is collected under SofS Covid Direction under s254 of the HSCA 2012 and s255 requests from devolved administrations for Scotland, Northern Ireland and Wales.\n\nOriginal scope was Key workers but this has now been expanded to include all pillar 2 antigen testing, which is Commercial Antigen testing for citizens.\n\nCovers npex.npex, npex.randox, Legacy, deloitte and BSA flows.\nCovers England, NI, Scotland and Wales. [Originally it was just some Welsh patient data if they were tested in England, Scotland, NI etc, but scope has changed]",
+            "version": "2.0.2",
+            "self": "https://hdr.dev.dataproducts.nhs.uk/datasets/CV19-12345",
+            "issued": "2021-06-14T08:13:40.173+0000",
+            "modified": "2022-05-03T15:36:41.088+0000",
+            "source": null
+        },
+        {
+            "@schema": {
+                "type": "Data Set",
+                "url": "https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json"
+            },
+            "persistentId": "tt6gh174-575f-4f4c-a4fc-b406aabj9765",
+            "name": "Civil Registration - Deaths",
+            "description": "Deaths registration data (all deaths in England and Wales) collected from The Registrar General for England and Wales. Record-level patient data set, where a record represents one death registration. The data are collected at source from Local Registry offices at the point of death registration. The data are collated nationally by the Register General before being passed to the Office for National Statistics (ONS), for use in statistics and coding. Coding includes such things cause of death coding using the International Classifications of Diseases (ICD) coding system, attributing socio-economic code classifications based on occupation. ONS maintains its own version of the data set for its use in statistics. The Civil Registration of Deaths data contains 14 million unique registrations since 1993 onwards, increasing yearly. Average 500,000 - 600,000 new death registrations yearly. Records cover all deaths registered in England &amp; Wales.\nICD coding is 9th and 10th.\n\nhttps://digital.nhs.uk/services/data-access-request-service-dars",
+            "version": "2.0.2",
+            "self": "https://hdr.dev.dataproducts.nhs.uk/datasets/tt6gh174-575f-4f4c-a4fc-b406aabj9765",
+            "issued": "2021-06-09T17:52:50.898+0000",
+            "modified": "2022-03-21T18:41:35.709+0000",
+            "source": null
+        }
+    ]
+}

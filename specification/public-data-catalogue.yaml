@@ -8,7 +8,7 @@ info:
   description: |
     
     ## Overview
-    Use this API to retrieve information suitable for publication in a health research data catalogue. 
+    Use this API to retrieve metadata information suitable for publication in a health research data catalogue. 
 
     You can:
     * get a list of data sets
@@ -18,14 +18,14 @@ info:
     * retrieve data sets as a bulk transfer
     * retrieve data set feeds
 
-    You can get the following information for each data set:
+    You can get the following metadata information for each data set:
     * characteristics such as: publisher, keywords, coverage, provenance, access, format, standards and data utility
     * logical descriptions of field-level data
 
-    The API conforms to the [HDR UK Dataset Schema Standard v2.0.2](https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json) created to enable sharing of information with the UK-wide 'federated' health research data catalogue.
+    The API conforms to the [HDR UK Dataset Metadata Schema Standard v2.0.2](https://hdruk.github.io/schemata/schema/dataset/2.0.2/dataset.schema.json) created to enable sharing of information with the UK-wide 'federated' health research data catalogue.
 
     ### API scope
-    Current scope is limited to information about national health-related data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
+    Current scope is limited to metadata information about national health-related data sets (such as description, size of the population contained within that data set and the legal basis for access) that can help researchers and innovators decide whether a data set could be useful to their research and help them to make further health discoveries.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
@@ -116,15 +116,15 @@ paths:
         ## Summary data set metadata returned
         
         The summary data set metadata returned by this search includes:
-        * Schema conformance
-        * Data set persistent identifier
-        * Data set name
-        * Data set description
-        * Data set version
-        * Self continuation link
-        * Data set metadata creation date
-        * Data set metadata modification date
-        * Source of the metadata
+        * schema conformance
+        * data set persistent identifier
+        * data set name
+        * data set description
+        * data set version
+        * self continuation link
+        * data set metadata creation date
+        * data set metadata modification date
+        * source of the metadata
 
       parameters:
        - $ref: '#/components/parameters/ApiKey'      
@@ -157,7 +157,7 @@ paths:
               schema:
                 type: object
                 # title: Container object for all matched resources
-                description: Container object for all summary dataset resources that match search criteria.
+                description: Container object for all summary dataset resources that match the request.
                 required:
                 - total
                 - items
@@ -165,7 +165,7 @@ paths:
                   total:
                     type: integer
                     # title: Total number of matches
-                    description: Used to return the total number of resources that match the search.
+                    description: The total number of resources that match the request.
                     minimum: 1
                 # type: object
                 # properties:
@@ -207,7 +207,7 @@ paths:
                   items:
                     type: array
                     # title: Items in the container object
-                    description: Repeats all summary dataset resources (items) that match search criteria.
+                    description: Repeats all summary dataset resources (items) that match the request.
                     items:
                       type: object
                       required:
@@ -315,9 +315,9 @@ paths:
                           # title: The source of the dataset
                           description: The source of the data set.
                           # "$ref": "components/schemas/pdc.dataset.definitions.schema.yaml#/definitions/source"               
-                          example: OTHER
+                          example: Other
               example:  
-                $ref: components/examples/dataset-list-example.json            
+                $ref: components/examples/dataset-list-example2.json            
         "4XX":
           description: |
             An error occurred as follows:
@@ -347,7 +347,7 @@ paths:
         "5XX":
           description: |
 
-            A 5xx status code means the server has a problem. For more details on the most common 5xx status codes and their meanings see the [HTTP status codes](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#http-status-codes) section of the NHS Digital Developer API Reference Guide.
+            A 5xx status code means the server has a problem. For more details on the most common 5xx status codes and their meanings see the [HTTP status codes](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#http-status-codes).
 
         # "500":
         #   description: Internal Server Error
@@ -406,36 +406,6 @@ paths:
         ## Overview
         Use this endpoint to get data set details for a given data set persistent identifier.
   
-        ## Data set metadata returned
-
-        | Data element | Optionality                | Description |
-        | ------------ | -------------------------- | --------------------------------------------- |
-        | identifier   | Required                   | System data set identifier. |
-        | version      | Required                   | Data set metadata version. |
-        | revisions    | Required                   | Revisions of Data set metadata. Includes the Semantic Version of the data set and URL endpoint to obtain the version. |
-        | issued       | Required                   | Data set Metadata Creation Date. |
-        | modified     | Required                   | Data set Metadata Modified Date. |
-        | summary      | Required                   | Summary metadata must be completed by Data Custodians onboarding metadata into the Innovation Gateway MVP. |
-        | documentation| Optional                   | Documentation can include a rich text description of the data set or links to media such as documents, images, presentations, videos or links to data dictionaries, profiles or dashboards. Organisations are required to confirm that they have permission to distribute any additional media. |
-        | coverage     | Optional                   | This information includes attributes for geographical and temporal coverage, cohort details etc. to enable a deeper understanding of the data set content so that researchers can make decisions about the relevance of the underlying data. |
-        | provenance   | Optional                   | Provenance information allows researchers to understand data within the context of its origins and can be an indicator of quality, authenticity and timeliness. |
-        | accessibility| Required                   | Accessibility information allows researchers to understand access,  usage, limitations, formats, standards and linkage or interoperability with toolsets. |
-        | enrichmentAndLinkage| Optional            | This section includes information about related data sets that may have previously been linked, as well as indicating if there is the opportunity to link to other data sets in the future. If a data set has been enriched and/or derivations, scores and existing tools are available this section allows providers to indicate this to researchers. |
-        | observations | Optional                   | Multiple observations about the data set may be provided and users are expected to provide at least one observation (1..*). Examples detailed in next section. |
-
- 
-        ### Observations
-
-        Multiple observations about the data set may be provided and users
-        are expected to provide at least one observation (1..*). We will be supporting
-        the schema.org observation model (https://schema.org/Observation) with default values. Users will be encouraged to provide their own statistical populations as the project progresses.   Examples: 
-
-        | Statistical Population | Population Size  | Measured Property | Observation Date | Population Description |
-        |------------------------| ---------------- | ----------------- | ---------------- | ---------------------- |
-        | Persons                | 32937            | Count             | 2017             | Events relating to period between April - Sept 2017 |
-        | Events                 | 14900000         | Count             | 15/01/2021       | Number of unique death registrations since 1993 in England and Wales |
-        | Findings               | 17,891           | Count             | 2020-09-03       | Cancer Germline - Number of genomes |
-
       parameters:
        - $ref: '#/components/parameters/ApiKey'      
        - $ref: '#/components/parameters/CorrelationID'     
@@ -487,7 +457,7 @@ paths:
         "5XX":
           description: |
 
-            A 5xx status code means the server has a problem. For more details on the most common 5xx status codes and their meanings see the [HTTP status codes](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#http-status-codes) section of the NHS Digital Developer API Reference Guide.
+            A 5xx status code means the server has a problem. For more details on the most common 5xx status codes and their meanings see the [HTTP status codes](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#http-status-codes).
 
         # "500":
         #   description: Internal Server Error
