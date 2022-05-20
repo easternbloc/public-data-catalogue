@@ -9,7 +9,7 @@ This is a specification for the *public-data-catalogue* API.
 * `scripts/` Utilities helpful to developers of this specification.
 * `proxies/` Live (connecting to another service) and sandbox (using the sandbox container) Apigee API Proxy definitions.
 
-Consumers of the API will find developer documentation on the [NHS Digital Developer Hub](https://developer.digital.nhs.uk/).
+Consumers of the API will find developer documentation on the [NHS Digital Developer Hub](https://digital.nhs.uk/developer).
 
 ## Contributing
 Contributions to this project are welcome from anyone, providing that they conform to the [guidelines for contribution](https://github.com/NHSDigital/public-data-catalogue/blob/master/CONTRIBUTING.md) and the [community code of conduct](https://github.com/NHSDigital/public-data-catalogue/blob/master/CODE_OF_CONDUCT.md).
