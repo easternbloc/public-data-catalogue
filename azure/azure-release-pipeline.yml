@@ -50,7 +50,7 @@ extends:
     # Enable int environment when ready by uncommenting:
       - environment: int
         jinja_templates:
-        HRDC_TARGET_SERVER: health-research-data-catalogue-api--int
+          HRDC_TARGET_SERVER: health-research-data-catalogue-api--int
         depends_on:
           - internal_qa
           - internal_qa_sandbox
